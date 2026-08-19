@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="format-detection" content="telephone=no" />
+  <meta name="HandheldFriendly" content="true" />
+  <title>ZD Gamez — PIN</title>
+  <link rel="icon" href="data:," />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fira+Sans+Condensed:wght@800&family=Outfit:wght@300;400;500;600;700;800&family=Rubik:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="wrapper">
+    <div id="header">
+      <div class="show">
+        <div class="langbtnwrap">
+          <div>
+            <a href="?lang=ar" class="langbtn active" data-lang="ar">AR</a>
+          </div>
+          <div>
+            <a href="?lang=en" class="langbtn" data-lang="en">EN</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="servicetxt" data-i18n-html="serviceTxt">
+      أهلا بكم في خدمة ZD Gamez<br />
+      وصول إلى الألعاب الحصرية<br />
+      الاشتراك 0.25 ريال عماني يومياً. للإلغاء أرسل UNSUB IVID إلى 92149.
+    </div>
+
+    <div id="container">
+      <div class="pictwrap">
+        <img class="icnvid" src="assets/icn-vid.png" alt="" />
+        <img class="icnmusic" src="assets/icn-music.png" alt="" />
+        <img class="icnheart" src="assets/icn-heart.png" alt="" />
+        <img class="icntext" src="assets/icn-text.png" alt="" />
+        <img class="imgmobi" src="assets/img-mobi.png" alt="" />
+      </div>
+
+      <div class="contentbox">
+        <div class="titletxt" data-i18n="titleTxt">الوصول إلى المحتوى الكامل</div>
+        <div class="contentsection">
+          <div id="pbox" class="section">
+            <form method="POST" id="pboxform" novalidate>
+              <div class="pintxt" data-i18n="pinTitle">الخطوة 2/2: التحقق من رقم الهاتف المحمول باستخدام OTP</div>
+              <div class="inputbox">
+                <span class="inputicon icn_wiggle"><img src="assets/icn-pin.svg" alt="" /></span>
+                <div class="pinBox">
+                  <input type="tel" name="p" id="p" class="numeric pincheck" maxlength="4" autocomplete="one-time-code" inputmode="numeric" />
+                  <span class="sidebtncheck">
+                    <svg class="checkcircle_icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 52 52">
+                      <circle class="checkcircle_bg" cx="26" cy="26" r="25" fill="none"></circle>
+                      <path class="checkcircle_tick" d="M14.1 27.2l7.1 7.2 16.7-16.8" fill="none"></path>
+                    </svg>
+                  </span>
+                </div>
+              </div>
+              <div class="errorBox"></div>
+              <div class="btnpin">
+                <button type="submit" class="button">
+                  <div class="btntxt" data-i18n="pinBtn">إرسال</div>
+                  <div class="round">
+                    <span class="arrow first"></span>
+                    <span class="arrow second"></span>
+                  </div>
+                  <span class="submitload"><span class="lds-dual-ring"></span></span>
+                </button>
+              </div>
+              <div class="pintxt2">
+                <a href="index.html" id="btnBackPin">
+                  <span data-i18n="pinResend">لم يصلك الرقم السري ؟</span>
+                  <span data-i18n="pinBack">رجوع</span>
+                </a>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="footer">
+      <div class="tnc" data-i18n-html="footerNote">
+        الشروط والأحكام:
+        <ul>
+          <li>خدمة ZD Gamez عبر عمانتل بسعر 0.25 ريال عماني يومياً</li>
+          <li>للإلغاء أرسل UNSUB IVID إلى 92149</li>
+        </ul>
+      </div>
+      <div class="copyright" data-i18n-html="copyright">
+        <span class="rtl"><span class="ltr">©&nbsp;2026</span>&nbsp;&nbsp;جميع الحقوق محفوظة</span>
+      </div>
+    </div>
+  </div>
+  <script src="script.js" defer></script>
+</body>
+</html>

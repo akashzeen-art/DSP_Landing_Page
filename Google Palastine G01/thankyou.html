@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=AW-18322570229"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'AW-18322570229');
+</script>
+<!-- Event snippet for Thank_You conversion page -->
+<script>
+  gtag('event', 'conversion', {'send_to': 'AW-18322570229/NAR8CM3U59UcEPX38KBE'});
+</script>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+  <meta name="theme-color" content="#0b1b2b" />
+  <title>Thank You</title>
+  <link rel="icon" href="data:," />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+  <style>
+    .thankyou-wrap {
+      min-height: 70vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      color: #fff;
+      padding: 32px 20px;
+    }
+    .thankyou-wrap h1 {
+      margin: 0 0 10px;
+      font-size: 1.6rem;
+      font-weight: 700;
+    }
+    .thankyou-wrap p {
+      margin: 0;
+      opacity: 0.9;
+      font-size: 0.95rem;
+    }
+  </style>
+</head>
+<body>
+<!-- Google tag (gtag.js) — body backup -->
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+</script>
+  <div class="root ps">
+    <div class="container">
+      <div class="thankyou-wrap">
+        <h1>Thank you</h1>
+        <p>Redirecting you now…</p>
+      </div>
+    </div>
+  </div>
+  <script>
+    (function () {
+      "use strict";
+      var params = new URLSearchParams(window.location.search);
+      var adid = params.get("adid") || "";
+      var cmpid = params.get("cmpid") || "";
+      var token = params.get("token") || "";
+      var msisdn = params.get("msisdn") || "";
+
+      function portalHref() {
+        var qs =
+          "adid=" + encodeURIComponent(adid) +
+          "&cmpid=" + encodeURIComponent(cmpid) +
+          "&token=" + encodeURIComponent(token) +
+          "&msisdn=" + encodeURIComponent(msisdn);
+        var host = (location.hostname || "").toLowerCase();
+        if (host.indexOf("netlify.app") !== -1) {
+          return "/adpoke/portal?" + qs;
+        }
+        if (host === "localhost" || host === "127.0.0.1") {
+          return "adpoke-proxy?path=portal&" + qs;
+        }
+        // Same-folder proxy first (psgog01), then domain root backup
+        return "adpoke-api.php?path=portal&" + qs;
+      }
+
+      // Give conversion pixel a moment, then go to portal
+      setTimeout(function () {
+        if (adid && cmpid && token && msisdn) {
+          window.location.href = portalHref();
+        } else {
+          window.location.href = "index.html";
+        }
+      }, 800);
+    })();
+  </script>
+</body>
+</html>

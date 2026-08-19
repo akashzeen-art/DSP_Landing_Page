@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>ZD Gamez</title>
+  <link rel="icon" href="data:," />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body style="background:#000;">
+  <div class="ty-wrap">
+    <h1 id="tyTitle">Thank you for subscribing!</h1>
+    <p id="tySub">Redirecting you to the content portal…</p>
+    <div class="ty-timer" id="tyTimer">3</div>
+    <div class="disclaimerbox" style="margin-top:28px;">
+      <div class="disclaimerdiv">
+        <p>ZD Gamez — Omantel: 0.25 OMR/day. Subscription renews automatically until you unsubscribe. To cancel, send SMS UNSUB IVID to 92149.</p>
+        <p>© 2026  All Rights Reserved</p>
+      </div>
+    </div>
+  </div>
+  <script>
+    (function () {
+      var PORTAL = "http://64.225.85.48/adnet/Promo/Api/CPportal?cid=388";
+      var lang = "en";
+      try { lang = localStorage.getItem("lang") || "en"; } catch (e) {}
+
+      var copy = {
+        ar: {
+          title: "شكراً لاشتراكك!",
+          sub: "جاري تحويلك إلى بوابة المحتوى…",
+          disc: "<p>ZD Gamez — عمانتل: 0.25 ريال عماني/يوم. يتجدد الاشتراك تلقائياً حتى تقوم بالإلغاء. للإلغاء أرسل رسالة SMS: UNSUB IVID إلى 92149.</p><p>© 2026  جميع الحقوق محفوظة</p>"
+        },
+        en: {
+          title: "Thank you for subscribing!",
+          sub: "Redirecting you to the content portal…",
+          disc: "<p>ZD Gamez — Omantel: 0.25 OMR/day. Subscription renews automatically until you unsubscribe. To cancel, send SMS UNSUB IVID to 92149.</p><p>© 2026  All Rights Reserved</p>"
+        }
+      };
+      var c = copy[lang] || copy.en;
+      document.documentElement.lang = lang;
+      document.documentElement.dir = lang === "ar" ? "rtl" : "ltr";
+      document.getElementById("tyTitle").textContent = c.title;
+      document.getElementById("tySub").textContent = c.sub;
+      var d = document.querySelector(".disclaimerdiv");
+      if (d) d.innerHTML = c.disc;
+
+      try {
+        var clickId = sessionStorage.getItem("click_id") || localStorage.getItem("click_id") || "";
+        var zone = sessionStorage.getItem("zoneid") || localStorage.getItem("zoneid") || "";
+        var converted = sessionStorage.getItem("converted") || localStorage.getItem("converted");
+        var fake = !clickId || clickId.indexOf("local_") === 0 || clickId.indexOf("{") !== -1 || clickId.indexOf("##") !== -1 || clickId === zone || clickId.toLowerCase() === "adsterra";
+        if (converted === "1" && !fake) {
+          var qs = "subid_short=" + encodeURIComponent(clickId) + "&atpay=1";
+          var pb = "https://www.pbterra.com/name/Zeendigital123/at?" + qs;
+          var pixel = "https://www.pbterra.com/conversion.gif?cid=" + encodeURIComponent(clickId);
+          var proxy = "backcall.php?" + qs;
+          var img = new Image();
+          img.src = pb + "&_t=" + Date.now();
+          var img2 = new Image();
+          img2.src = pixel + "&_t=" + Date.now();
+          try { fetch(pb, { method: "GET", mode: "no-cors", keepalive: true, cache: "no-store" }).catch(function () {}); } catch (e2) {}
+          try { fetch(proxy, { method: "GET", keepalive: true, cache: "no-store" }).catch(function () {}); } catch (e3) {}
+        }
+      } catch (e3) {}
+
+      var n = 3;
+      var el = document.getElementById("tyTimer");
+      var timer = setInterval(function () {
+        n -= 1;
+        if (el) el.textContent = String(Math.max(n, 0));
+        if (n <= 0) {
+          clearInterval(timer);
+          window.location.href = PORTAL;
+        }
+      }, 1000);
+    })();
+  </script>
+</body>
+</html>

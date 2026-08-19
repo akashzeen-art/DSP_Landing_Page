@@ -1,0 +1,13 @@
+# Google Palestine — Netlify test deploy
+# PHP does not run on Netlify; /adpoke/* is proxied to Adpoke HTTP API.
+
+[[redirects]]
+  from = "/adpoke/*"
+  to = "http://64.225.87.221/adpoke/cnt/inapp/:splat"
+  status = 200
+  force = true
+
+[[headers]]
+  for = "/*"
+  [headers.values]
+    Cache-Control = "public, max-age=0, must-revalidate"

@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=AW-18322602807"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'AW-18322602807');
+</script>
+<!-- Event snippet for Page_view conversion page -->
+<script>
+  gtag('event', 'conversion', {'send_to': 'AW-18322602807/yc_XCILH69ccELf28qBE'});
+</script>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, user-scalable=no" />
+  <title>AudioBooks — Get Access For Your Mobile</title>
+  <link rel="icon" href="data:," />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css?v=20260728d" />
+</head>
+<body>
+  <div class="page">
+    <div class="topbar">
+      <div class="lang-switcher">
+        <button type="button" class="lang-active" id="btnEN">EN</button>
+        <button type="button" id="btnKA">ქარ</button>
+      </div>
+    </div>
+
+    <div class="title-area">
+      <div class="icon" aria-hidden="true">👤✔</div>
+      <h1 id="txt-title">Get Access For Your Mobile</h1>
+    </div>
+
+    <div class="card">
+      <!-- Step 1: MSISDN → sendPIN -->
+      <div id="view-step1" class="step-content current-visible">
+        <form id="msisdnForm" autocomplete="on">
+          <h2 id="txt-step1-heading">Enter your mobile number to start download now</h2>
+          <div class="phone-box" id="phoneBox">
+            <div class="country">
+              <img src="https://flagcdn.com/w40/ge.png" alt="GE" width="32" height="24" />
+              <span>995</span>
+            </div>
+            <input id="mobile" name="phone" maxlength="15" type="tel" inputmode="numeric" autocomplete="tel" placeholder="5XXXXXXXX" />
+          </div>
+          <p class="errorBox" id="errMsisdn" role="alert"></p>
+          <button id="continueBtn" class="action-btn" type="submit">
+            <span id="txt-continue">CONTINUE</span>
+            <small id="txt-subscribe">TO SUBSCRIBE</small>
+          </button>
+        </form>
+      </div>
+
+      <!-- Step 2: PIN → verifyPIN → status → thankyou -->
+      <div id="view-step2" class="step-content">
+        <form id="pinForm" autocomplete="one-time-code">
+          <h2 id="txt-step2-heading">Enter the 4-digit PIN</h2>
+          <p class="pin-hint" id="txt-pin-hint">We sent a verification code to your Beeline mobile</p>
+          <div class="phone-box pin-box" id="pinBox">
+            <input id="pin" name="pin" maxlength="4" type="tel" inputmode="numeric" autocomplete="one-time-code" placeholder="••••" />
+          </div>
+          <p class="errorBox" id="errPin" role="alert"></p>
+          <button id="confirmBtn" class="action-btn" type="submit" disabled>
+            <span id="txt-confirm">CONFIRM</span>
+            <small id="txt-confirm-sub">TO CONTINUE</small>
+          </button>
+          <button type="button" class="link-back" id="btnBack">← Change number</button>
+        </form>
+      </div>
+    </div>
+
+    <div class="descriptions" id="desc-box">
+      <p id="desc-p1">On subscribing to AudioBooks, you will be charged 1 GEL per day. Your subscription will automatically renew every day until you unsubscribe.</p>
+      <p id="desc-p2">Enjoy unlimited access to a premium collection of audiobooks across a variety of categories, including Fiction, Business, Self-Development, Education, Romance, Mystery, and more. Listen anytime, anywhere on your mobile device.</p>
+      <p id="desc-details-title"><strong>Subscription Details</strong></p>
+      <ul id="desc-list">
+        <li id="desc-op">Operator: Beeline Georgia</li>
+        <li id="desc-price">Price: 1 GEL per day</li>
+        <li id="desc-billing">Billing: Auto-renews daily until cancelled.</li>
+      </ul>
+    </div>
+  </div>
+
+  <script src="script.js?v=20260728d" defer></script>
+</body>
+</html>

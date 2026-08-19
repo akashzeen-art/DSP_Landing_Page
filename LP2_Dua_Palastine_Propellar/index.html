@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="format-detection" content="telephone=no" />
+  <title>Z Game</title>
+  <link rel="icon" href="data:," />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Naskh+Arabic:wght@400;700&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="wrapper">
+    <div class="contentwrap">
+      <img src="icn-flash.svg" class="icnflash" alt="" />
+      <div class="contentsection">
+        <div id="mbox" class="section">
+          <form method="POST" id="mboxform" novalidate>
+            <div class="pnwrap">
+              <div class="pntxt">
+                <span data-i18n="pnTitle">أدخل رقم هاتفك المحمول لبدء التنزيل</span><span class="req">*</span>
+              </div>
+              <div class="qbox">
+                <div class="qwrapper">
+                  <span data-i18n="qHint">أدخل أرقام هاتفك المحمول الصحيحة:</span>
+                  <br /><span class="ltr">+970 5X XXX XXXX</span>
+                </div>
+                <img src="question-icon.svg" class="icnquestion" alt="?" />
+              </div>
+            </div>
+            <div class="mobileBox">
+              <span class="prefixbox"><img src="ps-flag.svg" class="flagicn" alt="PS" />+970</span>
+              <input type="tel" name="m" id="m" class="numeric msisdncheck pulseflash" maxlength="9" placeholder="X XXXX XXXX" autocomplete="off" inputmode="numeric" />
+            </div>
+            <div class="errorBox"></div>
+            <div class="btnpn">
+              <button type="submit" class="button">
+                <small class="btntxt1" data-i18n="mBtn1">يكمل</small>
+                <small class="btntxt2"><span data-i18n="mBtn2Pre">مع رمز</span> <span>PIN</span></small>
+              </button>
+              <div class="loadbtn"><div class="lds-ring"><div></div><div></div><div></div><div></div></div></div>
+            </div>
+          </form>
+        </div>
+
+        <div class="securewrap">
+          <svg viewBox="0 0 128 157" aria-hidden="true">
+            <path fill="#00bb19" d="M64,156.7c-8.5-3-16.7-7.2-24.5-12.7C14.8,126.6,0,98.6,0,69V23C40.9,20.2,50.6,8.5,64,.3c13.4,8.1,27.7,20.2,64,22.7v46c0,29.6-14.8,57.6-39.5,75-7.8,5.5-16,9.7-24.5,12.7Z"></path>
+            <polygon fill="#fff" points="91.1 52 55.2 87.4 37.2 69 26.5 80.2 55.1 109.8 101.9 63.4 91.1 52"></polygon>
+          </svg>
+          <div data-i18n="mSecure">بياناتك الشخصية محمية ومشفرة</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="langbtnwrap show">
+      <div>
+        <input type="radio" name="lang" id="langAr" checked />
+        <a href="?lang=ar" class="langbtn active" data-lang="ar">AR</a>
+      </div>
+      <div>
+        <input type="radio" name="lang" id="langEn" />
+        <a href="?lang=en" class="langbtn" data-lang="en">EN</a>
+      </div>
+    </div>
+
+    <div id="footer">
+      <div class="serviceNote" data-i18n-html="footerNote">Z Game — Jawwal PS: NIS 1.16/day. Ooredoo PS: NIS 1.5/day.</div>
+      <div class="copyright" data-i18n-html="copyright"><span class="ltr">2026&nbsp;&copy;&nbsp;جميع الحقوق محفوظة</span></div>
+    </div>
+  </div>
+  <script src="script.js"></script>
+</body>
+</html>

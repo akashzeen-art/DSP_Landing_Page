@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="format-detection" content="telephone=no" />
+  <title>Gamifya — Get Access</title>
+  <link rel="icon" href="data:," />
+  <link href="assets/fonts.css" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="wrapper">
+    <div id="header">
+      <div class="rightheader">
+        <div class="hdrtxt" data-i18n="headerTitle">Watch Now</div>
+        <div class="langbtnwrap show">
+          <a href="?lang=en" class="langbtn active" data-lang="en">English</a>
+          <a href="?lang=ar" class="langbtn" data-lang="ar">عربي</a>
+        </div>
+      </div>
+      <div class="clear"></div>
+    </div>
+
+    <div class="videoframe">
+      <div class="screenload">
+        <div class="loadbox" id="loadbox">
+          <div class="hdicon"><img src="assets/hd.png" alt="" /></div>
+          <div class="contentbox">
+            <div class="contentsection">
+              <div id="mbox" class="section">
+                <form method="POST" id="mboxform" novalidate>
+                  <div class="pntxt" data-i18n="pnTitle">Please enter your mobile number to enjoy unlimited games</div>
+                  <div class="mobileBox pulseflash">
+                    <span class="prefixbox">+964</span>
+                    <input type="tel" name="m" id="m" class="numeric msisdncheck" maxlength="12" autocomplete="off" inputmode="numeric" />
+                  </div>
+                  <div class="egtxt" data-i18n="mExample">(example: +964 7XXX XXX XXXX)</div>
+                  <div class="errorBox" id="errMsisdn"></div>
+                  <div class="btnpn">
+                    <button type="submit" class="button" id="subscribeBtn">
+                      <div class="btntxt" data-i18n="mBtn">Subscribe</div>
+                      <div class="submitload"><div class="lds-dual-ring"></div></div>
+                    </button>
+                  </div>
+                  <div class="securewrap">
+                    <svg viewBox="0 0 128 157" aria-hidden="true">
+                      <path fill="#00bb19" d="M64,156.7c-8.5-3-16.7-7.2-24.5-12.7C14.8,126.6,0,98.6,0,69V23C40.9,20.2,50.6,8.5,64,.3c13.4,8.1,27.7,20.2,64,22.7v46c0,29.6-14.8,57.6-39.5,75-7.8,5.5-16,9.7-24.5,12.7Z"></path>
+                      <polygon fill="#fff" points="91.1 52 55.2 87.4 37.2 69 26.5 80.2 55.1 109.8 101.9 63.4 91.1 52"></polygon>
+                    </svg>
+                    <div data-i18n="mSecure">Your personal data is protected and encrypted</div>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="screenbgwrap">
+          <img class="screenbg" id="screenbg" src="assets/mov.jpg" alt="" />
+        </div>
+      </div>
+      <div class="playerbar">
+        <div class="playericon">
+          <div class="playbarwrap">
+            <div class="leftbar"><img src="assets/leftbar.png" alt="" /></div>
+            <div class="rightbar"><img src="assets/rightbar.png" alt="" /></div>
+            <div class="clear"></div>
+          </div>
+        </div>
+        <div id="myProgress"><div id="myBar"></div></div>
+      </div>
+    </div>
+
+    <div id="footer">
+      <div class="tnc" data-i18n-html="footerNote">
+        Gamifya is a subscription service that auto-renews at 360 IQD every 1 Day(s) for Asiacell subscribers. To cancel, send 0.<br>
+        Gamifya is a subscription service that auto-renews at 240 IQD every 1 Day(s) for Korek subscribers. To cancel, send 01.<br>
+        Global Recipes is a subscription service that auto-renews at 240 IQD every 1 Day(s) for Zain subscribers. To cancel, send G7.
+      </div>
+      <div class="copyright" data-i18n-html="copyright">&copy;&nbsp;2026&nbsp;&nbsp;All Rights Reserved</div>
+    </div>
+  </div>
+
+  <!-- Operator popup -->
+  <div id="operatorModal" class="modal-overlay" aria-hidden="true">
+    <div class="modal-content">
+      <button type="button" class="modal-close" id="modalClose" aria-label="Close">&times;</button>
+      <div class="modal-title" data-i18n="opTitle">Select Operator</div>
+      <div class="operator-buttons">
+        <button type="button" class="op-btn" data-operator="asiacell">
+          Asiacell
+          <small>Gamifya · 360 IQD/day</small>
+        </button>
+        <button type="button" class="op-btn" data-operator="korek">
+          Korek
+          <small>Gamifya · 240 IQD/day</small>
+        </button>
+        <button type="button" class="op-btn" data-operator="zain">
+          Zain
+          <small>Global Recipes · 240 IQD/day</small>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

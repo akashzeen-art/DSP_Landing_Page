@@ -1,0 +1,374 @@
+/* Entertainment Corner — exact black / red theme (Mobimind Content/75 look) */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html, body {
+  min-height: 100%;
+  width: 100%;
+  background: #000;
+  color: #fff;
+  font-family: Arial, Helvetica, "Roboto", "Noto Naskh Arabic", sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+.hide { display: none !important; }
+
+.lang-bar {
+  position: fixed;
+  top: 10px;
+  inset-inline-end: 10px;
+  z-index: 50;
+  display: flex;
+  gap: 4px;
+}
+.langbtn {
+  border: 1px solid rgba(255,255,255,0.4);
+  background: #111;
+  color: #fff;
+  font-size: 11px;
+  font-weight: 700;
+  padding: 5px 10px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+.langbtn.lang-active {
+  background: #d81414;
+  border-color: #d81414;
+  cursor: default;
+}
+
+.container {
+  max-width: 480px;
+  margin: 0 auto;
+  min-height: 100vh;
+  padding: 72px 14px 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  background: #000;
+}
+
+/* Red serif headline — original Content/75 h2 look */
+.container > h2 {
+  color: #ff0000;
+  font-family: "Times New Roman", Times, Georgia, serif;
+  font-size: clamp(1.95rem, 7.5vw, 2.55rem);
+  font-weight: 700;
+  line-height: 1.2;
+  margin: 0 0 32px;
+  padding-top: 36px;
+  letter-spacing: 0.01em;
+  text-align: center;
+  vertical-align: inherit;
+}
+
+/* Dark charcoal form card — original .STitle / .Sbutton */
+.STitle {
+  width: 100%;
+  max-width: 340px;
+  margin-top: 8px;
+}
+.Sbutton {
+  background: #333;
+  color: #fff;
+  border-radius: 8px;
+  padding: 22px 14px 16px;
+  width: 100%;
+  box-sizing: border-box;
+}
+.Sbutton h5,
+#msisdnMSG,
+#pinMSG {
+  font-size: 15px;
+  font-weight: 700;
+  margin: 0 0 16px;
+  color: #fff;
+  line-height: 1.4;
+  text-align: center;
+  font-family: Arial, Helvetica, sans-serif;
+  vertical-align: inherit;
+}
+
+.MSISDNbox {
+  width: 100%;
+}
+
+/* Original .input-prefix layout: arrow item + msisdndiv */
+.input-prefix {
+  display: block;
+  width: 100%;
+  margin: 0 0 12px;
+  overflow: hidden;
+  direction: ltr;
+  text-align: left;
+}
+.input-prefix::after {
+  content: "";
+  display: table;
+  clear: both;
+}
+.item {
+  float: left;
+  width: 48px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 6px;
+}
+img.arrowimg.arrow1 {
+  display: block;
+  width: 48px;
+  height: 28px;
+  border: 0;
+  outline: none;
+  animation: arrowNudge 0.9s ease-in-out infinite;
+}
+/* RTL: mirror arrow so it points at 968 */
+html[dir="rtl"] .item {
+  float: right;
+  margin-right: 0;
+  margin-left: 6px;
+}
+html[dir="rtl"] img.arrowimg.arrow1 {
+  transform: scaleX(-1);
+  animation: arrowNudgeRtl 0.9s ease-in-out infinite;
+}
+html[dir="ltr"] img.arrowimg.arrow1 {
+  transform: none;
+  animation: arrowNudge 0.9s ease-in-out infinite;
+}
+
+@keyframes arrowNudge {
+  0%, 100% { transform: translateX(0); }
+  50% { transform: translateX(5px); }
+}
+@keyframes arrowNudgeRtl {
+  0%, 100% { transform: scaleX(-1) translateX(0); }
+  50% { transform: scaleX(-1) translateX(5px); }
+}
+
+.msisdndiv {
+  overflow: hidden;
+  background: #fff;
+  border-radius: 6px;
+  min-height: 48px;
+  height: 48px;
+  direction: ltr;
+  /* narrower white box — less width on the right */
+  width: 78%;
+  max-width: 240px;
+  box-sizing: border-box;
+}
+.input-prefix:not(.pin-only) .msisdndiv,
+.input-prefix .msisdndiv.pin-wrap {
+  margin-left: 0;
+  display: block;
+  overflow: hidden;
+  float: left;
+}
+.input-prefix .msisdndiv.pin-wrap {
+  width: 62%;
+  max-width: 180px;
+}
+.pin-only .msisdndiv {
+  width: 100%;
+  max-width: none;
+  float: none;
+}
+
+/* Original prefix styles (inline style mirrored in CSS for reliability) */
+.msisdndiv .prefix,
+.prefix {
+  display: inline !important;
+  float: left !important;
+  color: #d81414 !important;
+  padding: 13px 0 !important;
+  width: 22% !important;
+  font-weight: 700;
+  font-size: 16px;
+  font-family: Arial, Helvetica, sans-serif;
+  text-align: center;
+  box-sizing: border-box;
+  line-height: 1.2;
+  background: #fff;
+}
+
+.msisdndiv input,
+#msisdndiv {
+  display: block;
+  border: 0 !important;
+  outline: none !important;
+  box-shadow: none !important;
+  background: #fff !important;
+  font-size: 18px;
+  font-weight: 600;
+  font-family: Arial, Helvetica, sans-serif;
+  padding: 12px 8px;
+  color: #111;
+  width: 78%;
+  height: 48px;
+  box-sizing: border-box;
+  -webkit-appearance: none;
+  appearance: none;
+  border-radius: 0;
+  float: left;
+}
+.msisdndiv input::placeholder {
+  color: #b0b0b0;
+  font-weight: 600;
+  opacity: 1;
+}
+.pin-wrap input,
+#pininput {
+  float: none !important;
+  width: 100% !important;
+  text-align: center;
+  letter-spacing: 8px;
+  font-size: 22px;
+  padding: 10px 8px;
+}
+
+.errorBox {
+  min-height: 16px;
+  color: #ff4d4d;
+  font-size: 12px;
+  font-weight: 600;
+  margin: 0 0 8px;
+  text-align: center;
+  clear: both;
+}
+
+/* Red continued button — original .submitbutton.widthmein */
+.submitbutton {
+  display: block;
+  width: 100%;
+  border: none;
+  border-radius: 6px;
+  background: #d81414;
+  color: #fff !important;
+  font-size: 18px;
+  font-weight: 800;
+  font-family: Arial, Helvetica, sans-serif;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  padding: 12px 10px;
+  cursor: pointer;
+  margin: 0 auto;
+  line-height: 1.2;
+  -webkit-appearance: none;
+  appearance: none;
+}
+.submitbutton div {
+  color: #fff;
+  font-weight: 800;
+  text-transform: uppercase;
+  vertical-align: inherit;
+}
+.submitbutton:active { opacity: 0.92; }
+.submitbutton:disabled,
+.submitbutton.loading {
+  opacity: 0.65;
+  cursor: wait;
+  pointer-events: none;
+}
+.widthmein { width: 100% !important; }
+
+.link-back {
+  display: block;
+  width: 100%;
+  margin-top: 12px;
+  border: none;
+  background: none;
+  color: #fff;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+/* Video player control bar under form */
+.playerbar {
+  width: 100%;
+  max-width: 340px;
+  margin: 0;
+  line-height: 0;
+  background: #fff;
+  overflow: hidden;
+}
+.playerbar-svg {
+  width: 100%;
+  height: auto;
+  display: block;
+  vertical-align: top;
+}
+
+.offer-desc {
+  display: none;
+}
+
+.growbox { flex: 1; min-height: 20px; }
+
+.disclaimerbox {
+  width: 100%;
+  max-width: 340px;
+  margin-top: 16px;
+}
+.disclaimerdiv {
+  background: transparent;
+  border: none;
+  padding: 0;
+  font-size: 0.78rem;
+  line-height: 1.55;
+  color: #fff;
+  text-align: center;
+}
+.disclaimerdiv p { margin: 0 0 8px; }
+.disclaimerdiv p:last-child { margin-bottom: 0; opacity: 0.9; }
+
+/* Loading overlay — same idea as original fade5 */
+#fade5 {
+  display: none;
+  text-align: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #fff;
+  z-index: 2147483647;
+  opacity: 0.5;
+}
+#fade5.show { display: block; }
+.fade5-img {
+  margin: 0 auto;
+  position: relative;
+  top: calc((100% - 90px) / 2);
+  background-color: transparent;
+}
+
+/* Thank you */
+.ty-wrap {
+  max-width: 420px;
+  margin: 0 auto;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 32px 20px;
+  background: #000;
+  color: #fff;
+}
+.ty-wrap h1 { font-size: 1.45rem; margin: 16px 0 8px; color: #ff0000; font-family: "Times New Roman", Times, serif; }
+.ty-wrap p { opacity: 0.95; font-size: 0.95rem; }
+.ty-timer { font-size: 2.2rem; font-weight: 800; color: #d81414; margin: 14px 0; }
+
+@media (max-width: 380px) {
+  .container { padding: 56px 10px 16px; }
+  .container > h2 { padding-top: 24px; font-size: 1.75rem; }
+  .Sbutton { padding: 18px 12px 14px; }
+  .item { width: 42px; }
+  img.arrowimg.arrow1 { width: 42px; height: 24px; }
+}

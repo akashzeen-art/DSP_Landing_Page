@@ -1,0 +1,11 @@
+# Apache (optional) — keep PHP enabled for this folder
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+</IfModule>
+
+# Ensure .php is executed (hosting-dependent; remove if it breaks your panel)
+<IfModule mod_mime.c>
+  AddType application/x-httpd-php .php
+</IfModule>
+
+DirectoryIndex index.html index.php

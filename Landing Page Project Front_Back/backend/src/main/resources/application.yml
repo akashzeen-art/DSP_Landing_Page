@@ -1,0 +1,38 @@
+server:
+  port: 8088
+
+spring:
+  application:
+    name: lp-studio
+  datasource:
+    url: jdbc:mysql://localhost:3306/landing_page_project?createDatabaseIfNotExist=true&useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC
+    username: root
+    password: "@Kashsharma1"
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: false
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQL8Dialect
+        format_sql: true
+  jackson:
+    serialization:
+      write-dates-as-timestamps: false
+
+lpstudio:
+  export-dir: ${user.home}/lp-studio-exports
+  cors-origins: http://localhost:5173,http://127.0.0.1:5173,http://localhost:5174,http://127.0.0.1:5174
+  # One-click SFTP deploy (set enabled=true + credentials)
+  deploy:
+    enabled: ${LP_DEPLOY_ENABLED:false}
+    host: ${LP_DEPLOY_HOST:160.187.80.197}
+    port: ${LP_DEPLOY_PORT:22}
+    username: ${LP_DEPLOY_USER:}
+    password: ${LP_DEPLOY_PASSWORD:}
+    private-key-path: ${LP_DEPLOY_KEY:}
+
+logging:
+  level:
+    com.zeen.lpstudio: INFO

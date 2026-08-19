@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 276 276" style="enable-background:new 0 0 276 276;" xml:space="preserve">
+<style type="text/css">
+	.st0{fill:#FFFFFF;}
+	.st1{fill:#43B8FF;}
+	.st2{fill-rule:evenodd;clip-rule:evenodd;fill:#FFFFFF;}
+	.st3{fill:#FFFFFF;fill-opacity:0.18;}
+</style>
+<g vector-effect="non-scaling-stroke">
+	<ellipse class="st0" cx="137.1" cy="140.4" rx="121.5" ry="121.8"/>
+	<ellipse class="st1" cx="137.1" cy="140.4" rx="106.1" ry="106.4"/>
+	<path class="st2" d="M128.8,173.9l6.6-32H97.3c-1.8,0-3.5-0.8-4.7-2.2c-1.2-1.4-1.7-3.3-1.5-5.2l8.3-65.7c0.3-3.2,3-5.6,6.2-5.7
+		h45.8c2.1,0.1,4,1.1,5.2,2.9c1.2,1.8,1.4,4.1,0.6,6.1L144,106.8h40.7c2.4,0,4.5,1.4,5.5,3.5c1.1,2.2,0.9,4.7-0.4,6.8L153,173.9
+		h21.6l-36.5,44l-36.5-44L128.8,173.9z"/>
+	<ellipse class="st3" cx="138" cy="140.4" rx="116.3" ry="90"/>
+</g>
+</svg>

@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="format-detection" content="telephone=no" />
+  <meta name="HandheldFriendly" content="true" />
+  <title>ZD Gamez — PIN</title>
+  <link rel="icon" href="data:," />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Mada:wght@200..900&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="wrapper">
+    <div id="header">
+      <div class="searchwrap">
+        <span data-i18n="navAll">الكل</span>
+        <span data-i18n="navSearch">بحث</span>
+        <div class="search"><img src="assets/search.svg" alt="" /></div>
+      </div>
+      <div class="langbtnwrap show">
+        <a href="?lang=en" class="langbtn" data-lang="en">
+          <img class="globalimg" src="assets/lang.svg" alt="" />
+          <span>English</span>
+        </a>
+        <a href="?lang=ar" class="langbtn active" data-lang="ar">
+          <img class="globalimg" src="assets/lang.svg" alt="" />
+          <span>عربي</span>
+        </a>
+      </div>
+    </div>
+
+    <div class="servicetxt" data-i18n-html="serviceTxt">
+      أهلا بكم في خدمة ZD Gamez<br />
+      وصول إلى الألعاب الحصرية<br />
+      الاشتراك 0.25 ريال عماني يومياً. للإلغاء أرسل UNSUB IVID إلى 92149.
+    </div>
+
+    <div id="container">
+      <div class="videowrap">
+        <div class="videobox">
+          <div class="contentsection">
+            <div id="pbox" class="section">
+              <form method="POST" id="pboxform" novalidate>
+                <div class="verifytxt">
+                  <span data-i18n="pinSent">تم إرسال رمز التحقق إلى</span>
+                  <span class="ltr"><span id="prefilledm"></span></span>.
+                </div>
+                <div class="pintxt" data-i18n="pinTitle">ادخل الرقم السري للمتابعة</div>
+                <div class="pinBox">
+                  <input type="tel" name="p" id="p" class="numeric pincheck" maxlength="4" autocomplete="one-time-code" inputmode="numeric" />
+                </div>
+                <div class="errorBox"></div>
+                <div class="pintxt2">
+                  <a href="index.html" id="btnBackPin">
+                    <span data-i18n="pinResend">لم يصلك الرقم السري ؟</span>
+                    <span data-i18n="pinBack">رجوع</span>
+                  </a>
+                </div>
+                <div class="btnpin">
+                  <input type="submit" class="button" id="pBtn" data-i18n-value="pinBtn" value="قم بتأكيد" />
+                  <span class="submitload"><span class="lds-dual-ring"></span></span>
+                </div>
+                <div class="stnc" data-i18n="stnc">
+                  الاشتراك 0.25 ريال عماني يومياً ويتجدد تلقائياً حتى الإلغاء. للإلغاء أرسل UNSUB IVID إلى 92149.
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+        <div class="player">
+          <img class="player_web" src="assets/player-web.jpg" alt="" />
+          <img class="player_mobi" src="assets/player-mobi.jpg" alt="" />
+        </div>
+      </div>
+
+      <div class="playlistwrap">
+        <div class="playlisttxt" data-i18n="playlist">قائمة التشغيل:</div>
+        <div id="channelwrap">
+          <div class="channelbox active" data-channel="1">قناة 1</div>
+          <div class="channelbox" data-channel="2">قناة 2</div>
+          <div class="channelbox" data-channel="3">قناة 3</div>
+          <div class="channelbox" data-channel="4">قناة 4</div>
+          <div class="channelbox" data-channel="5">قناة 5</div>
+          <div class="channelbox" data-channel="6">قناة 6</div>
+        </div>
+      </div>
+    </div>
+
+    <div id="footer">
+      <div class="tnc" data-i18n-html="footerNote">
+        الشروط والأحكام:
+        <ul>
+          <li>خدمة ZD Gamez عبر عمانتل بسعر 0.25 ريال عماني يومياً</li>
+          <li>للإلغاء أرسل UNSUB IVID إلى 92149</li>
+        </ul>
+      </div>
+      <div class="copyright" data-i18n-html="copyright">
+        <span class="ltr">2026&nbsp;©&nbsp;جميع الحقوق محفوظة</span>
+      </div>
+    </div>
+  </div>
+
+  <script src="script.js" defer></script>
+</body>
+</html>

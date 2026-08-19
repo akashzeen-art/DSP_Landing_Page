@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Z Game</title>
+  <link rel="icon" href="data:," />
+  <link href="assets/fonts.css" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+  <style>
+    .ty-wrap {
+      max-width: 420px;
+      margin: 40px auto;
+      padding: 24px 16px;
+      text-align: center;
+      color: #fff;
+    }
+    .ty-wrap h1 { font-size: 1.4rem; margin-bottom: 10px; }
+    .ty-timer { font-size: 2rem; font-weight: 800; color: #00bb19; margin: 14px 0; }
+  </style>
+</head>
+<body>
+  <div class="wrapper">
+    <div class="ty-wrap">
+      <h1 id="tyTitle">شكراً لاشتراكك!</h1>
+      <p id="tySub">جاري تحويلك إلى بوابة المحتوى…</p>
+      <div class="ty-timer" id="tyTimer">3</div>
+    </div>
+  </div>
+  <script>
+    (function () {
+      var lang = "ar";
+      try {
+        lang = new URLSearchParams(location.search).get("lang") || localStorage.getItem("lang") || "ar";
+      } catch (e) {}
+
+      var copy = {
+        ar: { title: "شكراً لاشتراكك!", sub: "جاري تحويلك إلى بوابة المحتوى…" },
+        en: { title: "Thank you for subscribing!", sub: "Redirecting you to the content portal…" }
+      };
+      var c = copy[lang] || copy.ar;
+      document.documentElement.lang = lang;
+      document.documentElement.dir = lang === "ar" ? "rtl" : "ltr";
+      document.getElementById("tyTitle").textContent = c.title;
+      document.getElementById("tySub").textContent = c.sub;
+
+      var portal =
+        sessionStorage.getItem("portal_url") ||
+        localStorage.getItem("portal_url") ||
+        "http://64.225.85.48/adnet/Promo/Api/CPportal?cid=570";
+
+      try {
+        var clickId = sessionStorage.getItem("click_id") || localStorage.getItem("click_id");
+        var converted = sessionStorage.getItem("converted") || localStorage.getItem("converted");
+        var opKey = sessionStorage.getItem("operator") || localStorage.getItem("operator") || "jawwal";
+        var payout = opKey === "ooredoo" ? "1.5" : "1.16";
+        if (converted === "1" && clickId && clickId.indexOf("local_") !== 0) {
+          var useProxy = location.protocol === "http:" || location.protocol === "https:";
+          var direct =
+            "https://ad.propellerads.com/conversion.php?aid=3898869&pid=&tid=154120&visitor_id=" +
+            encodeURIComponent(clickId) +
+            "&payout=" + encodeURIComponent(payout);
+          var url = useProxy
+            ? "propeller-pb.php?visitor_id=" + encodeURIComponent(clickId) + "&payout=" + encodeURIComponent(payout)
+            : direct;
+          var img = new Image();
+          img.src = direct + "&_t=" + Date.now();
+          try {
+            fetch(url, { method: "GET", mode: "no-cors", cache: "no-store" }).catch(function () {});
+          } catch (e2) {}
+        }
+      } catch (e3) {}
+
+      var n = 3;
+      var el = document.getElementById("tyTimer");
+      var timer = setInterval(function () {
+        n -= 1;
+        if (el) el.textContent = String(Math.max(n, 0));
+        if (n <= 0) {
+          clearInterval(timer);
+          window.location.href = portal;
+        }
+      }, 1000);
+    })();
+  </script>
+</body>
+</html>

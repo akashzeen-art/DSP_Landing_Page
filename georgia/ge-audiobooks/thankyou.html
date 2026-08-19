@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=AW-18322602807"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'AW-18322602807');
+</script>
+<!-- Event snippet for Thank_You conversion page -->
+<script>
+  gtag('event', 'conversion', {'send_to': 'AW-18322602807/2UsOCIXH8tccELf28qBE'});
+</script>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, user-scalable=no" />
+  <title>Thank You — AudioBooks</title>
+  <link rel="icon" href="data:," />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="page">
+    <div class="title-area" style="justify-content:center;margin-bottom:12px">
+      <h1 style="text-align:center;font-size:22px">AudioBooks</h1>
+    </div>
+    <div class="card">
+      <div class="thankyou-body">
+        <div class="success-icon">✓</div>
+        <h2>Thank You For Subscribing!</h2>
+        <p>You will be redirected to portal in</p>
+        <div class="timer" id="countdown">3</div>
+        <p>seconds...</p>
+      </div>
+    </div>
+  </div>
+  <script>
+    (function () {
+      "use strict";
+      var params = new URLSearchParams(window.location.search);
+      var cid = params.get("cid") || "489";
+      var msisdn = params.get("msisdn") || "";
+      var sec = 3;
+      var el = document.getElementById("countdown");
+
+      /** 4) Redirect: GEcmp/redirect?cid=489&msisdn=995… via PHP proxy */
+      function redirectHref() {
+        var qs =
+          "cid=" + encodeURIComponent(cid) +
+          "&msisdn=" + encodeURIComponent(msisdn);
+        try {
+          return new URL("ge-api.php", window.location.href).href +
+            "?path=redirect&" + qs;
+        } catch (e) {
+          return "ge-api.php?path=redirect&" + qs;
+        }
+      }
+
+      function go() {
+        if (msisdn) window.location.href = redirectHref();
+        else window.location.href = "index.html";
+      }
+
+      var interval = setInterval(function () {
+        sec--;
+        if (el) el.textContent = String(Math.max(sec, 0));
+        if (sec <= 0) {
+          clearInterval(interval);
+          go();
+        }
+      }, 1000);
+
+      // Fallback if timer is blocked
+      setTimeout(go, 3500);
+    })();
+  </script>
+</body>
+</html>

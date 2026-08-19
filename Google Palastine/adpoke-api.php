@@ -1,0 +1,79 @@
+<?php
+/**
+ * Google Palestine — Adpoke API proxy (REQUIRED on production HTTPS).
+ * Standalone: upload this file next to index.html in the same folder.
+ *
+ * Endpoints (docs):
+ *   sendotp / validateotp / statuscheck / portal
+ * Upstream:
+ *   http://64.225.87.221/adpoke/cnt/inapp/{path}?adid=&cmpid=&token=&msisdn=&param1=
+ *
+ * Test PHP: open php-test.php in the same folder — must print "PHP is working"
+ */
+header('Content-Type: application/json; charset=UTF-8');
+header('Access-Control-Allow-Origin: *');
+header('Cache-Control: no-store');
+
+if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
+    http_response_code(204);
+    exit;
+}
+
+$path = isset($_GET['path']) ? trim((string) $_GET['path'], '/') : '';
+$allowed = ['sendotp', 'validateotp', 'statuscheck', 'portal'];
+
+if ($path === '' || !in_array($path, $allowed, true)) {
+    http_response_code(400);
+    echo json_encode(['response' => 'FAIL', 'errorMessage' => 'Invalid or missing path']);
+    exit;
+}
+
+$params = $_GET;
+unset($params['path']);
+$query = http_build_query($params);
+$url = 'http://64.225.87.221/adpoke/cnt/inapp/' . $path . ($query !== '' ? ('?' . $query) : '');
+
+if ($path === 'portal') {
+    header('Location: ' . $url, true, 302);
+    exit;
+}
+
+$body = false;
+$httpCode = 200;
+
+if (function_exists('curl_init')) {
+    $ch = curl_init($url);
+    curl_setopt_array($ch, [
+        CURLOPT_RETURNTRANSFER => true,
+        CURLOPT_FOLLOWLOCATION => true,
+        CURLOPT_TIMEOUT => 30,
+        CURLOPT_CONNECTTIMEOUT => 10,
+        CURLOPT_USERAGENT => 'GooglePalestine-AdpokeProxy/1.0',
+    ]);
+    $body = curl_exec($ch);
+    $httpCode = (int) curl_getinfo($ch, CURLINFO_HTTP_CODE);
+    if ($body === false) {
+        http_response_code(502);
+        echo json_encode(['response' => 'FAIL', 'errorMessage' => 'Proxy error: ' . curl_error($ch)]);
+        curl_close($ch);
+        exit;
+    }
+    curl_close($ch);
+} else {
+    $ctx = stream_context_create([
+        'http' => [
+            'timeout' => 30,
+            'ignore_errors' => true,
+            'header' => "User-Agent: GooglePalestine-AdpokeProxy/1.0\r\n",
+        ],
+    ]);
+    $body = @file_get_contents($url, false, $ctx);
+    if ($body === false) {
+        http_response_code(502);
+        echo json_encode(['response' => 'FAIL', 'errorMessage' => 'Proxy error: enable PHP cURL']);
+        exit;
+    }
+}
+
+http_response_code($httpCode > 0 ? $httpCode : 200);
+echo $body;

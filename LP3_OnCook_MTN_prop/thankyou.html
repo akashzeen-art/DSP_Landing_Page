@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="fr" dir="ltr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>OnCook / OneGaming</title>
+  <link rel="icon" href="data:," />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="wrapper">
+    <div class="ty-wrap">
+      <h1 id="tyTitle">Merci pour votre abonnement !</h1>
+      <p id="tySub">Redirection vers le contenu…</p>
+      <div class="ty-timer" id="tyTimer">3</div>
+    </div>
+  </div>
+  <script>
+    (function () {
+      var lang = "fr";
+      try {
+        lang = new URLSearchParams(location.search).get("lang") || localStorage.getItem("lang") || "fr";
+      } catch (e) {}
+
+      var copy = {
+        fr: { title: "Merci pour votre abonnement !", sub: "Redirection vers le contenu…" },
+        en: { title: "Thank you for subscribing!", sub: "Redirecting you to the content…" }
+      };
+      var c = copy[lang] || copy.fr;
+      document.documentElement.lang = lang;
+      document.getElementById("tyTitle").textContent = c.title;
+      document.getElementById("tySub").textContent = c.sub;
+
+      var msisdn = "";
+      try { msisdn = sessionStorage.getItem("msisdn") || localStorage.getItem("msisdn") || ""; } catch (e1) {}
+      var portal =
+        (function () {
+          try { return sessionStorage.getItem("portal_url") || localStorage.getItem("portal_url") || ""; }
+          catch (e) { return ""; }
+        })() ||
+        "http://168.144.122.72/prod/CMcmp/redirect?cid=17&msisdn=" + encodeURIComponent(msisdn);
+
+      try {
+        var clickId = sessionStorage.getItem("click_id") || localStorage.getItem("click_id") || "";
+        var converted = sessionStorage.getItem("converted") || localStorage.getItem("converted");
+        var payout = sessionStorage.getItem("pb_amount") || localStorage.getItem("pb_amount") || "100";
+        var fake = !clickId || clickId.indexOf("local_") === 0 || clickId.indexOf("{") !== -1 || clickId.indexOf("${") !== -1;
+        if (converted === "1" && !fake) {
+          var direct =
+            "https://ad.propellerads.com/conversion.php?aid=3898869&pid=&tid=154120&visitor_id=" +
+            encodeURIComponent(clickId) + "&payout=" + encodeURIComponent(payout);
+          var proxy =
+            "propeller-pb.php?visitor_id=" + encodeURIComponent(clickId) +
+            "&payout=" + encodeURIComponent(payout);
+          var img = new Image();
+          img.src = direct + "&_t=" + Date.now();
+          try { fetch(direct, { method: "GET", mode: "no-cors", keepalive: true, cache: "no-store" }).catch(function () {}); } catch (e2) {}
+          try { fetch(proxy, { method: "GET", keepalive: true, cache: "no-store" }).catch(function () {}); } catch (e3) {}
+          if (navigator.sendBeacon) { try { navigator.sendBeacon(proxy); } catch (e4) {} }
+        }
+      } catch (e5) {}
+
+      var n = 3;
+      var el = document.getElementById("tyTimer");
+      var timer = setInterval(function () {
+        n -= 1;
+        if (el) el.textContent = String(Math.max(n, 0));
+        if (n <= 0) {
+          clearInterval(timer);
+          window.location.href = portal;
+        }
+      }, 1000);
+    })();
+  </script>
+</body>
+</html>

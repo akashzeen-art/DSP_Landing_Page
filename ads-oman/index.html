@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+  <meta name="referrer" content="unsafe-url" />
+  <title>ZD Gamez</title>
+  <link rel="icon" href="data:," />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Naskh+Arabic:wght@500;600;700&family=Roboto:wght@400;500;700;900&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body style="display: block; direction: ltr;">
+  <div class="lang-bar">
+    <button type="button" class="langbtn" id="btnAR" data-lang="ar">عربي</button>
+    <button type="button" class="langbtn lang-active" id="btnEN" data-lang="en">English</button>
+  </div>
+
+  <div class="container" id="viewMsisdn" style="direction:ltr">
+    <h2 data-i18n="headline">Latest entertainment videos</h2>
+
+    <div class="STitle">
+      <div class="Sbutton" id="msisdnRelocate">
+        <h5 id="msisdnMSG" data-i18n="msisdnMsg">Enter your mobile number to view</h5>
+        <div class="MSISDNbox">
+
+          <div id="msidnblockdiv" class="input-prefix">
+            <div class="item">
+              <img class="arrowimg arrow1" src="arrow.svg" alt="" width="48" height="28" />
+            </div>
+            <div class="msisdndiv" id="msisdncontainer">
+              <div class="prefix" style="display: inline; float: left; color: #d81414; padding: 13px 0; width: 22%;">+968</div>
+              <input id="msisdndiv" style="width:78%;" name="mninput" required="required" type="text" inputmode="numeric" enterkeyhint="go" placeholder="7" maxlength="10" autocomplete="tel" />
+            </div>
+          </div>
+          <p class="errorBox" id="errMsisdn" role="alert"></p>
+          <div align="center">
+            <button type="button" class="submitbutton widthmein" id="submitbtn">
+              <div data-i18n="continueBtn">continued</div>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="playerbar" aria-hidden="true">
+      <img class="playerbar-svg" src="playerbar.svg" alt="" width="360" height="40" />
+    </div>
+
+    <div class="growbox"></div>
+    <div class="disclaimerbox" id="myDisclaimer">
+      <div id="disclaimerdiv" class="disclaimerdiv" data-i18n-html="disclaimer">
+        <p>ZD Gamez — Omantel: 0.25 OMR/day. Subscription renews automatically until you unsubscribe. To cancel, send SMS UNSUB IVID to 92149.</p>
+        <p>© 2026  All Rights Reserved</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="container hide" id="viewPin" style="direction:ltr">
+    <h2 data-i18n="pinHeadline">Enter PIN code</h2>
+    <div class="STitle">
+      <div class="Sbutton" id="pinRelocate">
+        <h5 id="pinMSG" data-i18n="pinMsg">Enter the 4-digit PIN sent to your phone</h5>
+        <div class="MSISDNbox">
+          <div id="pinblockdiv" class="input-prefix">
+            <div class="item">
+              <img class="arrowimg arrow1" src="arrow.svg" alt="" width="48" height="28" />
+            </div>
+            <div class="msisdndiv pin-wrap" id="pincontainer">
+              <input id="pininput" name="pininput" required="required" type="text" inputmode="numeric" enterkeyhint="go" placeholder="••••" maxlength="4" autocomplete="one-time-code" style="width:100%;float:none;" />
+            </div>
+          </div>
+          <p class="errorBox" id="errPin" role="alert"></p>
+          <div align="center">
+            <button type="button" class="submitbutton widthmein" id="confirmbtn">
+              <div data-i18n="confirmBtn">CONFIRM</div>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="playerbar" aria-hidden="true">
+      <img class="playerbar-svg" src="playerbar.svg" alt="" width="360" height="40" />
+    </div>
+    <div class="growbox"></div>
+    <div class="disclaimerbox">
+      <div class="disclaimerdiv" data-i18n-html="disclaimer">
+        <p>ZD Gamez — Omantel: 0.25 OMR/day. Subscription renews automatically until you unsubscribe. To cancel, send SMS UNSUB IVID to 92149.</p>
+        <p>© 2026  All Rights Reserved</p>
+      </div>
+    </div>
+  </div>
+
+  <div id="fade5" aria-hidden="true">
+    <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='90' height='90' viewBox='0 0 90 90'%3E%3Ccircle cx='45' cy='45' r='36' fill='none' stroke='%23d81414' stroke-width='8' stroke-dasharray='160' stroke-linecap='round'%3E%3CanimateTransform attributeName='transform' type='rotate' from='0 45 45' to='360 45 45' dur='0.8s' repeatCount='indefinite'/%3E%3C/circle%3E%3C/svg%3E" alt="Loading..." width="90" class="fade5-img" />
+  </div>
+
+  <script src="script.js" defer></script>
+</body>
+</html>

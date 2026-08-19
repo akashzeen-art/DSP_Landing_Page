@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+  <title>Thank You</title>
+  <link rel="icon" href="data:," />
+  <link href="assets/fonts.css" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+  <style>
+    .ty-wrap {
+      min-height: 70vh; display: flex; flex-direction: column;
+      align-items: center; justify-content: center; text-align: center;
+      padding: 32px 20px; color: #202020;
+    }
+    .ty-wrap h1 { margin: 0 0 10px; font-size: 1.5rem; font-weight: 700; }
+    .ty-wrap p { margin: 0; opacity: 0.85; font-size: 0.95rem; }
+    .ty-timer { font-size: 2rem; font-weight: 800; color: #be1518; margin: 12px 0; }
+  </style>
+</head>
+<body>
+  <div class="wrapper">
+    <div class="ty-wrap">
+      <h1>Thank you</h1>
+      <p>Subscription activated. Redirecting to portal…</p>
+      <div class="ty-timer" id="countdown">3</div>
+    </div>
+  </div>
+  <script>
+    (function () {
+      "use strict";
+      var params = new URLSearchParams(window.location.search);
+      var provider = params.get("provider") || "";
+      var msisdn = params.get("msisdn") || "";
+      var cid = params.get("cid") || "";
+      var clickId = params.get("clickid") || "";
+      try {
+        if (!clickId) clickId = sessionStorage.getItem("click_id") || localStorage.getItem("click_id") || "";
+      } catch (e) {}
+
+      // Propeller postback
+      if (clickId && clickId !== "${SUBID}") {
+        var qs = "visitor_id=" + encodeURIComponent(clickId) + "&payout=1";
+        try {
+          var img = new Image();
+          img.src = "https://ad.propellerads.com/conversion.php?aid=3898869&pid=&tid=154120&" + qs;
+        } catch (e2) {}
+        try {
+          fetch("propeller-pb.php?" + qs, { method: "GET", keepalive: true }).catch(function () {});
+        } catch (e3) {}
+      }
+
+      function redirectHref() {
+        return "iq-api.php?provider=" + encodeURIComponent(provider) +
+          "&path=redirect&cid=" + encodeURIComponent(cid) +
+          "&msisdn=" + encodeURIComponent(msisdn);
+      }
+
+      var sec = 3;
+      var el = document.getElementById("countdown");
+      var t = setInterval(function () {
+        sec--;
+        if (el) el.textContent = String(Math.max(sec, 0));
+        if (sec <= 0) {
+          clearInterval(t);
+          if (provider && msisdn) window.location.href = redirectHref();
+          else window.location.href = "index.html";
+        }
+      }, 1000);
+      setTimeout(function () {
+        if (provider && msisdn) window.location.href = redirectHref();
+      }, 4000);
+    })();
+  </script>
+</body>
+</html>

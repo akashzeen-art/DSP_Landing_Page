@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="format-detection" content="telephone=no" />
+  <meta name="HandheldFriendly" content="true" />
+  <title>ZD Gamez</title>
+  <link rel="icon" href="data:," />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fira+Sans+Condensed:wght@800&family=Outfit:wght@300;400;500;600;700;800&family=Rubik:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="wrapper">
+    <div id="header">
+      <div class="show">
+        <div class="langbtnwrap">
+          <div>
+            <a href="?lang=ar" class="langbtn active" data-lang="ar">AR</a>
+          </div>
+          <div>
+            <a href="?lang=en" class="langbtn" data-lang="en">EN</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="servicetxt" data-i18n-html="serviceTxt">
+      أهلا بكم في خدمة ZD Gamez<br />
+      وصول إلى الألعاب الحصرية<br />
+      الاشتراك 0.25 ريال عماني يومياً. للإلغاء أرسل UNSUB IVID إلى 92149.
+    </div>
+
+    <div id="container">
+      <div class="pictwrap">
+        <img class="icnvid" src="assets/icn-vid.png" alt="" />
+        <img class="icnmusic" src="assets/icn-music.png" alt="" />
+        <img class="icnheart" src="assets/icn-heart.png" alt="" />
+        <img class="icntext" src="assets/icn-text.png" alt="" />
+        <img class="imgmobi" src="assets/img-mobi.png" alt="" />
+      </div>
+
+      <div class="contentbox">
+        <div class="titletxt" data-i18n="titleTxt">الوصول إلى المحتوى الكامل</div>
+        <div class="contentsection">
+
+          <div id="page1" class="section">
+            <div class="page1txt" data-i18n="page1txt">اتبع التعليمات للوصول إلى المحتوى الكامل</div>
+            <div class="btnpage1">
+              <a href="#mbox" class="button" id="btnNext">
+                <div class="btntxt" data-i18n="nextBtn">التالي</div>
+                <div class="round">
+                  <span class="arrow first bounceAlpha-play bounceAlpha-delay"></span>
+                  <span class="arrow second bounceAlpha-play"></span>
+                </div>
+              </a>
+            </div>
+          </div>
+
+          <div id="mbox" class="section hide">
+            <form method="POST" id="mboxform" novalidate>
+              <div class="pntxt" data-i18n="pnTitle">الخطوة 1/2: ادخل رقم جوالك</div>
+              <div class="inputbox">
+                <div class="inputicon icn_wiggle"><img src="assets/icn-mobi.svg" alt="" /></div>
+                <div class="mobileBox">
+                  <span class="countrycode">+(968)</span>
+                  <span class="prefixbox"></span>
+                  <input type="tel" name="m" id="m" class="numeric msisdncheck" maxlength="8" autocomplete="off" inputmode="numeric" />
+                  <span class="sidebtncheck">
+                    <svg class="checkcircle_icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 52 52">
+                      <circle class="checkcircle_bg" cx="26" cy="26" r="25" fill="none"></circle>
+                      <path class="checkcircle_tick" d="M14.1 27.2l7.1 7.2 16.7-16.8" fill="none"></path>
+                    </svg>
+                  </span>
+                </div>
+              </div>
+              <div class="egtxt" data-i18n-html="mExample">(7/9 xxxx xxxx :<span class="rtl">مثال</span>)</div>
+              <div class="errorBox"></div>
+              <div class="btnwrap">
+                <div class="btnpn">
+                  <button type="submit" class="button">
+                    <div class="btntxt" data-i18n="mBtn">اشتراك</div>
+                    <div class="round">
+                      <span class="arrow first"></span>
+                      <span class="arrow second"></span>
+                    </div>
+                    <span class="submitload"><span class="lds-dual-ring"></span></span>
+                  </button>
+                </div>
+                <div class="exitbtn">
+                  <a href="https://www.google.com" data-i18n="exitBtn">خروج</a>
+                </div>
+              </div>
+              <div class="stnc" data-i18n="stnc">
+                الاشتراك 0.25 ريال عماني يومياً ويتجدد تلقائياً حتى الإلغاء. للإلغاء أرسل UNSUB IVID إلى 92149.
+              </div>
+              <div class="mbox_stnc" data-i18n="mboxStnc">
+                بالضغط على 'اشترك'، سوف تتلقى رسالة تحتوي على رمز التفعيل لتأكيد اشتراكك
+              </div>
+            </form>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <div id="footer">
+      <div class="tnc" data-i18n-html="footerNote">
+        الشروط والأحكام:
+        <ul>
+          <li>بالضغط على زر اشترك أعلاه، فأنت توافق على الشروط والأحكام التالية:</li>
+          <li>خدمة ZD Gamez عبر عمانتل بسعر 0.25 ريال عماني يومياً</li>
+          <li>يتجدد الاشتراك تلقائياً حتى تقوم بالإلغاء</li>
+          <li>للإلغاء أرسل UNSUB IVID إلى 92149</li>
+          <li>بالمتابعة، أنت توافق على جميع الشروط والأحكام الخاصة بالخدمة</li>
+        </ul>
+      </div>
+      <div class="copyright" data-i18n-html="copyright">
+        <span class="rtl"><span class="ltr">©&nbsp;2026</span>&nbsp;&nbsp;جميع الحقوق محفوظة</span>
+      </div>
+    </div>
+  </div>
+  <script src="script.js" defer></script>
+</body>
+</html>

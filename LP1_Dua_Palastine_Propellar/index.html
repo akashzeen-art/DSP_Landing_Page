@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="format-detection" content="telephone=no" />
+  <title>Z Game</title>
+  <link rel="icon" href="data:," />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Naskh+Arabic:wght@400;700&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="wrapper">
+    <div id="header">
+      <div class="headerwrap">
+        <div class="langbtnwrap show">
+          <a href="?lang=en" class="langbtn" data-lang="en">English</a>
+          <a href="?lang=ar" class="langbtn active" data-lang="ar">عربي</a>
+        </div>
+        <div class="clear"></div>
+      </div>
+    </div>
+
+    <div id="container">
+      <img class="pict" src="pict.svg" alt="" />
+
+      <div class="descript-wrap">
+        <div class="file_n">
+          <div class="txt blue" data-i18n="fileName">اسم الملف</div>
+          <div class="txt grey">zipfile_21102022</div>
+        </div>
+        <div class="file_s">
+          <div class="txt blue" data-i18n="fileSize">حجم الملف</div>
+          <div class="txt grey">113.21MB</div>
+        </div>
+        <div class="speed">
+          <div class="txt blue" data-i18n="downloadSpeed">سرعة التنزيل</div>
+          <div class="txt grey">100 Mb/s</div>
+        </div>
+      </div>
+
+      <div class="contentsection">
+        <div id="mbox" class="section">
+          <form method="POST" id="mboxform" novalidate>
+            <div class="pntxt" data-i18n="pnTitle">يرجى إدخال رقم الهاتف</div>
+            <div class="mobileBox pulseflash pulseflash-delay">
+              <span class="prefixbox">+970</span>
+              <input type="tel" name="m" id="m" class="numeric msisdncheck" maxlength="9" autocomplete="off" inputmode="numeric" />
+              <span class="sidebtncheck"><img src="icn-check.svg" alt="" /></span>
+            </div>
+            <div class="egtxt" data-i18n="mExample">(مثال: +970 5X XXX XXXX)</div>
+            <div class="errorBox"></div>
+            <div class="btnpn">
+              <button type="submit" class="button">
+                <div class="btntxt" data-i18n="mBtn1">متابعة</div>
+                <div class="submitload" style="display:none;"><div class="lds-dual-ring"></div></div>
+              </button>
+            </div>
+            <div class="securewrap">
+              <img src="secure.svg" alt="" />
+              <div data-i18n="mSecure">بياناتك الشخصية محمية ومشفرة.</div>
+            </div>
+          </form>
+        </div>
+      </div>
+
+      <img class="icon" src="icon.svg" alt="" />
+    </div>
+
+    <div id="footer">
+      <div class="serviceNote" data-i18n-html="footerNote">Z Game — Jawwal PS: NIS 1.16/day. Ooredoo PS: NIS 1.5/day.</div>
+      <div class="terms" data-i18n="terms">الشروط والأحكام</div>
+      <div class="tncbox hide">
+        <div class="tnc" data-i18n="tncText">Z Game — Jawwal: 1.16 NIS/day (unsub 0257 → 37799). Ooredoo: 1.5 NIS/day (unsub 08 → 6976).</div>
+        <div class="closetnc" data-i18n="close">إغلاق</div>
+      </div>
+      <div class="copyright" data-i18n-html="copyright"><span class="ltr">2026&nbsp;&copy;&nbsp;جميع الحقوق محفوظة</span></div>
+    </div>
+  </div>
+  <script src="script.js"></script>
+</body>
+</html>
