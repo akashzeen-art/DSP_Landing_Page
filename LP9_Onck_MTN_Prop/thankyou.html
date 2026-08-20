@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>OnCook / OneGaming</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="ty-wrap">
+    <img src="assets/logo.png" alt="" style="width:64px;margin-bottom:12px;" />
+    <h1 id="tyTitle">Subscription successful</h1>
+    <p id="tySub">Redirecting you to the content…</p>
+    <div class="ty-timer" id="tyTimer">3</div>
+  </div>
+  <script>
+    (function () {
+      var lang = "en";
+      try {
+        lang = new URLSearchParams(location.search).get("lang") || localStorage.getItem("lang") || "en";
+      } catch (e) {}
+      if (lang === "fr") {
+        document.documentElement.lang = "fr";
+        document.getElementById("tyTitle").textContent = "Abonnement réussi";
+        document.getElementById("tySub").textContent = "Redirection vers le contenu…";
+      }
+      var msisdn = "";
+      try { msisdn = sessionStorage.getItem("msisdn") || localStorage.getItem("msisdn") || ""; } catch (e1) {}
+      var portal = "";
+      try { portal = sessionStorage.getItem("portal_url") || localStorage.getItem("portal_url") || ""; } catch (e2) {}
+      if (!portal) {
+        portal = "http://168.144.122.72/prod/CMcmp/redirect?cid=17&msisdn=" + encodeURIComponent(msisdn);
+      }
+      var n = 3;
+      var el = document.getElementById("tyTimer");
+      var t = setInterval(function () {
+        n -= 1;
+        if (el) el.textContent = String(Math.max(n, 0));
+        if (n <= 0) {
+          clearInterval(t);
+          window.location.href = portal;
+        }
+      }, 1000);
+    })();
+  </script>
+</body>
+</html>

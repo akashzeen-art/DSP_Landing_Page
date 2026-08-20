@@ -121,6 +121,28 @@
     return COUNTRY + normalizeLocal(local);
   }
 
+  /** Iraq prefixes: Asiacell 77, Zain 78/79, Korek 75 */
+  function detectOperatorKey(localOrFull) {
+    var d = String(localOrFull || "").replace(/\D/g, "");
+    if (d.indexOf(COUNTRY) === 0) d = d.slice(COUNTRY.length);
+    if (d.charAt(0) === "0") d = d.slice(1);
+    if (d.indexOf("77") === 0) return "asiacell";
+    if (d.indexOf("78") === 0 || d.indexOf("79") === 0) return "zain";
+    if (d.indexOf("75") === 0) return "korek";
+    return "";
+  }
+
+  function clearAfState() {
+    try {
+      sessionStorage.removeItem("af_ti");
+      sessionStorage.removeItem("af_ts");
+      sessionStorage.removeItem("af_page1");
+      localStorage.removeItem("af_ti");
+      localStorage.removeItem("af_ts");
+      localStorage.removeItem("af_page1");
+    } catch (e) {}
+  }
+
   function initTracking() {
     var params = new URLSearchParams(window.location.search);
     var clickId =
@@ -274,19 +296,22 @@
     try {
       headerObj = {
         "User-Agent": navigator.userAgent || "",
-        "Accept-Language": navigator.language || ""
+        "Accept-Language": navigator.language || "",
+        Accept: "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8"
       };
     } catch (e) {}
     var headerB64 = "";
-    try { headerB64 = btoa(JSON.stringify(headerObj)); } catch (e) { headerB64 = ""; }
+    try { headerB64 = btoa(unescape(encodeURIComponent(JSON.stringify(headerObj)))); } catch (e2) {
+      try { headerB64 = btoa(JSON.stringify(headerObj)); } catch (e3) { headerB64 = ""; }
+    }
 
     var params = new URLSearchParams({
-      offId: offId,
+      offId: String(offId),
       msisdn: msisdn || "",
       page: String(page),
       header: headerB64,
       ip: ip,
-      buttonid: buttonId
+      buttonid: buttonId || "confirm_btn"
     });
     var url = "http://apicalling.com/gulfpay/getAfScript?" + params.toString();
 
@@ -294,24 +319,71 @@
       url = "af-proxy.php?url=" + encodeURIComponent(url);
     }
 
-    fetch(url)
-      .then(function (r) { return r.json(); })
+    var finished = false;
+    function done(data) {
+      if (finished) return;
+      finished = true;
+      if (typeof cb === "function") cb(data || null);
+    }
+
+    /* Hard timeout so sendpin is never blocked forever */
+    var to = setTimeout(function () { done(null); }, 8000);
+
+    fetch(url, { method: "GET", cache: "no-store", credentials: "omit" })
+      .then(function (r) { return r.text().then(function (text) {
+        try { return JSON.parse(text); }
+        catch (e) { return null; }
+      }); })
       .then(function (data) {
-        if (data && data.ti) persist("af_ti", data.ti);
-        if (data && data.ts) persist("af_ts", data.ts);
+        clearTimeout(to);
+        if (data) {
+          /* Doc: if ti empty and script returned, do NOT pass ti in sendpin/verifypin */
+          if (data.ti != null && String(data.ti).trim() !== "") {
+            persist("af_ti", String(data.ti).trim());
+          }
+          if (data.ts != null && String(data.ts).trim() !== "") {
+            persist("af_ts", String(data.ts).trim());
+          }
+          if (String(page) === "1") persist("af_page1", "1");
 
-        if (data && data.script) {
-          var script = document.createElement("script");
-          script.type = "text/javascript";
-          script.appendChild(document.createTextNode(data.script));
-          document.head.appendChild(script);
+          if (data.script) {
+            try {
+              var script = document.createElement("script");
+              script.type = "text/javascript";
+              script.appendChild(document.createTextNode(String(data.script)));
+              document.head.appendChild(script);
+            } catch (e4) {}
+          }
         }
-
-        if (typeof cb === "function") cb(data);
+        done(data);
       })
       .catch(function () {
-        if (typeof cb === "function") cb(null);
+        clearTimeout(to);
+        done(null);
       });
+  }
+
+  function applyAfToParams(params) {
+    var afTi = track("af_ti");
+    var afTs = track("af_ts");
+    /* Only pass sessionKey from AF when ti is non-empty */
+    if (afTi && String(afTi).trim() !== "") {
+      params.sessionKey = String(afTi).trim();
+    } else {
+      var sk = track("sessionKey");
+      if (sk) params.sessionKey = sk;
+    }
+    if (afTs && String(afTs).trim() !== "") {
+      params.ts = String(afTs).trim();
+    }
+    return params;
+  }
+
+  function pinPageUrl() {
+    var url = "pin.html?lang=" + encodeURIComponent(lang);
+    var afTs = track("af_ts");
+    if (afTs) url += "&ts=" + encodeURIComponent(afTs);
+    return url;
   }
 
   /* ---- PropellerAds Postback ---- */
@@ -536,7 +608,7 @@
     }, 1500);
   }
 
-  /* Asiacell page=1 antifraud on MSISDN page */
+  /* Asiacell page=1 antifraud MUST run on MSISDN page (index) with #confirm_btn in DOM */
   var mForm = document.getElementById("mboxform");
   if (mForm) {
     var mInput = document.getElementById("m");
@@ -573,7 +645,25 @@
       var msisdn = fullMsisdn(value);
       persist("phone", msisdn);
       persist("msisdn", msisdn);
-      window.location.href = "operator.html?lang=" + lang;
+      clearAfState();
+
+      var guessed = detectOperatorKey(value);
+      if (guessed) persist("guessed_operator", guessed);
+
+      function goOperator() {
+        window.location.href = "operator.html?lang=" + lang;
+      }
+
+      /* Page 1 AF for Asiacell (77…) — required before sendpin */
+      if (guessed === "asiacell") {
+        getUserIp(function () {
+          runGulfpayAntifraud("2367", 1, "confirm_btn", msisdn, function () {
+            goOperator();
+          });
+        });
+      } else {
+        goOperator();
+      }
     });
   }
 
@@ -599,9 +689,19 @@
           persist("zeen_cid", op.cid);
           persist("portal_cid", op.portalCid);
 
+          /* Clear AF from another operator if user switches */
+          if (op.afType !== "asiacell") {
+            /* Keep nothing from Asiacell page1 for Korek/Zain sendpin */
+            try {
+              sessionStorage.removeItem("af_ti");
+              sessionStorage.removeItem("af_ts");
+              sessionStorage.removeItem("af_page1");
+            } catch (e) {}
+          }
+
           function doSendPin() {
             getUserIp(function (ip) {
-              var params = {
+              var params = applyAfToParams({
                 cid: op.cid,
                 msisdn: msisdn,
                 click_id: getClickId(),
@@ -609,11 +709,13 @@
                 sub_pub_id: track("sub_pub_id") || "0",
                 user_ip: ip || track("user_ip") || "",
                 ua: navigator.userAgent || ""
-              };
-              var sk = track("sessionKey");
-              if (sk) params.sessionKey = sk;
-              var afTi = track("af_ti");
-              if (afTi) params.sessionKey = afTi;
+              });
+              /* Korek/Zain: do not force empty AF sessionKey on sendpin */
+              if (op.afType !== "asiacell") {
+                delete params.ts;
+                if (!track("sessionKey")) delete params.sessionKey;
+                else params.sessionKey = track("sessionKey");
+              }
 
               callApi("sendpin", params)
                 .then(function (resp) {
@@ -624,7 +726,7 @@
                     showError(errText(errCode(resp)) || errText("1001"));
                     return;
                   }
-                  window.location.href = "pin.html?lang=" + lang;
+                  window.location.href = pinPageUrl();
                 })
                 .catch(function (err) {
                   document.querySelectorAll(".opbtn").forEach(function (b) { b.classList.remove("disabled_btn"); });
@@ -635,9 +737,16 @@
           }
 
           if (op.afType === "asiacell") {
-            runGulfpayAntifraud("2367", 1, "confirm_btn", msisdn, function () {
+            /* Ensure page=1 ran (retry on operator if index skipped / failed) */
+            if (track("af_page1") === "1" && track("af_ti")) {
               doSendPin();
-            });
+            } else {
+              getUserIp(function () {
+                runGulfpayAntifraud("2367", 1, "confirm_btn", msisdn, function () {
+                  doSendPin();
+                });
+              });
+            }
           } else {
             doSendPin();
           }
@@ -654,6 +763,12 @@
     var btnpin = document.querySelector(".btnpin") || document.querySelector(".btnpn");
     var opKey = track("operator") || "";
     var op = OPERATORS[opKey];
+
+    /* Capture ts from OTP page URL (Asiacell/Zain doc requirement) */
+    try {
+      var urlTs = new URLSearchParams(window.location.search).get("ts");
+      if (urlTs) persist("af_ts", urlTs);
+    } catch (eTs) {}
 
     if (!track("msisdn") && !track("phone")) {
       window.location.href = "index.html?lang=" + lang;
@@ -716,7 +831,7 @@
       setLoading(btnpin, true);
 
       getUserIp(function (ip) {
-        var params = {
+        var params = applyAfToParams({
           cid: op.cid,
           msisdn: track("msisdn") || track("phone"),
           click_id: getClickId(),
@@ -725,16 +840,15 @@
           sub_pub_id: track("sub_pub_id") || "0",
           user_ip: ip || track("user_ip") || "",
           ua: navigator.userAgent || ""
-        };
+        });
 
-        /* Pass antifraud ti/ts to verifypin */
-        var afTi = track("af_ti");
-        var afTs = track("af_ts");
-        if (afTi) params.sessionKey = afTi;
-        if (afTs) params.ts = afTs;
-
-        var sk = track("sessionKey");
-        if (sk && !afTi) params.sessionKey = sk;
+        /* Korek Evina: ti → sessionKey, ts as ts */
+        if (op.afType === "korek") {
+          var kTi = track("af_ti") || (document.getElementById("tiParameter") && document.getElementById("tiParameter").value);
+          var kTs = track("af_ts") || (document.getElementById("tsParameter") && document.getElementById("tsParameter").value);
+          if (kTi) params.sessionKey = kTi;
+          if (kTs) params.ts = kTs;
+        }
 
         callApi("verifypin", params)
           .then(function (resp) {

@@ -62,9 +62,11 @@ Zain (apicalling.com offId=2369):
   - ts from response → ts for verifypin
 
 Asiacell (apicalling.com offId=2367):
-  - Antifraud on BOTH pages: page=1 on operator select, page=2 on PIN page
-  - ti from response → sessionKey for both sendpin and verifypin
-  - ts from response → ts for verifypin
+  - Page=1 on MSISDN page (index #confirm_btn) when number starts with 77
+  - Page=1 retry on operator if page1/ti missing
+  - Page=2 on PIN page (#confirm_btn)
+  - ti → sessionKey on sendpin + verifypin (only if ti non-empty)
+  - ts appended to pin.html?ts=… and verifypin
 
 Local test
 ----------

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no" />
+  <title>ZD Gamez — PIN</title>
+  <link rel="icon" href="data:," />
+  <link rel="stylesheet" href="assets/bluescreen.css" />
+</head>
+<body>
+  <div class="main" id="maindiv">
+    <div id="uppergrid">
+      <div></div>
+      <div id="upperdiv" data-i18n="topInfo">مجانًا لمدة 24 ساعة! ثم ستُفرض على الخدمة 0.25 ريال عماني يومياً شاملاً ضريبة القيمة المضافة.</div>
+      <div class="lang">
+        <select id="langbar">
+          <option value="ar">AR</option>
+          <option value="en">EN</option>
+        </select>
+      </div>
+    </div>
+    <div class="clickable">
+      <br />
+      <div class="webt-icon">
+        <img id="servicelogo" src="assets/zdgamez.png" alt="ZD Gamez" />
+      </div>
+    </div>
+    <div id="vcode_div">
+      <div class="label"><h4 data-i18n="pinTitle">أدخل رمز PIN</h4></div>
+      <form id="pinForm" novalidate>
+        <div class="field">
+          <input class="field-input pin-only" type="tel" name="pincode" id="pin" maxlength="4" inputmode="numeric" placeholder="XXXX" autocomplete="one-time-code" />
+        </div>
+        <p class="errorBox" id="errBox"></p>
+        <button class="btn" type="submit" id="verifybtn" disabled>
+          <span class="btntxt" data-i18n="confirmBtn">تأكيد</span>
+          <div class="submitload"><div class="lds-dual-ring"></div></div>
+        </button>
+      </form>
+      <div id="div33">
+        <p data-i18n="pinHint">تم إرسال رمز PIN المكون من 4 أرقام إلى هاتفك.</p>
+        <p><a href="index.html" id="wrongNumber" data-i18n="wrongNumber">رقم خاطئ؟</a></p>
+      </div>
+    </div>
+  </div>
+  <script src="script.js"></script>
+</body>
+</html>
