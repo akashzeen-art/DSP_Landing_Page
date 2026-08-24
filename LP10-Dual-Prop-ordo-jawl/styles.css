@@ -1,0 +1,363 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap");
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Inter, Helvetica, Arial, sans-serif;
+  background-color: #eaefe1;
+  background-color: #eaeef1;
+  padding: 0;
+  margin: 0;
+  min-height: 100vh;
+  color: #222;
+}
+
+.center,
+#maindiv {
+  max-width: 480px;
+  margin: 0 auto;
+  padding: 12px 10px 40px;
+  text-align: center;
+}
+
+#servicelogocontainerdiv {
+  text-align: left;
+  width: 100%;
+}
+
+#servicelogo {
+  width: 200px;
+  max-width: 70%;
+  margin-bottom: 12px;
+}
+
+#displayphotologo {
+  width: 100%;
+  height: 220px;
+  background-image: url("assets/downloadx.gif");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+
+.title {
+  text-align: center;
+  font-weight: 700;
+  padding-bottom: 0;
+  font-size: 1.5rem;
+  line-height: 1.35;
+  margin: 8px 0 4px;
+}
+
+.label h4 {
+  text-align: center;
+  margin: 12px 0 8px;
+  font-size: 1.15rem;
+  font-weight: 600;
+}
+
+.lang {
+  text-align: right;
+  margin: 4px 10px 0;
+}
+
+#langbar {
+  font-size: 18px;
+  color: silver !important;
+  background: transparent;
+  border: none;
+  outline: none;
+  cursor: pointer;
+}
+
+.field {
+  display: flex;
+  align-items: center;
+  background: #fff url("assets/logo_phone.png") no-repeat 10px center / auto 45%;
+  border: 2px solid #d2d2d2;
+  border-radius: 15px;
+  position: relative;
+  width: 80% !important;
+  margin: 15px auto;
+  padding: 4px 10px 4px 42px;
+  background-color: #ffffff !important;
+  animation: heartbeat 1.75s ease-in-out infinite both;
+}
+
+.field.pin-field {
+  background-image: none;
+  padding-left: 10px;
+  justify-content: center;
+}
+
+@keyframes heartbeat {
+  0% { transform: scale(1); }
+  14% { transform: scale(1.03); }
+  28% { transform: scale(1); }
+  42% { transform: scale(1.03); }
+  70% { transform: scale(1); }
+}
+
+#countrycode,
+#phone,
+#pincode {
+  border: none;
+  outline: none;
+  font-size: 20px !important;
+  background: transparent;
+  font-family: inherit;
+}
+
+#countrycode {
+  width: 22%;
+  min-width: 54px;
+  color: #333;
+  font-weight: 600;
+  text-align: left;
+  padding: 0;
+}
+
+#phone {
+  width: 78%;
+  height: 50px;
+  text-align: left;
+  letter-spacing: 0.5px;
+}
+
+#pincode {
+  height: 50px;
+  margin: auto;
+  width: 100%;
+  text-align: center;
+  letter-spacing: 4px;
+}
+
+.btn,
+a.btn {
+  display: block;
+  box-shadow: none;
+  margin: 12px auto 1rem;
+  width: 80% !important;
+  background-color: #5ab85a;
+  color: #ffffff !important;
+  font-family: Helvetica, Arial, sans-serif;
+  font-weight: bold;
+  border-radius: 0.5rem;
+  font-size: 20px !important;
+  padding: 1rem 0;
+  border: none;
+  text-align: center;
+  text-decoration: none;
+  cursor: pointer;
+  position: relative;
+}
+
+.btn:disabled,
+a.btn[disabled],
+.btn.disabled_btn {
+  opacity: 0.55;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+.btn-loading {
+  color: transparent !important;
+  pointer-events: none;
+}
+
+.btn-loading::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 22px;
+  height: 22px;
+  margin: -11px 0 0 -11px;
+  border: 3px solid #fff;
+  border-top-color: transparent;
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+#errortext,
+#errortext2,
+.errorBox {
+  color: red;
+  font-weight: bold;
+  min-height: 1.2em;
+  margin: 6px 12px;
+  font-size: 14px;
+}
+
+#mideldisc,
+#div3,
+#div33 {
+  font-size: 12px !important;
+  margin-top: 24px;
+  padding: 0 12px;
+  color: #444;
+  line-height: 1.55;
+  text-align: center;
+}
+
+#mideldisc a,
+#div33 a {
+  color: grey;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.hide {
+  display: none !important;
+}
+
+.op-list {
+  display: grid;
+  gap: 12px;
+  width: 80%;
+  margin: 12px auto 16px;
+}
+
+.opbtn {
+  display: block;
+  width: 100%;
+  border: 2px solid #d2d2d2;
+  border-radius: 0.75rem;
+  background: #fff;
+  padding: 14px 12px;
+  cursor: pointer;
+  font-family: inherit;
+  font-size: 16px;
+  font-weight: 700;
+  color: #222;
+  text-align: center;
+}
+
+.opbtn small {
+  display: block;
+  margin-top: 4px;
+  font-size: 12px;
+  font-weight: 500;
+  color: #666;
+}
+
+.opbtn.ooredoo {
+  border-color: #ed1c24;
+}
+
+.opbtn.jawwal {
+  border-color: #00a651;
+}
+
+.opbtn:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+
+.btn-secondary {
+  background-color: #6c757d !important;
+  font-size: 16px !important;
+  padding: 0.75rem 0 !important;
+}
+
+#otploading,
+#vcodeloading {
+  width: 100px;
+  display: none;
+  margin: 8px auto;
+}
+
+.menu-btn {
+  display: none;
+}
+
+.ty-wrap {
+  max-width: 420px;
+  margin: 40px auto;
+  text-align: center;
+  padding: 20px;
+}
+
+.ty-wrap img {
+  width: 160px;
+  max-width: 80%;
+}
+
+.ty-timer {
+  font-size: 28px;
+  font-weight: 700;
+  margin: 16px 0;
+  color: #5ab85a;
+}
+
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 9999;
+  padding-top: 60px;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.45);
+}
+
+.modal.show {
+  display: block;
+}
+
+.modal-content {
+  background: #fff;
+  margin: auto;
+  padding: 16px 18px 24px;
+  border-radius: 8px;
+  width: min(92vw, 560px);
+  max-height: 80vh;
+  overflow-y: auto;
+  text-align: left;
+}
+
+.modal-content h2 {
+  margin-top: 0;
+  font-size: 1.25rem;
+}
+
+.modal-close {
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+  cursor: pointer;
+  line-height: 1;
+  color: #888;
+  border: none;
+  background: none;
+}
+
+html[dir="rtl"] #countrycode,
+html[dir="rtl"] #phone {
+  text-align: right;
+}
+
+html[dir="rtl"] .field {
+  background-position: calc(100% - 10px) center;
+  padding: 4px 42px 4px 10px;
+}
+
+html[dir="rtl"] #servicelogocontainerdiv {
+  text-align: right;
+}
+
+html[dir="rtl"] .lang {
+  text-align: left;
+}
+
+html[dir="rtl"] .modal-content {
+  text-align: right;
+}

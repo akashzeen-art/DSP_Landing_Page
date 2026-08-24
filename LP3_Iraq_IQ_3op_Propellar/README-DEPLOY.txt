@@ -63,10 +63,12 @@ Zain (apicalling.com offId=2369):
 
 Asiacell (apicalling.com offId=2367):
   - Page=1 on MSISDN page (index #confirm_btn) when number starts with 77
+    (prefetch on 10 digits + required on submit; script must load before leave)
   - Page=1 retry on operator if page1/ti missing
   - Page=2 on PIN page (#confirm_btn)
-  - ti → sessionKey on sendpin + verifypin (only if ti non-empty)
+  - AF ti → transactionId (+ sessionKey) on BOTH sendpin and verifypin
   - ts appended to pin.html?ts=… and verifypin
+  - All Zeen calls: GET
 
 Local test
 ----------

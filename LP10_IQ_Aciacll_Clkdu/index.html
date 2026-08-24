@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no" />
+  <meta name="description" content="Gamifya" />
+  <title>Gamifya</title>
+  <link rel="icon" href="data:," />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="center" id="maindiv">
+    <div class="lang" data-lang="ar">
+      <select id="langbar" aria-label="Language">
+        <option value="ar">AR</option>
+        <option value="en">EN</option>
+      </select>
+    </div>
+
+    <div id="servicelogocontainerdiv">
+      <img id="servicelogo" src="assets/subpage.png" alt="Gamifya" />
+    </div>
+
+    <div class="clickable">
+      <div class="title" data-i18n="heroTitle">انت علي بعد خطوة واحدة للمشاهدة</div>
+      <div id="displayphotologo" role="img" aria-label="Gamifya"></div>
+    </div>
+
+    <!-- MSISDN -->
+    <div id="otp_div">
+      <div class="label"><h4 data-i18n="formTitle">Enter your phone number</h4></div>
+      <form id="msisdnForm" novalidate>
+        <div class="field">
+          <input id="countrycode" type="text" value="+964" readonly tabindex="-1" />
+          <input
+            class="field-input focus"
+            type="tel"
+            name="phone"
+            id="phone"
+            maxlength="11"
+            inputmode="numeric"
+            autocomplete="tel-national"
+            placeholder="_____________"
+          />
+        </div>
+        <p id="errortext" class="errorBox"></p>
+        <button class="btn btn-hint" type="submit" id="btn-1" disabled>
+          <span class="btntxt" data-i18n="continueBtn">Continue</span>
+        </button>
+      </form>
+      <div style="width:100%;text-align:center;">
+        <img src="assets/loadingtab.gif" id="otploading" alt="" />
+      </div>
+
+      <div id="mideldisc">
+        <div id="div3" data-i18n-html="disclaimer">
+          Gamifya is a subscription service that auto-renews at 360 IQD every 1 Day(s) for Asiacell subscribers.
+          To cancel, send 0 to 2162.
+        </div>
+        <p style="margin-top:14px;">
+          <a id="t-c" data-open="terms" data-i18n="termsLink">Terms &amp; Conditions</a>
+          -
+          <a id="p-p" data-open="privacy" data-i18n="privacyLink">Privacy Policy</a>
+        </p>
+      </div>
+    </div>
+
+    <!-- PIN -->
+    <div id="vcode_div" class="hide">
+      <div class="label" id="pin_page_head"><h4 data-i18n="pinTitle">Enter PIN code</h4></div>
+      <form id="pinForm" novalidate>
+        <div class="field pin-field">
+          <input
+            class="field-input focus"
+            type="tel"
+            name="pincode"
+            id="pincode"
+            maxlength="4"
+            inputmode="numeric"
+            placeholder="XXXX"
+            autocomplete="one-time-code"
+          />
+        </div>
+        <p id="errortext2" class="errorBox"></p>
+        <button class="btn btn-hint" type="submit" id="verifybtn" disabled>
+          <span class="btntxt" data-i18n="confirmBtn">Confirm</span>
+        </button>
+      </form>
+      <div style="width:100%;text-align:center;">
+        <img src="assets/loadingtab.gif" id="vcodeloading" alt="" />
+      </div>
+      <div id="div33">
+        <p data-i18n="pinHint">A 4-digit PIN has been sent to your phone.</p>
+        <p><a href="#" id="wrongNumber" data-i18n="wrongNumber">Wrong number?</a></p>
+        <p data-i18n-html="disclaimer">
+          Gamifya is a subscription service that auto-renews at 360 IQD every 1 Day(s) for Asiacell subscribers.
+          To cancel, send 0 to 2162.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal" id="myModal" aria-hidden="true">
+    <div class="modal-content">
+      <button type="button" class="modal-close" id="closeModal" aria-label="Close">&times;</button>
+      <div id="displayiframe"></div>
+    </div>
+  </div>
+
+  <div id="terms-fetched-content" class="hide">
+    <h2>Terms And Conditions</h2>
+    <p>Gamifya is a subscription service for Asiacell (Iraq) at 360 IQD per day. Short code 2162. To cancel, send 0 to 2162. By continuing you agree to the service terms and to receive subscription updates on your registered mobile number.</p>
+  </div>
+  <div id="privacy-fetched-content" class="hide">
+    <h2>Privacy Policy</h2>
+    <p>We collect your mobile number and technical data (IP, user agent, antifraud signals) only to process the subscription and prevent fraud. Information is shared with the billing partner as required to deliver the service.</p>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
