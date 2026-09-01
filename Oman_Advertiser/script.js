@@ -155,22 +155,12 @@
     var clickId = getVisitorId();
     var finish = typeof done === "function" ? done : function () {};
     if (!clickId) { finish(false); return; }
+    if (track("pb_sent") === "1") { finish(true); return; }
 
-    var qs =
-      "clickid=" + encodeURIComponent(clickId) +
+    var proxy =
+      "advertizer-pb.php?clickid=" + encodeURIComponent(clickId) +
+      "&txn_id=" + encodeURIComponent(clickId) +
       "&amount=" + encodeURIComponent(POSTBACK.amount);
-    var direct =
-      POSTBACK.url +
-      "?clickid=" + encodeURIComponent(clickId) +
-      "&amount=" + encodeURIComponent(POSTBACK.amount) +
-      "&advertiser_id=" + encodeURIComponent(POSTBACK.advertiser_id) +
-      "&key=" + encodeURIComponent(POSTBACK.key);
-
-    try { var img = new Image(); img.src = direct; } catch (e) {}
-    try { fetch(direct, { method: "GET", mode: "no-cors", keepalive: true }).catch(function () {}); } catch (e2) {}
-    if (navigator.sendBeacon) {
-      try { navigator.sendBeacon("advertizer-pb.php?" + qs); } catch (e3) {}
-    }
 
     var settled = false;
     function once(ok) {
@@ -178,13 +168,17 @@
       settled = true;
       finish(ok);
     }
-    try {
-      fetch("advertizer-pb.php?" + qs, { method: "GET", keepalive: true })
-        .then(function (r) {
-          return r.json().then(function (d) { once(!!(d && d.status)); }).catch(function () { once(r.ok); });
-        })
-        .catch(function () { once(false); });
-    } catch (e4) { once(false); }
+    fetch(proxy, { method: "GET", keepalive: true })
+      .then(function (r) {
+        return r.json().then(function (d) {
+          if (d && d.status) persist("pb_sent", "1");
+          once(!!(d && d.status));
+        }).catch(function () {
+          if (r.ok) persist("pb_sent", "1");
+          once(r.ok);
+        });
+      })
+      .catch(function () { once(false); });
     setTimeout(function () { once(true); }, 4000);
   }
 

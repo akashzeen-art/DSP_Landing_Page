@@ -2,7 +2,7 @@
 /**
  * Server-to-server Advertizer conversion postback.
  *
- *   http://postback.advertizer.com/pb.php?clickid={clickid}&amount=1&advertiser_id=Zeen1041&key=a5b193ada1cbd22a987bfe876496ac40
+ *   http://postback.advertizer.com/pb.php?clickid={clickid}&txn_id={clickid}&amount=1&advertiser_id=Zeen1041&key=a5b193ada1cbd22a987bfe876496ac40
  *
  * clickid must be the real {clickid} from the campaign URL.
  */
@@ -49,8 +49,13 @@ $amount = isset($_GET['amount']) && trim((string) $_GET['amount']) !== ''
     ? trim((string) $_GET['amount'])
     : '1';
 
+$txnId = isset($_GET['txn_id']) && trim((string) $_GET['txn_id']) !== ''
+    ? trim((string) $_GET['txn_id'])
+    : $clickId;
+
 $pb = 'http://postback.advertizer.com/pb.php?' . http_build_query([
     'clickid' => $clickId,
+    'txn_id' => $txnId,
     'amount' => $amount,
     'advertiser_id' => 'Zeen1041',
     'key' => 'a5b193ada1cbd22a987bfe876496ac40',
@@ -103,6 +108,7 @@ echo json_encode([
     'status' => $ok,
     'http_code' => $httpCode,
     'clickid' => $clickId,
+    'txn_id' => $txnId,
     'amount' => $amount,
     'postback_url' => $pb,
     'advertizer_body' => is_string($body) ? substr($body, 0, 500) : '',

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Gamifya</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="ty-wrap">
+    <img src="assets/subpage.png" alt="" style="width:64px;margin-bottom:12px;" />
+    <h1 id="tyTitle">Subscription successful</h1>
+    <p id="tySub">Redirecting you to the content…</p>
+    <div class="ty-timer" id="tyTimer">3</div>
+  </div>
+  <script>
+    (function () {
+      var lang = "en";
+      try {
+        lang = new URLSearchParams(location.search).get("lang") || localStorage.getItem("lang") || "en";
+      } catch (e) {}
+      document.documentElement.lang = lang;
+      document.documentElement.dir = lang === "ar" ? "rtl" : "ltr";
+      if (lang === "ar") {
+        document.getElementById("tyTitle").textContent = "تم الاشتراك بنجاح";
+        document.getElementById("tySub").textContent = "جاري تحويلك إلى المحتوى…";
+      }
+      var msisdn = "";
+      try { msisdn = sessionStorage.getItem("msisdn") || localStorage.getItem("msisdn") || ""; } catch (e1) {}
+      var portal = "";
+      try { portal = sessionStorage.getItem("portal_url") || localStorage.getItem("portal_url") || ""; } catch (e2) {}
+      if (!portal) {
+        portal = "http://143.198.213.74/prod/IQAGcmp/redirect?cid=224&msisdn=" + encodeURIComponent(msisdn);
+      }
+      var n = 3;
+      var el = document.getElementById("tyTimer");
+      var t = setInterval(function () {
+        n -= 1;
+        if (el) el.textContent = String(Math.max(n, 0));
+        if (n <= 0) {
+          clearInterval(t);
+          window.location.href = portal;
+        }
+      }, 1000);
+    })();
+  </script>
+</body>
+</html>

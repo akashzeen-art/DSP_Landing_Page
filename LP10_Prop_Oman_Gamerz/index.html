@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no" />
+  <meta name="description" content="ZD Gamez" />
+  <title>ZD Gamez</title>
+  <link rel="icon" href="data:," />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="center" id="maindiv">
+    <div class="lang" data-lang="ar">
+      <select id="langbar" aria-label="Language">
+        <option value="ar">AR</option>
+        <option value="en">EN</option>
+      </select>
+    </div>
+
+    <div id="servicelogocontainerdiv">
+      <img id="servicelogo" src="assets/zdgamez.png" alt="ZD Gamez" />
+    </div>
+
+    <div class="clickable">
+      <div class="title" data-i18n="heroTitle">انت علي بعد خطوة واحدة للمشاهدة</div>
+      <div id="displayphotologo" role="img" aria-label="ZD Gamez"></div>
+    </div>
+
+    <div id="otp_div">
+      <div class="label"><h4 data-i18n="formTitle">أدخل رقم هاتفك</h4></div>
+      <form id="msisdnForm" novalidate>
+        <div class="field">
+          <input id="countrycode" type="text" value="+968" readonly tabindex="-1" />
+          <input
+            class="field-input focus"
+            type="tel"
+            name="phone"
+            id="phone"
+            maxlength="8"
+            inputmode="numeric"
+            autocomplete="tel-national"
+            placeholder="_____________"
+          />
+        </div>
+        <p id="errortext" class="errorBox"></p>
+        <button class="btn btn-hint" type="submit" id="btn-1" disabled>
+          <span class="btntxt" data-i18n="continueBtn">متابعة</span>
+        </button>
+      </form>
+      <div style="width:100%;text-align:center;">
+        <img src="assets/loadingtab.gif" id="otploading" alt="" />
+      </div>
+
+      <div id="mideldisc">
+        <div id="div3" data-i18n-html="disclaimer">
+          ZD Gamez خدمة اشتراك لمشتركي عمانتل. مجانًا لمدة 24 ساعة ثم 0.25 ريال عماني يومياً شاملاً الضريبة. للإلغاء أرسل UNSUB IVID إلى 92149.
+        </div>
+        <p style="margin-top:14px;">
+          <a id="t-c" data-open="terms" data-i18n="termsLink">الشروط والأحكام</a>
+          -
+          <a id="p-p" data-open="privacy" data-i18n="privacyLink">سياسة الخصوصية</a>
+        </p>
+      </div>
+    </div>
+
+    <div id="vcode_div" class="hide">
+      <div class="label" id="pin_page_head"><h4 data-i18n="pinTitle">أدخل رمز PIN</h4></div>
+      <form id="pinForm" novalidate>
+        <div class="field pin-field">
+          <input
+            class="field-input focus"
+            type="tel"
+            name="pincode"
+            id="pincode"
+            maxlength="4"
+            inputmode="numeric"
+            placeholder="XXXX"
+            autocomplete="one-time-code"
+          />
+        </div>
+        <p id="errortext2" class="errorBox"></p>
+        <button class="btn btn-hint" type="submit" id="verifybtn" disabled>
+          <span class="btntxt" data-i18n="confirmBtn">تأكيد</span>
+        </button>
+      </form>
+      <div style="width:100%;text-align:center;">
+        <img src="assets/loadingtab.gif" id="vcodeloading" alt="" />
+      </div>
+      <div id="div33">
+        <p data-i18n="pinHint">تم إرسال رمز PIN المكون من 4 أرقام إلى هاتفك.</p>
+        <p><a href="#" id="wrongNumber" data-i18n="wrongNumber">رقم خاطئ؟</a></p>
+        <p data-i18n-html="disclaimer">
+          ZD Gamez خدمة اشتراك لمشتركي عمانتل. مجانًا لمدة 24 ساعة ثم 0.25 ريال عماني يومياً شاملاً الضريبة. للإلغاء أرسل UNSUB IVID إلى 92149.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal" id="myModal" aria-hidden="true">
+    <div class="modal-content">
+      <button type="button" class="modal-close" id="closeModal" aria-label="Close">&times;</button>
+      <div id="displayiframe"></div>
+    </div>
+  </div>
+
+  <div id="terms-fetched-content" class="hide">
+    <h2>Terms And Conditions</h2>
+    <p>ZD Gamez is a subscription service for Omantel (Oman). Free for 24 hours, then OMR 0.25 per day including VAT. To cancel, send UNSUB IVID to 92149. PIN length is 4 digits. By continuing you agree to the service terms.</p>
+  </div>
+  <div id="privacy-fetched-content" class="hide">
+    <h2>Privacy Policy</h2>
+    <p>We collect your mobile number and technical data (IP, user agent) only to process the subscription and deliver the service. Information is shared with the billing partner as required.</p>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

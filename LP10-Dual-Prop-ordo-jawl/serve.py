@@ -15,7 +15,9 @@ from http.server import SimpleHTTPRequestHandler, ThreadingHTTPServer
 
 HOST = "127.0.0.1"
 PORT = 8115
-API = "https://wap.zeentec.com/pay"
+API = "https://zeentec.com/pay"
+# Optional IP pin when hostname has no public DNS (leave empty normally)
+API_RESOLVE_IP = ""
 POSTBACK = "https://ad.propellerads.com/conversion.php"
 ALLOWED_PATHS = {"pingen", "pinver", "checkstatus", "getportal"}
 _SSL = ssl.create_default_context()
@@ -77,6 +79,22 @@ class Handler(SimpleHTTPRequestHandler):
             self.send_header("Location", url)
             self.end_headers()
             return
+        # Clear local error if hostname does not resolve
+        try:
+            host = urllib.parse.urlparse(API).hostname or ""
+            if API_RESOLVE_IP == "" and host:
+                import socket
+                try:
+                    socket.getaddrinfo(host, 443)
+                except socket.gaierror:
+                    self._send(502, json.dumps({
+                        "response": "FAIL",
+                        "errorMessage": "DNS missing for %s. Set API / API_RESOLVE_IP in serve.py." % host,
+                        "api_base": API,
+                    }).encode(), "application/json")
+                    return
+        except Exception:
+            pass
         code, body = _fetch(url, timeout=30)
         text = body.decode("utf-8", errors="replace").strip()
         if text.upper() in ("ACTIVE", "INACTIVE"):

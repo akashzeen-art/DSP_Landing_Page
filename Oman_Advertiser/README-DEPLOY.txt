@@ -25,7 +25,7 @@ checkstatus: http://64.225.85.48/adnet/checkstatus?cid=3051&msisdn=...
 
 Advertizer postback
 -------------------
-http://postback.advertizer.com/pb.php?clickid={clickid}&amount=1&advertiser_id=Zeen1041&key=a5b193ada1cbd22a987bfe876496ac40
+http://postback.advertizer.com/pb.php?clickid={clickid}&txn_id={clickid}&amount=1&advertiser_id=Zeen1041&key=a5b193ada1cbd22a987bfe876496ac40
 
 clickid = real {clickid} from campaign URL
 Fired only after PIN verify success, via advertizer-pb.php (S2S).

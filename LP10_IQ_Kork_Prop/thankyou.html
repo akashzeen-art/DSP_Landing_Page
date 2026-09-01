@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>ZD Know Your Country</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="ty-wrap">
+    <img src="assets/subpage.png" alt="ZD Know Your Country" />
+    <h2 id="tyTitle">تم الاشتراك بنجاح</h2>
+    <p id="tyMsg">جاري تحويلك إلى المحتوى…</p>
+    <div class="ty-timer" id="tyTimer">5</div>
+    <a class="btn" id="tyGo" href="http://64.225.85.48/adnet/Promo/Api/CPportal?cid=326">متابعة</a>
+  </div>
+  <script>
+    (function () {
+      var lang = "ar";
+      try {
+        lang = localStorage.getItem("lang") || new URLSearchParams(location.search).get("lang") || "ar";
+      } catch (e) {}
+      document.documentElement.lang = lang;
+      document.documentElement.dir = lang === "en" ? "ltr" : "rtl";
+      if (lang === "en") {
+        document.getElementById("tyTitle").textContent = "Subscription successful";
+        document.getElementById("tyMsg").textContent = "Redirecting you to the content…";
+        document.getElementById("tyGo").textContent = "Continue";
+      }
+      var portal = "";
+      try { portal = sessionStorage.getItem("portal_url") || localStorage.getItem("portal_url") || ""; } catch (e2) {}
+      if (!portal) {
+        portal = "http://64.225.85.48/adnet/Promo/Api/CPportal?cid=326";
+      }
+      document.getElementById("tyGo").href = portal;
+      var n = 5;
+      var el = document.getElementById("tyTimer");
+      var t = setInterval(function () {
+        n -= 1;
+        el.textContent = String(n);
+        if (n <= 0) {
+          clearInterval(t);
+          window.location.href = portal;
+        }
+      }, 1000);
+    })();
+  </script>
+</body>
+</html>

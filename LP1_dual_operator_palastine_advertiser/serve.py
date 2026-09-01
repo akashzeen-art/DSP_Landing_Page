@@ -102,8 +102,10 @@ class Handler(SimpleHTTPRequestHandler):
         ):
             self._send(400, json.dumps({"status": False, "msg": "Missing clickid"}).encode(), "application/json")
             return
+        txn_id = ((qs.get("txn_id") or [""])[0]).strip() or clickid
         pb = POSTBACK + "?" + urllib.parse.urlencode({
             "clickid": clickid,
+            "txn_id": txn_id,
             "amount": amount,
             "advertiser_id": ADV_ID,
             "key": ADV_KEY,

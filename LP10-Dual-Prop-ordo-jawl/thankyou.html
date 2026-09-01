@@ -12,7 +12,7 @@
     <h2 id="tyTitle">تم الاشتراك بنجاح</h2>
     <p id="tyMsg">جاري تحويلك إلى المحتوى…</p>
     <div class="ty-timer" id="tyTimer">5</div>
-    <a class="btn" id="tyGo" href="https://wap.zeentec.com/pay/getportal?id=111">متابعة</a>
+    <a class="btn" id="tyGo" href="https://zeentec.com/pay/getportal?id=113">متابعة</a>
   </div>
   <script>
     (function () {
@@ -32,7 +32,9 @@
       var portal = "";
       try { portal = sessionStorage.getItem("portal_url") || localStorage.getItem("portal_url") || ""; } catch (e2) {}
       if (!portal) {
-        portal = "https://wap.zeentec.com/pay/getportal?id=111&msisdn=" + encodeURIComponent(msisdn);
+        var sid = "";
+        try { sid = sessionStorage.getItem("service_id") || localStorage.getItem("service_id") || "113"; } catch (e3) { sid = "113"; }
+        portal = "https://zeentec.com/pay/getportal?id=" + encodeURIComponent(sid) + "&msisdn=" + encodeURIComponent(msisdn);
       }
       document.getElementById("tyGo").href = portal;
       var n = 5;

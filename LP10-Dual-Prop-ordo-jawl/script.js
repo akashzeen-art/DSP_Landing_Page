@@ -5,9 +5,12 @@
    * Palestine Dual Operator — Gamify / AIgameopedia (PropellerAds)
    * UI: Theme-496 (same as LP10_UAE_Ethsal_Prop)
    *
-   * Ooredoo — pingen id=113 — pinver/portal id=111 — PIN 4
-   * Jawwal  — pingen id=115 — pinver/portal id=111 — PIN 4
-   * API: https://wap.zeentec.com/pay/
+   * Rule: the id used on pingen is reused for EVERY API call
+   * (pinver / checkstatus / getportal) for that operator.
+   *
+   * Ooredoo — id=113 — PIN 4 — payout 1.5
+   * Jawwal  — id=115 — PIN 4 — payout 1.16
+   * API: https://zeentec.com/pay/
    * MSISDN: +970, local 9 digits starting with 5
    * No antifraud
    */
@@ -16,7 +19,7 @@
   var COUNTRY = "970";
   var PIN_LENGTH = 4;
   var CTA_BTN_ID = "btn-1";
-  var API_BASE = "https://wap.zeentec.com/pay";
+  var API_BASE = "https://zeentec.com/pay";
 
   var useProxy =
     typeof location !== "undefined" &&
@@ -27,10 +30,7 @@
     ooredoo: {
       key: "ooredoo",
       name: "Ooredoo",
-      pingenId: "113",
-      pinverId: "111",
-      portalId: "111",
-      statusId: "180",
+      id: "113",
       payout: "1.5",
       footerEn: "Gamify — Ooredoo Palestine.",
       footerAr: "Gamify — أوريدو فلسطين."
@@ -38,10 +38,7 @@
     jawwal: {
       key: "jawwal",
       name: "Jawwal",
-      pingenId: "115",
-      pinverId: "111",
-      portalId: "111",
-      statusId: "180",
+      id: "115",
       payout: "1.16",
       footerEn: "Gamify — Jawwal Palestine.",
       footerAr: "Gamify — جوال فلسطين."
@@ -185,7 +182,7 @@
   }
 
   function portalUrl(op, msisdn) {
-    return API_BASE + "/getportal?id=" + encodeURIComponent(op.portalId) +
+    return API_BASE + "/getportal?id=" + encodeURIComponent(op.id) +
       "&msisdn=" + encodeURIComponent(msisdn);
   }
 
@@ -453,14 +450,12 @@
       showError("", "errortextOp");
       document.querySelectorAll(".opbtn").forEach(function (b) { b.disabled = true; });
       persist("operator", key);
-      persist("pingen_id", op.pingenId);
-      persist("pinver_id", op.pinverId);
-      persist("portal_id", op.portalId);
+      persist("service_id", op.id);
       persist("pb_amount", op.payout);
 
       getUserIp(function (ip) {
         callApi("pingen", {
-          id: op.pingenId,
+          id: op.id,
           msisdn: msisdn,
           ua: navigator.userAgent || "",
           ip: ip || track("user_ip") || "",
@@ -528,7 +523,7 @@
       getUserIp(function (ip) {
         var msisdn = track("msisdn") || (track("phone") ? COUNTRY + track("phone") : "");
         callApi("pinver", {
-          id: op.pinverId,
+          id: op.id,
           msisdn: msisdn,
           otp: otp,
           ua: navigator.userAgent || "",
@@ -543,9 +538,10 @@
             }
             persist("converted", "1");
             persist("portal_url", portalUrl(op, msisdn));
+            persist("service_id", op.id);
             persist("pb_amount", op.payout);
-            /* best-effort status then postback */
-            callApi("checkstatus", { id: op.statusId, msisdn: msisdn })
+            /* best-effort status then postback — same id as pingen */
+            callApi("checkstatus", { id: op.id, msisdn: msisdn })
               .catch(function () { return null; })
               .then(function () {
                 firePostback(op.payout, function () {

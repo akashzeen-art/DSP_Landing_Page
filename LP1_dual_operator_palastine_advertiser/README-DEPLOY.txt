@@ -16,7 +16,7 @@ index (+970 MSISDN) → operator.html → sendpin → pin.html → verifypin
 → Advertizer postback → thankyou.html → CPportal (operator portal cid)
 
 Advertizer postback (after successful PIN verify):
-  http://postback.advertizer.com/pb.php?clickid=[[subid]]&amount=[[amount]]&advertiser_id=Zeen1041&key=a5b193ada1cbd22a987bfe876496ac40
+  http://postback.advertizer.com/pb.php?clickid=[[subid]]&txn_id=[[subid]]&amount=[[amount]]&advertiser_id=Zeen1041&key=a5b193ada1cbd22a987bfe876496ac40
 
   clickid = real {clickid} from campaign URL
   amount  = 1.16 (Jawwal) or 1.5 (Ooredoo)

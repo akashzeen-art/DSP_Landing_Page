@@ -196,33 +196,23 @@
       if (typeof done === "function") done(ok);
     }
     if (!clickId) { finish(false); return; }
+    if (track("pb_sent") === "1") { finish(true); return; }
 
     var opKey = track("operator") || "jawwal";
     var op = OPERATORS[opKey] || OPERATORS.jawwal;
     var amount = op.price || "1.16";
 
-    var direct =
-      POSTBACK.url +
-      "?clickid=" + encodeURIComponent(clickId) +
-      "&amount=" + encodeURIComponent(amount) +
-      "&advertiser_id=" + encodeURIComponent(POSTBACK.advertiser_id) +
-      "&key=" + encodeURIComponent(POSTBACK.key);
     var proxy =
       "advertizer-pb.php?clickid=" + encodeURIComponent(clickId) +
+      "&txn_id=" + encodeURIComponent(clickId) +
       "&amount=" + encodeURIComponent(amount);
 
-    try { var img = new Image(); img.src = direct + "&_t=" + Date.now(); } catch (e) {}
-    try { fetch(direct, { method: "GET", mode: "no-cors", keepalive: true }).catch(function () {}); } catch (e2) {}
-    if (navigator.sendBeacon) { try { navigator.sendBeacon(proxy); } catch (e3) {} }
-
-    if (useProxy) {
-      fetch(proxy, { method: "GET", keepalive: true })
-        .then(function (r) { finish(r.ok); })
-        .catch(function () { finish(true); });
-    } else {
-      setTimeout(function () { finish(true); }, 800);
-      return;
-    }
+    fetch(proxy, { method: "GET", keepalive: true })
+      .then(function (r) {
+        if (r.ok) persist("pb_sent", "1");
+        finish(r.ok);
+      })
+      .catch(function () { finish(false); });
     setTimeout(function () { finish(true); }, 4000);
   }
 

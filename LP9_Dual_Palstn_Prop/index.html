@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no" />
+  <meta name="description" content="Z Game — Palestine" />
+  <title>Z Game</title>
+  <link rel="icon" href="data:," />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="center" id="maindiv">
+    <div id="uppergrid">
+      <div></div>
+      <div id="upperdiv" data-i18n="topInfo">Jawwal 1.16 · Ooredoo 1.5 NIS / day</div>
+      <div class="lang">
+        <select id="langbar">
+          <option value="ar">AR</option>
+          <option value="en">EN</option>
+        </select>
+      </div>
+    </div>
+
+    <div id="servicelogocontainerdiv">
+      <img id="servicelogo" src="assets/logo.png" alt="Z Game" />
+    </div>
+
+    <div class="clickable">
+      <div id="displayphotologo">
+        <img class="player" src="assets/player.svg" alt="" />
+        <img id="extraspinner" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='35' fill='none' stroke='%23f33' stroke-width='8' stroke-dasharray='40 160'%3E%3CanimateTransform attributeName='transform' type='rotate' from='0 50 50' to='360 50 50' dur='0.9s' repeatCount='indefinite'/%3E%3C/circle%3E%3C/svg%3E" alt="" />
+      </div>
+      <div id="buttons-cont">
+        <button type="button" class="watch" id="btnWatch" data-i18n="watchBtn">مشاهدة</button>
+        <button type="button" class="download" id="btnDownload" data-i18n="downloadBtn">تحميل</button>
+      </div>
+      <div id="div3" data-i18n="footerNote">
+        Z Game — جوال: 1.16 شيكل يومياً (إلغاء: 0257 إلى 37799). أوريدو: 1.5 شيكل يومياً (إلغاء: 08 إلى 6976).
+      </div>
+    </div>
+  </div>
+
+  <div id="newModal">
+    <div class="wrapper">
+      <div id="otp_div" class="step active">
+        <div class="label"><h4 data-i18n="formTitle">أدخل رقم هاتفك</h4></div>
+        <form id="msisdnForm" novalidate>
+          <div class="field">
+            <input id="countrycode" type="text" value="+970" readonly />
+            <input class="field-input" type="tel" id="msisdn" name="phone" maxlength="9" inputmode="numeric" autocomplete="tel-national" placeholder="_____________" />
+          </div>
+          <p class="errorBox" id="errBox"></p>
+          <button class="btn-hint" type="submit" id="submitBtn" disabled data-i18n="continueBtn">متابعة</button>
+        </form>
+        <div id="mideldisc">
+          <a id="openTerms" data-i18n="termsLink">الشروط والأحكام</a>
+          ·
+          <a id="openPrivacy" data-i18n="privacyLink">سياسة الخصوصية</a>
+        </div>
+      </div>
+
+      <div id="op_div" class="step">
+        <div class="label"><h4 data-i18n="opTitle">اختر المشغّل</h4></div>
+        <p class="errorBox" id="errBoxOp"></p>
+        <div class="op-list">
+          <button type="button" class="opbtn mtn" data-operator="jawwal">
+            <span data-i18n="opJawwal">Jawwal — Z Game</span>
+            <small data-i18n="opJawwalPrice">1.16 NIS / day</small>
+          </button>
+          <button type="button" class="opbtn orange" data-operator="ooredoo">
+            <span data-i18n="opOoredoo">Ooredoo — Z Game</span>
+            <small data-i18n="opOoredooPrice">1.5 NIS / day</small>
+          </button>
+        </div>
+        <button type="button" class="btn-hint" id="backToPhone" style="background:#555;box-shadow:none;font-size:15px;padding:0.7rem 0;" data-i18n="backBtn">رجوع</button>
+      </div>
+
+      <div id="vcode_div" class="step">
+        <div class="label"><h4 data-i18n="pinTitle">أدخل رمز PIN</h4></div>
+        <form id="pinForm" novalidate>
+          <div class="field">
+            <input class="field-input pin-only" type="tel" id="pin" maxlength="4" inputmode="numeric" placeholder="XXXX" autocomplete="one-time-code" />
+          </div>
+          <p class="errorBox" id="errBox2"></p>
+          <button class="btn-hint" type="submit" id="verifyBtn" disabled data-i18n="confirmBtn">تأكيد</button>
+        </form>
+        <p style="margin-top:12px;"><a href="#" id="wrongNumber" style="color:#aaa;" data-i18n="wrongNumber">رقم خاطئ؟</a></p>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal-panel" id="termsModal">
+    <div class="inner">
+      <span class="close-x" data-close="termsModal">&times;</span>
+      <h2 data-i18n="tcTitle">الشروط والأحكام</h2>
+      <p data-i18n="tcBody">بمتابعتك فإنك توافق على الاشتراك في Z Game لجوال (1.16 شيكل/يوم) أو أوريدو (1.5 شيكل/يوم). طول رمز PIN هو 4 أرقام.</p>
+    </div>
+  </div>
+  <div class="modal-panel" id="privacyModal">
+    <div class="inner">
+      <span class="close-x" data-close="privacyModal">&times;</span>
+      <h2 data-i18n="ppTitle">سياسة الخصوصية</h2>
+      <p data-i18n="ppBody">نجمع رقم هاتفك والبيانات التقنية (IP و User-Agent) فقط لمعالجة الاشتراك وتقديم الخدمة.</p>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

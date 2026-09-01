@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>FunPlus</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@700;800;900&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="ty-wrap">
+    <div class="brand" aria-label="FunPlus" style="margin-bottom:12px;">
+      <span class="brand-fun">Fun</span><span class="brand-plus">Plus</span>
+    </div>
+    <h2 id="tyTitle">Subscription successful</h2>
+    <p id="tyMsg">Redirecting you to the content…</p>
+    <div class="ty-timer" id="tyTimer">5</div>
+    <a class="btn" id="tyGo" href="http://143.198.213.74/prod/IQAGcmp/redirect?cid=200">Continue</a>
+  </div>
+  <script>
+    (function () {
+      var lang = "en";
+      try {
+        lang = localStorage.getItem("lang") || new URLSearchParams(location.search).get("lang") || "en";
+      } catch (e) {}
+      document.documentElement.lang = lang;
+      document.documentElement.dir = lang === "ar" ? "rtl" : "ltr";
+      if (lang === "ar") {
+        document.getElementById("tyTitle").textContent = "تم الاشتراك بنجاح";
+        document.getElementById("tyMsg").textContent = "جاري تحويلك إلى المحتوى…";
+        document.getElementById("tyGo").textContent = "متابعة";
+      }
+      var msisdn = "";
+      try { msisdn = sessionStorage.getItem("msisdn") || localStorage.getItem("msisdn") || ""; } catch (e1) {}
+      var portal = "";
+      try { portal = sessionStorage.getItem("portal_url") || localStorage.getItem("portal_url") || ""; } catch (e2) {}
+      if (!portal) {
+        portal = "http://143.198.213.74/prod/IQAGcmp/redirect?cid=200&msisdn=" + encodeURIComponent(msisdn);
+      }
+      document.getElementById("tyGo").href = portal;
+      var n = 5;
+      var el = document.getElementById("tyTimer");
+      var t = setInterval(function () {
+        n -= 1;
+        el.textContent = String(n);
+        if (n <= 0) {
+          clearInterval(t);
+          window.location.href = portal;
+        }
+      }, 1000);
+    })();
+  </script>
+</body>
+</html>

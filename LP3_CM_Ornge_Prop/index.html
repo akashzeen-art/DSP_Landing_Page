@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no" />
+  <meta name="description" content="OneGaming" />
+  <title>OneGaming</title>
+  <link rel="icon" href="data:," />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="center" id="maindiv">
+    <div id="uppergrid">
+      <div></div>
+      <div id="upperdiv" data-i18n="topInfo">100 CFA / day · Orange</div>
+      <div class="lang">
+        <select id="langbar">
+          <option value="en">EN</option>
+          <option value="fr">FR</option>
+        </select>
+      </div>
+    </div>
+
+    <div id="servicelogocontainerdiv">
+      <img id="servicelogo" src="assets/logo.png" alt="OneGaming" />
+    </div>
+
+    <div class="clickable">
+      <div id="displayphotologo">
+        <img class="player" src="assets/player.svg" alt="" />
+        <img id="extraspinner" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='35' fill='none' stroke='%23f33' stroke-width='8' stroke-dasharray='40 160'%3E%3CanimateTransform attributeName='transform' type='rotate' from='0 50 50' to='360 50 50' dur='0.9s' repeatCount='indefinite'/%3E%3C/circle%3E%3C/svg%3E" alt="" />
+      </div>
+      <div id="buttons-cont">
+        <button type="button" class="watch" id="btnWatch" data-i18n="watchBtn">Watch</button>
+        <button type="button" class="download" id="btnDownload" data-i18n="downloadBtn">Download</button>
+      </div>
+      <div id="div3" data-i18n="footerNote">
+        OneGaming is a subscription service that auto-renews at 100 CFA every 1 day for Orange Cameroon subscribers.
+      </div>
+    </div>
+  </div>
+
+  <div id="newModal">
+    <div class="wrapper">
+      <!-- MSISDN -->
+      <div id="otp_div" class="step active">
+        <div class="label"><h4 data-i18n="formTitle">Enter your phone number</h4></div>
+        <form id="msisdnForm" novalidate>
+          <div class="field">
+            <input id="countrycode" type="text" value="+237" readonly />
+            <input class="field-input" type="tel" id="msisdn" name="phone" maxlength="9" inputmode="numeric" autocomplete="tel-national" placeholder="_____________" />
+          </div>
+          <p class="errorBox" id="errBox"></p>
+          <button class="btn-hint" type="submit" id="submitBtn" disabled data-i18n="continueBtn">Continue</button>
+        </form>
+        <div id="mideldisc">
+          <a id="openTerms" data-i18n="termsLink">Terms &amp; Conditions</a>
+          ·
+          <a id="openPrivacy" data-i18n="privacyLink">Privacy Policy</a>
+        </div>
+      </div>
+
+      <!-- PIN -->
+      <div id="vcode_div" class="step">
+        <div class="label"><h4 data-i18n="pinTitle">Enter PIN code</h4></div>
+        <form id="pinForm" novalidate>
+          <div class="field">
+            <input class="field-input pin-only" type="tel" id="pin" maxlength="4" inputmode="numeric" placeholder="XXXX" autocomplete="one-time-code" />
+          </div>
+          <p class="errorBox" id="errBox2"></p>
+          <button class="btn-hint" type="submit" id="verifyBtn" disabled data-i18n="confirmBtn">Confirm</button>
+        </form>
+        <p style="margin-top:12px;"><a href="#" id="wrongNumber" style="color:#aaa;" data-i18n="wrongNumber">Wrong number?</a></p>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal-panel" id="termsModal">
+    <div class="inner">
+      <span class="close-x" data-close="termsModal">&times;</span>
+      <h2 data-i18n="tcTitle">Terms And Conditions</h2>
+      <p data-i18n="tcBody">By continuing you agree to subscribe to OneGaming (Orange Cameroon) at 100 CFA per day. The subscription renews automatically until cancelled with your operator. PIN length is 4 digits. Content access is provided after successful PIN verification.</p>
+    </div>
+  </div>
+  <div class="modal-panel" id="privacyModal">
+    <div class="inner">
+      <span class="close-x" data-close="privacyModal">&times;</span>
+      <h2 data-i18n="ppTitle">Privacy Policy</h2>
+      <p data-i18n="ppBody">We collect your mobile number and technical data (IP, user agent) only to process the subscription and deliver the service. Data is shared with the mobile operator and billing partners as required to complete the purchase.</p>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

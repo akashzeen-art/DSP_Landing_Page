@@ -37,32 +37,6 @@
         localStorage.getItem("portal_url") ||
         "http://64.225.85.48/adnet/Promo/Api/CPportal?cid=570";
 
-      try {
-        var clickId = sessionStorage.getItem("click_id") || localStorage.getItem("click_id") || "";
-        var converted = sessionStorage.getItem("converted") || localStorage.getItem("converted");
-        var opKey = sessionStorage.getItem("operator") || localStorage.getItem("operator") || "jawwal";
-        var amount =
-          sessionStorage.getItem("pb_amount") ||
-          localStorage.getItem("pb_amount") ||
-          (opKey === "ooredoo" ? "1.5" : "1.16");
-        var fake = !clickId || clickId.indexOf("local_") === 0 || clickId.indexOf("{") !== -1;
-        if (converted === "1" && !fake) {
-          var direct =
-            "http://postback.advertizer.com/pb.php?clickid=" +
-            encodeURIComponent(clickId) +
-            "&amount=" + encodeURIComponent(amount) +
-            "&advertiser_id=Zeen1041&key=a5b193ada1cbd22a987bfe876496ac40";
-          var proxy =
-            "advertizer-pb.php?clickid=" + encodeURIComponent(clickId) +
-            "&amount=" + encodeURIComponent(amount);
-          var img = new Image();
-          img.src = direct + "&_t=" + Date.now();
-          try { fetch(direct, { method: "GET", mode: "no-cors", keepalive: true, cache: "no-store" }).catch(function () {}); } catch (e2) {}
-          try { fetch(proxy, { method: "GET", keepalive: true, cache: "no-store" }).catch(function () {}); } catch (e3) {}
-          if (navigator.sendBeacon) { try { navigator.sendBeacon(proxy); } catch (e4) {} }
-        }
-      } catch (e5) {}
-
       var n = 3;
       var el = document.getElementById("tyTimer");
       var timer = setInterval(function () {

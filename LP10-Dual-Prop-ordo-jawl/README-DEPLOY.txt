@@ -8,27 +8,27 @@ GEO: Palestine (+970)
 PIN: 4 digits
 Antifraud: None
 
-Operators (Zeentec WAP)
------------------------
-1) Ooredoo — pingen id=113 — pinver id=111 — portal id=111 — payout 1.5
-2) Jawwal  — pingen id=115 — pinver id=111 — portal id=111 — payout 1.16
+Operators (Zeentec)
+-------------------
+1) Ooredoo — id=113 (all APIs) — payout 1.5
+2) Jawwal  — id=115 (all APIs) — payout 1.16
 
-API base: https://wap.zeentec.com/pay/
-  pingen?id=&msisdn=&ua=&ip=&param1=btn-1&clickid=
-  pinver?id=&msisdn=&otp=&ua=&ip=
-  checkstatus?id=180&msisdn=
-  getportal?id=111&msisdn=
+API base: https://zeentec.com/pay/
+  pingen?id={opId}&msisdn=&ua=&ip=&param1=btn-1&clickid=
+  pinver?id={opId}&msisdn=&otp=&ua=&ip=
+  checkstatus?id={opId}&msisdn=
+  getportal?id={opId}&msisdn=
 
-Note: Docs pasted Service ID 111 / pinver+portal 111 for both operators.
-pingen IDs differ (113 Ooredoo / 115 Jawwal). Publisher payout was blank in doc —
-Propeller uses 1.5 (Ooredoo) / 1.16 (Jawwal) like prior Palestine dual LPs.
+IMPORTANT: Same operator id is used for EVERY API (pingen / pinver /
+checkstatus / getportal). Ooredoo=113, Jawwal=115.
+Publisher payout blank in doc — Propeller uses 1.5 / 1.16.
 
 MSISDN: Palestine +970, local 9 digits starting with 5.
 
 Flow
 ----
 index (+970 MSISDN) → choose Ooredoo/Jawwal → pingen → PIN → pinver
-→ Propeller postback → thankyou.html → getportal?id=111
+→ Propeller postback → thankyou.html → getportal?id={same op id}
 
 PropellerAds postback (after successful PIN verify):
   https://ad.propellerads.com/conversion.php?aid=3898869&pid=&tid=154120&visitor_id=${SUBID}&payout=${PAYOUT}

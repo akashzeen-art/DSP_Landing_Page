@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Z Game</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="ty-wrap">
+    <img src="assets/logo.png" alt="" style="width:64px;margin-bottom:12px;" />
+    <h1 id="tyTitle">تم الاشتراك بنجاح</h1>
+    <p id="tySub">جاري تحويلك إلى المحتوى…</p>
+    <div class="ty-timer" id="tyTimer">3</div>
+  </div>
+  <script>
+    (function () {
+      var lang = "ar";
+      try {
+        lang = new URLSearchParams(location.search).get("lang") || localStorage.getItem("lang") || "ar";
+      } catch (e) {}
+      document.documentElement.lang = lang;
+      document.documentElement.dir = lang === "en" ? "ltr" : "rtl";
+      if (lang === "en") {
+        document.getElementById("tyTitle").textContent = "Subscription successful";
+        document.getElementById("tySub").textContent = "Redirecting you to the content…";
+      }
+      var portal = "";
+      try { portal = sessionStorage.getItem("portal_url") || localStorage.getItem("portal_url") || ""; } catch (e2) {}
+      if (!portal) {
+        portal = "http://64.225.85.48/adnet/Promo/Api/CPportal?cid=570";
+      }
+      var n = 3;
+      var el = document.getElementById("tyTimer");
+      var t = setInterval(function () {
+        n -= 1;
+        if (el) el.textContent = String(Math.max(n, 0));
+        if (n <= 0) {
+          clearInterval(t);
+          window.location.href = portal;
+        }
+      }, 1000);
+    })();
+  </script>
+</body>
+</html>

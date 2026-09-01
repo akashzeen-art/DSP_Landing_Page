@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>OneGaming</title>
+  <link rel="icon" href="data:," />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="wrapper">
+    <div class="ty-wrap">
+      <h1 id="tyTitle">Thank you for subscribing!</h1>
+      <p id="tySub">Redirecting you to the content…</p>
+      <div class="ty-timer" id="tyTimer">3</div>
+    </div>
+  </div>
+  <script>
+    (function () {
+      var lang = "en";
+      try {
+        lang = new URLSearchParams(location.search).get("lang") || localStorage.getItem("lang") || "en";
+      } catch (e) {}
+      var copy = {
+        en: { title: "Thank you for subscribing!", sub: "Redirecting you to the content…" },
+        fr: { title: "Merci pour votre abonnement !", sub: "Redirection vers le contenu…" }
+      };
+      var c = copy[lang] || copy.en;
+      document.documentElement.lang = lang;
+      document.getElementById("tyTitle").textContent = c.title;
+      document.getElementById("tySub").textContent = c.sub;
+
+      var msisdn = "";
+      try { msisdn = sessionStorage.getItem("msisdn") || localStorage.getItem("msisdn") || ""; } catch (e1) {}
+      var portal = "";
+      try { portal = sessionStorage.getItem("portal_url") || localStorage.getItem("portal_url") || ""; } catch (e2) {}
+      if (!portal) {
+        portal = "http://159.89.163.174/prod/CMcmp/redirect?cid=500&msisdn=" + encodeURIComponent(msisdn);
+      }
+
+      var n = 3;
+      var el = document.getElementById("tyTimer");
+      var t = setInterval(function () {
+        n -= 1;
+        if (el) el.textContent = String(Math.max(n, 0));
+        if (n <= 0) {
+          clearInterval(t);
+          window.location.href = portal;
+        }
+      }, 1000);
+    })();
+  </script>
+</body>
+</html>
