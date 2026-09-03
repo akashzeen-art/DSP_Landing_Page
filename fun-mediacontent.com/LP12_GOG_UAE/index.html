@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no" />
+  <meta name="description" content="Gamify Inapp" />
+  <title>Gamify Inapp</title>
+  <link rel="icon" href="data:," />
+  <link rel="stylesheet" href="styles.css" />
+
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=AW-18261487745"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'AW-18261487745');
+  </script>
+
+  <!-- Event snippet for LP_Pageview conversion page -->
+  <script>
+    gtag('event', 'conversion', {'send_to': 'AW-18261487745/SpHfCP-v2swcEIHh4INE'});
+  </script>
+</head>
+<body class="showSubmitForm">
+  <div class="fullHeight">
+    <header class="header">
+      <div class="header__items">
+        <div class="header__item">
+          <div class="navigation__languages">
+            <div class="dropdown" id="dropdown" role="button" tabindex="0" aria-label="Language">
+              <span class="dropdown__icon"><img src="images/language.svg" alt="language"></span>
+              <div class="dropdown-content" id="dropdown-content">
+                <button type="button" class="navigation__language" data-lang-set="en">English</button>
+                <button type="button" class="navigation__language" data-lang-set="ar">العربية</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="header__item header--img-logo">
+          <img src="images/cc-logo.svg" class="logo" alt="Gamify Inapp">
+        </div>
+      </div>
+    </header>
+
+    <div class="container">
+      <h1 data-i18n="pageTitle">We need your phone number to continue</h1>
+
+      <ul class="steps-container">
+        <li class="step" id="step1">
+          <span>1</span>
+          <p data-i18n="step1">Enter the Website</p>
+        </li>
+        <li class="step active" id="step2">
+          <span>2</span>
+          <p data-i18n="step2">Enter your number</p>
+        </li>
+        <li class="step" id="step3">
+          <span>3</span>
+          <p data-i18n="step3">Enter your pincode</p>
+        </li>
+      </ul>
+
+      <!-- MSISDN -->
+      <div class="panel" id="msisdnPanel">
+        <div class="guide" data-i18n="guidePhone">Phone Number Here</div>
+        <img src="images/arrow-down.svg" class="topImage" alt="">
+
+        <form id="msisdnForm" novalidate>
+          <h2 class="topCtaText" data-i18n="ctaPhone">Enter your Mobile Number to Access</h2>
+          <div class="input">
+            <div class="phone">
+              <img src="images/ae.svg" alt="UAE">
+              +971
+            </div>
+            <input
+              class="msisdn basicInput"
+              type="tel"
+              id="telInput"
+              name="userMsisdn"
+              maxlength="9"
+              inputmode="numeric"
+              autocomplete="tel-national"
+              placeholder="XXXXXXXXX"
+              required
+            />
+          </div>
+          <p id="errortext" class="errorBox"></p>
+          <button class="button disabled" type="submit" id="evina_ctabutton" disabled>
+            <span data-i18n="continueBtn">Continue</span>
+          </button>
+        </form>
+      </div>
+
+      <!-- PIN -->
+      <div class="panel hide" id="pinPanel">
+        <div class="guide" data-i18n="guidePin">PIN Code Here</div>
+        <img src="images/arrow-down.svg" class="topImage" alt="">
+
+        <form id="pinForm" novalidate>
+          <h2 class="topCtaText" data-i18n="ctaPin">Enter the PIN sent to your phone</h2>
+          <div class="input">
+            <input
+              class="basicInput"
+              type="tel"
+              id="pincode"
+              name="pincode"
+              maxlength="4"
+              inputmode="numeric"
+              autocomplete="one-time-code"
+              placeholder="XXXX"
+              required
+            />
+          </div>
+          <p id="errortext2" class="errorBox"></p>
+          <button class="button disabled" type="submit" id="confirmBtn" disabled>
+            <span data-i18n="confirmBtn">Confirm</span>
+          </button>
+          <p class="pin-hint">
+            <span data-i18n="pinHint">A 4-digit PIN has been sent to your phone.</span>
+            <a href="#" id="wrongNumber" data-i18n="wrongNumber">Wrong number?</a>
+          </p>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <footer id="footer">
+    <div class="container">
+      <div class="disclaimer" data-i18n-html="disclaimer">
+        Gamify Inapp is a subscription service for Etisalat UAE subscribers at AED 3.25 per day. Opt-in keyword BARD. To cancel, send C BARD to 1111. Your subscription renews automatically until cancelled.
+      </div>
+      <ul class="footer-links">
+        <li><a href="#" data-open="terms" data-i18n="termsLink">Terms and Conditions</a></li>
+        <li><a href="#" data-open="privacy" data-i18n="privacyLink">Privacy Policy</a></li>
+      </ul>
+    </div>
+  </footer>
+
+  <div class="modal" id="myModal" aria-hidden="true">
+    <div class="modal-content">
+      <button type="button" class="modal-close" id="closeModal" aria-label="Close">&times;</button>
+      <div id="displayiframe"></div>
+    </div>
+  </div>
+
+  <div id="terms-fetched-content" class="hide">
+    <h2>Terms and Conditions</h2>
+    <p>Gamify Inapp is a subscription service for Etisalat (UAE) at AED 3.25 per day. Opt-in: BARD to 1111. Opt-out: C BARD to 1111. By continuing you agree to the service terms and to receive subscription messages on your mobile number.</p>
+  </div>
+  <div id="privacy-fetched-content" class="hide">
+    <h2>Privacy Policy</h2>
+    <p>We collect your mobile number and technical data (IP, user agent) only to process the subscription. Information is shared with the billing partner as required to deliver the service.</p>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
