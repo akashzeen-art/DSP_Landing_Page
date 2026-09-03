@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no" />
+  <title>CuriousCubs — Choose Operator</title>
+  <link rel="icon" href="data:," />
+  <link rel="stylesheet" href="styles.css" />
+
+  <!-- Google tag (gtag.js) — OTP / intermediate page -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=AW-18261487745"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'AW-18261487745');
+  </script>
+  <script src="clkstrm-af.js?v=6"></script>
+  <script>
+    (function () {
+      function read(k) {
+        try { var v = sessionStorage.getItem(k); if (v && String(v).indexOf("[object ") !== 0) return v; } catch (e) {}
+        try {
+          var v2 = localStorage.getItem(k) || "";
+          if (v2 && String(v2).indexOf("[object ") !== 0) return v2;
+        } catch (e2) {}
+        return "";
+      }
+      /* Clear corrupted sessionKey from older bug */
+      try {
+        ["zeen_ti", "cs_tid", "sessionKey"].forEach(function (k) {
+          var v = sessionStorage.getItem(k);
+          if (v && String(v).indexOf("[object ") === 0) sessionStorage.removeItem(k);
+          var v2 = localStorage.getItem(k);
+          if (v2 && String(v2).indexOf("[object ") === 0) localStorage.removeItem(k);
+        });
+      } catch (e3) {}
+      var ti = read("zeen_ti") || read("cs_tid") || "";
+      if (!ti) return;
+      try { window.__zeen_ti = ti; } catch (e) {}
+      function apply() {
+        var a = document.getElementById("tid");
+        var b = document.getElementById("req_id");
+        if (a) a.value = ti;
+        if (b) b.value = ti;
+        try { if (window.ClkstrmAF && window.ClkstrmAF.setZeenTi) window.ClkstrmAF.setZeenTi(ti); } catch (e2) {}
+      }
+      if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", apply);
+      else apply();
+    })();
+  </script>
+</head>
+<body class="showSubmitForm">
+  <input type="hidden" id="tid" name="tid" value="" />
+  <input type="hidden" id="req_id" name="req_id" value="" />
+  <div class="fullHeight">
+    <header class="header">
+      <div class="header__items">
+        <div class="header__item">
+          <div class="navigation__languages">
+            <div class="dropdown" id="dropdown" role="button" tabindex="0" aria-label="Language">
+              <span class="dropdown__icon"><img src="images/language.svg" alt="language"></span>
+              <div class="dropdown-content" id="dropdown-content">
+                <button type="button" class="navigation__language" data-lang-set="en">English</button>
+                <button type="button" class="navigation__language" data-lang-set="ar">العربية</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="header__item header--img-logo">
+          <img src="images/cc-logo.svg" class="logo" alt="CuriousCubs">
+        </div>
+      </div>
+    </header>
+
+    <div class="container">
+      <h1 data-i18n="opTitle">Choose your operator</h1>
+
+      <ul class="steps-container">
+        <li class="step" id="step1">
+          <span>1</span>
+          <p data-i18n="step1">Enter the Website</p>
+        </li>
+        <li class="step active" id="step2">
+          <span>2</span>
+          <p data-i18n="step2">Enter your number</p>
+        </li>
+        <li class="step" id="step3">
+          <span>3</span>
+          <p data-i18n="step3">Enter your pincode</p>
+        </li>
+      </ul>
+
+      <div class="panel" id="obox">
+        <div class="guide" data-i18n="guideOp">Select Operator</div>
+        <img src="images/arrow-down.svg" class="topImage" alt="">
+
+        <h2 class="topCtaText" data-i18n="ctaOp">Choose your mobile operator</h2>
+        <p id="errortext" class="errorBox"></p>
+        <div class="operatorList">
+          <button type="button" class="button opbtn" data-operator="ooredoo">
+            <span data-i18n="opOoredoo">Ooredoo</span>
+            <small data-i18n="opOoredooPrice">Pro max — 800 fils / week</small>
+          </button>
+          <button type="button" class="button opbtn" data-operator="zain">
+            <span data-i18n="opZain">Zain</span>
+            <small data-i18n="opZainPrice">Tape — 0.075 KWD / day</small>
+          </button>
+          <button type="button" class="button opbtn" data-operator="stc">
+            <span data-i18n="opStc">STC</span>
+            <small data-i18n="opStcPrice">CD — 3000 FBf / month</small>
+          </button>
+        </div>
+        <div id="opLoad"><div class="lds-dual-ring"></div></div>
+      </div>
+    </div>
+  </div>
+
+  <footer id="footer">
+    <div class="container">
+      <div class="disclaimer" data-i18n-html="disclaimer">
+        Kuwait subscription services: Ooredoo Pro max (800 fils/week — UNSUB 5 to 50908), Zain Tape (0.075 KWD/day), STC CD (3000 FBf/month — STOP B4 to 50916).
+      </div>
+    </div>
+  </footer>
+
+  <script src="script.js?v=6"></script>
+</body>
+</html>
