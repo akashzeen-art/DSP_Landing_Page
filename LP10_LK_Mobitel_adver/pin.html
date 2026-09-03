@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no" />
+  <title>ZD X Gamez — PIN</title>
+  <link rel="icon" href="data:," />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="center" id="maindiv">
+    <div class="lang">
+      <select id="langbar">
+        <option value="en">EN</option>
+        <option value="si">SI</option>
+      </select>
+    </div>
+    <div id="servicelogocontainerdiv">
+      <img id="servicelogo" src="assets/subpage.png" alt="ZD X Gamez" />
+    </div>
+    <div class="title" data-i18n="heroTitle">You're one step away from watching</div>
+    <div id="displayphotologo"></div>
+
+    <div id="vcode_div">
+      <div class="label"><h4 data-i18n="pinTitle">Enter PIN code</h4></div>
+      <form id="pinForm" novalidate>
+        <div class="field pin-field">
+          <input class="field-input focus" type="tel" name="pincode" id="pincode" maxlength="4" inputmode="numeric" placeholder="XXXX" autocomplete="one-time-code" />
+        </div>
+        <p id="errortext" class="errorBox"></p>
+        <button class="btn btn-hint" type="submit" id="verifybtn" disabled>
+          <span class="btntxt" data-i18n="confirmBtn">Confirm</span>
+        </button>
+      </form>
+      <div id="div33">
+        <p data-i18n="pinHint">A 4-digit PIN has been sent to your phone.</p>
+        <p><a href="index.html" id="wrongNumber" data-i18n="wrongNumber">Wrong number?</a></p>
+      </div>
+    </div>
+  </div>
+  <script src="script.js"></script>
+</body>
+</html>

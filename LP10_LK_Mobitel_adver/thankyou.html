@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>ZD X Gamez</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="ty-wrap">
+    <img src="assets/subpage.png" alt="ZD X Gamez" />
+    <h2 id="tyTitle">Subscription successful</h2>
+    <p id="tyMsg">Redirecting you to the content…</p>
+    <div class="ty-timer" id="tyTimer">5</div>
+    <a class="btn" id="tyGo" href="http://64.225.85.48/adnet/Promo/Api/CPportal?cid=291">Continue</a>
+  </div>
+  <script>
+    (function () {
+      var lang = "en";
+      try {
+        lang = localStorage.getItem("lang") || new URLSearchParams(location.search).get("lang") || "en";
+      } catch (e) {}
+      document.documentElement.lang = lang === "si" ? "si" : "en";
+      document.documentElement.dir = "ltr";
+      if (lang === "si") {
+        document.getElementById("tyTitle").textContent = "දායකත්වය සාර්ථකයි";
+        document.getElementById("tyMsg").textContent = "අන්තර්ගතය වෙත යොමු කරමින්…";
+        document.getElementById("tyGo").textContent = "ඉදිරියට";
+      }
+      var portal = "http://64.225.85.48/adnet/Promo/Api/CPportal?cid=291";
+      try { portal = sessionStorage.getItem("portal_url") || localStorage.getItem("portal_url") || portal; } catch (e2) {}
+      document.getElementById("tyGo").href = portal;
+      var n = 5;
+      var el = document.getElementById("tyTimer");
+      var t = setInterval(function () {
+        n -= 1;
+        el.textContent = String(n);
+        if (n <= 0) {
+          clearInterval(t);
+          window.location.href = portal;
+        }
+      }, 1000);
+    })();
+  </script>
+</body>
+</html>
