@@ -125,7 +125,7 @@
     var controller = typeof AbortController !== "undefined" ? new AbortController() : null;
     var timer = setTimeout(function () {
       if (controller) try { controller.abort(); } catch (e) {}
-    }, 20000);
+    }, 90000);
     var opts = { method: "GET", credentials: "omit", cache: "no-store" };
     if (controller) opts.signal = controller.signal;
 

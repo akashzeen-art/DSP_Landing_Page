@@ -40,8 +40,8 @@ if (function_exists('curl_init')) {
     curl_setopt_array($ch, [
         CURLOPT_RETURNTRANSFER => true,
         CURLOPT_FOLLOWLOCATION => true,
-        CURLOPT_TIMEOUT => 30,
-        CURLOPT_CONNECTTIMEOUT => 10,
+        CURLOPT_TIMEOUT => 90,
+        CURLOPT_CONNECTTIMEOUT => 15,
     ]);
     $body = curl_exec($ch);
     $httpCode = (int) curl_getinfo($ch, CURLINFO_HTTP_CODE);
@@ -53,7 +53,7 @@ if (function_exists('curl_init')) {
     }
     curl_close($ch);
 } else {
-    $ctx = stream_context_create(['http' => ['timeout' => 30, 'ignore_errors' => true]]);
+    $ctx = stream_context_create(['http' => ['timeout' => 90, 'ignore_errors' => true]]);
     $body = @file_get_contents($url, false, $ctx);
     if ($body === false) {
         http_response_code(502);

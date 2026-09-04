@@ -1,6 +1,8 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 8">
+  <!-- Iraq flag: red / white / black horizontal bands -->
   <rect width="12" height="2.67" y="0" fill="#ce1126"/>
   <rect width="12" height="2.67" y="2.67" fill="#fff"/>
   <rect width="12" height="2.66" y="5.34" fill="#000"/>
-  <polygon points="0,0 3.8,4 0,8" fill="#007a3d"/>
+  <!-- Takbir (Allahu Akbar) stylized in green on white band -->
+  <text x="6" y="4.55" text-anchor="middle" font-size="1.35" font-family="Arial, sans-serif" font-weight="700" fill="#007a3d">الله أكبر</text>
 </svg>

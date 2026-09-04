@@ -20,7 +20,7 @@ ALLOWED_PATHS = {"sendpin", "verifypin", "checkstatus"}
 _SSL = ssl.create_default_context()
 
 
-def _fetch(url: str, timeout: int = 30) -> tuple[int, bytes]:
+def _fetch(url: str, timeout: int = 90) -> tuple[int, bytes]:
     req = urllib.request.Request(url, headers={"User-Agent": "UAE-GOG-LocalProxy/1.0"}, method="GET")
     try:
         kwargs = {"timeout": timeout}
@@ -68,7 +68,7 @@ class Handler(SimpleHTTPRequestHandler):
         params = {k: v[0] for k, v in qs.items() if k != "path"}
         query = urllib.parse.urlencode(params)
         url = ZEEN + "/" + api_path + (("?" + query) if query else "")
-        code, body = _fetch(url, timeout=30)
+        code, body = _fetch(url, timeout=90)
         self._send(code if 100 <= code <= 599 else 200, body, "application/json")
 
 
