@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no" />
+  <meta name="description" content="OneGaming" />
+  <title>OneGaming</title>
+  <link rel="icon" href="data:," />
+  <link rel="stylesheet" href="assets/bluescreen.css" />
+</head>
+<body>
+  <div class="main" id="maindiv">
+    <div id="uppergrid">
+      <div></div>
+      <div id="upperdiv" data-i18n="topInfo">100 CFA / day · Orange</div>
+      <div class="lang">
+        <select id="langbar">
+          <option value="en">EN</option>
+          <option value="fr">FR</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="clickable">
+      <br />
+      <div class="webt-icon">
+        <img id="servicelogo" src="assets/premium_movies.jpg" alt="OneGaming" />
+      </div>
+    </div>
+
+    <div id="otp_div">
+      <div class="label"><h4 data-i18n="formTitle">Enter your phone number</h4></div>
+      <form id="msisdnForm" novalidate>
+        <div class="field heartbeat">
+          <input class="field-input" type="tel" name="phone" id="msisdn" maxlength="12" inputmode="numeric" autocomplete="tel-national" placeholder="___________" />
+          <div class="field-input__prefix">
+            <svg class="field-icon" width="14" height="23" viewBox="0 0 14 23" xmlns="http://www.w3.org/2000/svg">
+              <path d="M2 22.5C1.45 22.5 0.979333 22.3043 0.588 21.913C0.196 21.521 0 21.05 0 20.5V2.5C0 1.95 0.196 1.479 0.588 1.087C0.979333 0.695667 1.45 0.5 2 0.5H12C12.55 0.5 13.021 0.695667 13.413 1.087C13.8043 1.479 14 1.95 14 2.5V20.5C14 21.05 13.8043 21.521 13.413 21.913C13.021 22.3043 12.55 22.5 12 22.5H2ZM7 20C7.28333 20 7.521 19.904 7.713 19.712C7.90433 19.5207 8 19.2833 8 19C8 18.7167 7.90433 18.4793 7.713 18.288C7.521 18.096 7.28333 18 7 18C6.71667 18 6.47933 18.096 6.288 18.288C6.096 18.4793 6 18.7167 6 19C6 19.2833 6.096 19.5207 6.288 19.712C6.47933 19.904 6.71667 20 7 20ZM2 15.5H12V5.5H2V15.5Z"></path>
+            </svg>
+            237
+          </div>
+        </div>
+        <p class="errorBox" id="errBox"></p>
+        <button class="btn" type="submit" id="submitBtn" disabled>
+          <span class="btntxt" data-i18n="subscribeBtn">Subscribe</span>
+          <div class="submitload"><div class="lds-dual-ring"></div></div>
+        </button>
+      </form>
+      <div id="div3">
+        <div data-i18n="topInfo">100 CFA / day · Orange</div>
+        <p style="text-align:center;margin:12px 0;"><a href="https://www.google.com/" data-i18n="exitBtn"><b>Exit</b></a></p>
+        <p><b data-i18n="tcTitle">Terms and Conditions</b></p>
+        <p><b data-i18n="tcAgree">By clicking Subscribe above, you agree to the following terms and conditions</b></p>
+        <p data-i18n="t1">● OneGaming is a subscription service for Orange Cameroon at 100 CFA per day</p>
+        <p data-i18n="t2">● The subscription renews automatically until you cancel with your operator</p>
+        <p data-i18n="t4">● A 4-digit PIN will be sent to your mobile number to confirm</p>
+        <p data-i18n="t5">● Make sure you have a good internet connection to access content quickly</p>
+        <p data-i18n="t6">● By continuing you agree to the service terms and to receive subscription updates on your registered mobile number</p>
+      </div>
+    </div>
+
+    <div id="vcode_div" class="hide">
+      <div class="label" id="pin_page_head"><h4 data-i18n="pinTitle">Enter PIN code</h4></div>
+      <form id="pinForm" novalidate>
+        <div class="field">
+          <input class="field-input pin-only" type="tel" name="pincode" id="pin" maxlength="4" inputmode="numeric" placeholder="XXXX" autocomplete="one-time-code" />
+        </div>
+        <p class="errorBox" id="errBox2"></p>
+        <button class="btn" type="submit" id="verifybtn" disabled>
+          <span class="btntxt" data-i18n="confirmBtn">Confirm</span>
+          <div class="submitload"><div class="lds-dual-ring"></div></div>
+        </button>
+      </form>
+      <div id="div33">
+        <p data-i18n="pinHint">A 4-digit PIN has been sent to your phone.</p>
+        <p><a href="#" id="wrongNumber" data-i18n="wrongNumber">Wrong number?</a></p>
+      </div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
