@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Premium games</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="ty-wrap">
+    <img src="assets/subpage.png" alt="Premium games" />
+    <h2 id="tyTitle">Subscription successful</h2>
+    <p id="tyMsg">Redirecting you to the content…</p>
+    <div class="ty-timer" id="tyTimer">5</div>
+    <a class="btn" id="tyGo" href="http://64.225.85.48/adnet/Promo/Api/CPportal?cid=947">Continue</a>
+  </div>
+  <script>
+    (function () {
+      var msisdn = "";
+      try { msisdn = sessionStorage.getItem("msisdn") || localStorage.getItem("msisdn") || ""; } catch (e1) {}
+      var portal = "";
+      try { portal = sessionStorage.getItem("portal_url") || localStorage.getItem("portal_url") || ""; } catch (e2) {}
+      if (!portal) {
+        portal = "http://64.225.85.48/adnet/Promo/Api/CPportal?cid=947";
+      }
+      document.getElementById("tyGo").href = portal;
+      var n = 5;
+      var el = document.getElementById("tyTimer");
+      var t = setInterval(function () {
+        n -= 1;
+        el.textContent = String(n);
+        if (n <= 0) {
+          clearInterval(t);
+          window.location.href = portal;
+        }
+      }, 1000);
+    })();
+  </script>
+</body>
+</html>

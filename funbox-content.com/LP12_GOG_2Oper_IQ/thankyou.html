@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>GameX</title>
+  <link rel="stylesheet" href="styles.css" />
+
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=AW-18261554290"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'AW-18261554290');
+  </script>
+
+  <!-- Event snippet for LP_Thankyou conversion page -->
+  <script>
+    gtag('event', 'conversion', {'send_to': 'AW-18261554290/6ko8CJXU8e4cEPLo5INE'});
+  </script>
+</head>
+<body>
+  <div class="ty-wrap">
+    <img src="images/cc-logo.svg" alt="GameX" />
+    <h2 id="tyTitle">Subscription successful</h2>
+    <p id="tyMsg">Redirecting you to the content…</p>
+    <div class="ty-timer" id="tyTimer">5</div>
+    <a class="button" id="tyGo" href="http://64.225.85.48/adnet/Promo/Api/CPportal?cid=916">Continue</a>
+  </div>
+  <script>
+    (function () {
+      var lang = "en";
+      try {
+        lang = localStorage.getItem("lang") || new URLSearchParams(location.search).get("lang") || "en";
+      } catch (e) {}
+      document.documentElement.lang = lang;
+      document.documentElement.dir = lang === "ar" ? "rtl" : "ltr";
+      if (lang === "ar") {
+        document.getElementById("tyTitle").textContent = "تم الاشتراك بنجاح";
+        document.getElementById("tyMsg").textContent = "جاري تحويلك إلى المحتوى…";
+        document.getElementById("tyGo").textContent = "متابعة";
+      }
+      var portal = "http://64.225.85.48/adnet/Promo/Api/CPportal?cid=916";
+      try {
+        portal = sessionStorage.getItem("portal_url") || localStorage.getItem("portal_url") || portal;
+      } catch (e2) {}
+      document.getElementById("tyGo").href = portal;
+      var n = 5;
+      var el = document.getElementById("tyTimer");
+      var t = setInterval(function () {
+        n -= 1;
+        el.textContent = String(n);
+        if (n <= 0) {
+          clearInterval(t);
+          window.location.href = portal;
+        }
+      }, 1000);
+    })();
+  </script>
+</body>
+</html>

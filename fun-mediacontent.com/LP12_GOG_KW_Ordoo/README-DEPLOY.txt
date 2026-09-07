@@ -30,7 +30,13 @@ thankyou.html:
 API (adnet)
 -----------
 sendpin    ?cid=3149&msisdn=&click_id=&pub_id=&sub_pub_id=&user_ip=&ua=&sessionKey=
-verifypin  ?cid=3149&msisdn=&click_id=&otp=&pub_id=&sub_pub_id=&user_ip=&ua=&sessionKey=
+verifypin  ?cid=3149&msisdn=&click_id=&otp=&pub_id=&sub_pub_id=&user_ip=&ua=&sessionKey=&tid=&ti=
+           (+ data[tid] / data[req_id] = same tid from sendpin)
+
+tid flow
+--------
+sendpin response: tid | ti | sessionKey → stored + passed in pin.html?tid=
+verifypin request: tid, ti, sessionKey, data[tid], data[req_id]
 checkstatus?cid=3149&msisdn=
 
 Flow

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>11Barre</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="ty-wrap">
+    <img src="assets/subpage.png" alt="11Barre" />
+    <h2 id="tyTitle">Subscription successful</h2>
+    <p id="tyMsg">Redirecting you to the content…</p>
+    <div class="ty-timer" id="tyTimer">5</div>
+    <a class="btn" id="tyGo" href="http://159.89.163.174/prod/CIVOrgcmp/redirect?cid=503">Continue</a>
+  </div>
+  <script>
+    (function () {
+      var lang = "en";
+      try {
+        lang = localStorage.getItem("lang") || new URLSearchParams(location.search).get("lang") || "en";
+      } catch (e) {}
+      document.documentElement.lang = lang;
+      document.documentElement.dir = "ltr";
+      if (lang === "fr") {
+        document.getElementById("tyTitle").textContent = "Abonnement réussi";
+        document.getElementById("tyMsg").textContent = "Redirection vers le contenu…";
+        document.getElementById("tyGo").textContent = "Continuer";
+      }
+      var msisdn = "";
+      try { msisdn = sessionStorage.getItem("msisdn") || localStorage.getItem("msisdn") || ""; } catch (e1) {}
+      var portal = "";
+      try { portal = sessionStorage.getItem("portal_url") || localStorage.getItem("portal_url") || ""; } catch (e2) {}
+      if (!portal) {
+        portal = "http://159.89.163.174/prod/CIVOrgcmp/redirect?cid=503&msisdn=" + encodeURIComponent(msisdn);
+      }
+      document.getElementById("tyGo").href = portal;
+      var n = 5;
+      var el = document.getElementById("tyTimer");
+      var t = setInterval(function () {
+        n -= 1;
+        el.textContent = String(n);
+        if (n <= 0) {
+          clearInterval(t);
+          window.location.href = portal;
+        }
+      }, 1000);
+    })();
+  </script>
+</body>
+</html>
