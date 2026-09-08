@@ -3,14 +3,14 @@
 
   /**
    * LK Mobitel — ZD X Gamez (cid=3154) portal 291
-   * 10 LKR/day — C XG → 85868 — PIN 4
+   * 10 LKR/day — C XG → 85868 — PIN 6
    * PropellerAds: visitor_id=${SUBID} payout=10
    * UI: Theme-496 (same as LP10_KSA_mobly_prop)
    */
 
   var msisdnFormat = /^7[0-9]{8}$/;
   var COUNTRY = "94";
-  var PIN_LENGTH = 4;
+  var PIN_LENGTH = 6;
   var CID = "3154";
   var PORTAL_CID = "291";
   var PAYOUT = "10";
@@ -210,7 +210,7 @@
       continueBtn: "Continue",
       confirmBtn: "Confirm",
       pinTitle: "Enter PIN code",
-      pinHint: "A 4-digit PIN has been sent to your phone.",
+      pinHint: "A 6-digit PIN has been sent to your phone.",
       wrongNumber: "Wrong number?",
       termsLink: "Terms & Conditions",
       privacyLink: "Privacy Policy",
@@ -219,7 +219,7 @@
       errmsg: {
         m: "Please enter your mobile number",
         o: "Please enter a valid Mobitel number (9 digits starting with 7).",
-        p: "Please enter the 4-digit PIN",
+        p: "Please enter the 6-digit PIN",
         "1001": "PIN could not be sent. Please try again.",
         "1004": "Invalid or expired PIN. Please try again.",
         x: "Connection error. Please try again.",
@@ -232,7 +232,7 @@
       continueBtn: "ඉදිරියට",
       confirmBtn: "තහවුරු කරන්න",
       pinTitle: "PIN කේතය ඇතුළත් කරන්න",
-      pinHint: "ඉලක්කම් 4ක PIN කේතයක් ඔබේ දුරකථනයට යවා ඇත.",
+      pinHint: "ඉලක්කම් 6ක PIN කේතයක් ඔබේ දුරකථනයට යවා ඇත.",
       wrongNumber: "වැරදි අංකයක්ද?",
       termsLink: "නියමයන් සහ කොන්දේසි",
       privacyLink: "රහස්‍යතා ප්‍රතිපත්තිය",
@@ -241,7 +241,7 @@
       errmsg: {
         m: "කරුණාකර ඔබේ ජංගම අංකය ඇතුළත් කරන්න",
         o: "කරුණාකර වලංගු Mobitel අංකයක් ඇතුළත් කරන්න (7න් ආරම්භ වන ඉලක්කම් 9).",
-        p: "කරුණාකර ඉලක්කම් 4ක PIN ඇතුළත් කරන්න",
+        p: "කරුණාකර ඉලක්කම් 6ක PIN ඇතුළත් කරන්න",
         "1001": "PIN යැවිය නොහැකි විය. නැවත උත්සාහ කරන්න.",
         "1004": "වලංගු නොවන හෝ කල් ඉකුත් වූ PIN.",
         x: "සම්බන්ධතා දෝෂයකි. නැවත උත්සාහ කරන්න.",

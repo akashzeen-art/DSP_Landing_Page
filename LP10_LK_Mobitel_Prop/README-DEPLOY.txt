@@ -6,7 +6,7 @@ UI: Theme-496 (same as LP10_KSA_mobly_prop) — EN/SI
 Service: ZD X Gamez | Mobitel Sri Lanka | cid=3154
 Price: 10 LKR / day
 Short code: 85868 | Unsub: C XG
-PIN: 4 digits
+PIN: 6 digits
 API: http://64.225.85.48/adnet/
 Portal: http://64.225.85.48/adnet/Promo/Api/CPportal?cid=291
 

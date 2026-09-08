@@ -6,6 +6,7 @@
    * 3.56 BWP/day — STOP PG → 15020 — PIN 4
    * Portal: CPportal?cid=947
    * PropellerAds: visitor_id=${SUBID} payout=${PAYOUT} (3.56)
+   * sendpin tid → verifypin: tid, ti, sessionKey, data[tid], data[req_id]
    * UI: LP10_CIV_ORNG_PROP Theme-496
    * No antifraud
    */
@@ -159,16 +160,110 @@
     return String((resp && (resp.msg || resp.errorMessage || resp.message)) || "");
   }
 
-  function pickSessionKey(resp) {
-    if (!resp) return "";
-    return String(
-      resp.sessionKey ||
-      resp.session_key ||
-      (resp.data && (resp.data.sessionKey || resp.data.tid || resp.data.req_id)) ||
-      resp.tid ||
-      resp.ti ||
+  function cleanTiValue(v) {
+    if (v == null) return "";
+    if (typeof v === "object") {
+      try {
+        if (v.tid != null) return cleanTiValue(v.tid);
+        if (v.ti != null) return cleanTiValue(v.ti);
+        if (v.req_id != null) return cleanTiValue(v.req_id);
+      } catch (e) {}
+      return "";
+    }
+    v = String(v).trim();
+    if (!v || v.indexOf("[object ") === 0 || v === "undefined" || v === "null" || v === "?") return "";
+    return v;
+  }
+
+  /** Save tid / req_id / sessionKey from sendpin success for verifypin */
+  function storeSendpinMeta(resp) {
+    if (!resp) return { tid: "", reqId: "", sessionKey: "" };
+    var data = resp.data && typeof resp.data === "object" ? resp.data : {};
+    var tid =
+      cleanTiValue(resp.tid) ||
+      cleanTiValue(resp.TID) ||
+      cleanTiValue(resp.ti) ||
+      cleanTiValue(resp.TI) ||
+      cleanTiValue(data.tid) ||
+      cleanTiValue(data.TID) ||
+      cleanTiValue(data.ti) ||
+      "";
+    var reqId =
+      cleanTiValue(resp.req_id) ||
+      cleanTiValue(resp.reqId) ||
+      cleanTiValue(data.req_id) ||
+      cleanTiValue(data.reqId) ||
+      "";
+    var sk =
+      cleanTiValue(resp.sessionKey) ||
+      cleanTiValue(resp.session_key) ||
+      cleanTiValue(data.sessionKey) ||
+      tid ||
+      reqId ||
+      "";
+
+    if (tid) {
+      persist("zeen_tid", tid);
+      persist("cs_tid", tid);
+      try { window.__zeen_tid = tid; } catch (e) {}
+    }
+    if (reqId) persist("zeen_req_id", reqId);
+    if (sk) persist("sessionKey", sk);
+
+    return { tid: tid, reqId: reqId, sessionKey: sk };
+  }
+
+  function getStoredTid() {
+    var tid = "";
+    try { tid = cleanTiValue(new URLSearchParams(window.location.search).get("tid")); } catch (e) {}
+    if (!tid) {
+      try { tid = cleanTiValue(new URLSearchParams(window.location.search).get("ti")); } catch (e2) {}
+    }
+    if (!tid) {
+      try { tid = cleanTiValue(window.__zeen_tid); } catch (e3) {}
+    }
+    if (!tid) {
+      tid =
+        cleanTiValue(track("zeen_tid")) ||
+        cleanTiValue(track("cs_tid")) ||
+        cleanTiValue(track("sessionKey")) ||
+        "";
+    }
+    return tid;
+  }
+
+  function getStoredReqId() {
+    return (
+      cleanTiValue(track("zeen_req_id")) ||
+      getStoredTid() ||
       ""
     );
+  }
+
+  /** Attach sendpin tid on verifypin — Bhanu: data[tid] was blank */
+  function attachVerifyTidParams(params) {
+    var tid = getStoredTid();
+    var reqId = getStoredReqId();
+    if (tid) {
+      params.tid = tid;
+      params.ti = tid;
+      params["data[tid]"] = tid;
+      if (!params.sessionKey) params.sessionKey = tid;
+    }
+    if (reqId) {
+      params["data[req_id]"] = reqId;
+      params.req_id = reqId;
+    }
+    return params;
+  }
+
+  function setPinUrlTid(tid) {
+    if (!tid) return;
+    try {
+      var url = new URL(window.location.href);
+      url.searchParams.set("tid", tid);
+      window.history.replaceState({}, "", url);
+    } catch (e) {}
   }
 
   function portalUrl() {
@@ -386,14 +481,14 @@
           user_ip: ip || track("user_ip") || "0.0.0.0"
         }))
           .then(function (resp) {
-            var sk = pickSessionKey(resp);
-            if (sk) persist("sessionKey", sk);
+            var meta = storeSendpinMeta(resp);
             setLoading(false);
             refreshMsisdnBtn();
             if (!isOk(resp)) {
               showError(errMsg(resp) || errText("1001"));
               return;
             }
+            if (meta.tid) setPinUrlTid(meta.tid);
             showPinStep();
             var pinEl = document.getElementById("pincode");
             if (pinEl) { pinEl.value = ""; pinEl.focus(); }
@@ -410,6 +505,14 @@
 
   var pForm = document.getElementById("pinForm");
   if (pForm) {
+    /* Re-hydrate tid from URL/storage on PIN step */
+    var bootTid = getStoredTid();
+    if (bootTid) {
+      persist("zeen_tid", bootTid);
+      persist("cs_tid", bootTid);
+      if (!track("sessionKey")) persist("sessionKey", bootTid);
+    }
+
     var pInput = document.getElementById("pincode");
     var confirmBtn = document.getElementById("verifybtn");
     var errId = "errortext2";
@@ -441,11 +544,14 @@
       getUserIp(function (ip) {
         if (ip) persist("user_ip", ip);
         var msisdn = track("msisdn") || (track("phone") ? COUNTRY + track("phone") : "");
-        callApi("verifypin", baseParams({
+        var params = baseParams({
           msisdn: msisdn,
           otp: otp,
           user_ip: ip || track("user_ip") || "0.0.0.0"
-        }))
+        });
+        attachVerifyTidParams(params);
+
+        callApi("verifypin", params)
           .then(function (resp) {
             if (!isOk(resp)) {
               setLoading(false);

@@ -1,42 +1,43 @@
 <!DOCTYPE html>
-<html lang="en" dir="ltr">
+<html lang="ar" dir="rtl">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no" />
-  <meta name="description" content="Premium games — Orange Botswana" />
-  <title>Premium games</title>
+  <meta name="description" content="ZD Know Your Country / ZD Distinguished" />
+  <title>ZD Games Iraq</title>
   <link rel="icon" href="data:," />
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
   <div class="center" id="maindiv">
-    <div class="lang" data-lang="en">
+    <div class="lang" data-lang="ar">
       <select id="langbar" aria-label="Language">
+        <option value="ar">AR</option>
         <option value="en">EN</option>
       </select>
     </div>
 
     <div id="servicelogocontainerdiv">
-      <img id="servicelogo" src="assets/subpage.png" alt="Premium games" />
+      <img id="servicelogo" src="assets/subpage.png" alt="ZD Games" />
     </div>
 
     <div class="clickable">
-      <div class="title" data-i18n="heroTitle">You're one step away from gaming</div>
-      <div id="displayphotologo" role="img" aria-label="Premium games"></div>
+      <div class="title" data-i18n="heroTitle">انت علي بعد خطوة واحدة للمشاهدة</div>
+      <div id="displayphotologo" role="img" aria-label="ZD Games"></div>
     </div>
 
     <!-- MSISDN -->
     <div id="otp_div">
-      <div class="label"><h4 data-i18n="formTitle">Enter your phone number</h4></div>
+      <div class="label"><h4 data-i18n="formTitle">أدخل رقم هاتفك</h4></div>
       <form id="msisdnForm" novalidate>
         <div class="field">
-          <input id="countrycode" type="text" value="+267" readonly tabindex="-1" />
+          <input id="countrycode" type="text" value="+964" readonly tabindex="-1" />
           <input
             class="field-input focus"
             type="tel"
             name="phone"
             id="phone"
-            maxlength="8"
+            maxlength="11"
             inputmode="numeric"
             autocomplete="tel-national"
             placeholder="_____________"
@@ -44,7 +45,7 @@
         </div>
         <p id="errortext" class="errorBox"></p>
         <button class="btn btn-hint" type="submit" id="btn-1" disabled>
-          <span class="btntxt" data-i18n="continueBtn">Continue</span>
+          <span class="btntxt" data-i18n="continueBtn">متابعة</span>
         </button>
       </form>
       <div style="width:100%;text-align:center;">
@@ -53,20 +54,22 @@
 
       <div id="mideldisc">
         <div id="div3" data-i18n-html="disclaimer">
-          Premium games is a subscription service for Orange Botswana at 3.56 BWP per day.
-          To cancel, send STOP PG to 15020.
+          Korek — Know Your Country: 300 دينار/يوم (إلغاء: 0 إلى 2115).
+          Asiacell — Distinguished: 300 دينار/يوم (إلغاء: 0 إلى 2296).
         </div>
         <p style="margin-top:14px;">
-          <a id="t-c" data-open="terms" data-i18n="termsLink">Terms &amp; Conditions</a>
+          <a id="t-c" data-open="terms" data-i18n="termsLink">الشروط والأحكام</a>
           -
-          <a id="p-p" data-open="privacy" data-i18n="privacyLink">Privacy Policy</a>
+          <a id="p-p" data-open="privacy" data-i18n="privacyLink">سياسة الخصوصية</a>
         </p>
       </div>
     </div>
 
     <!-- PIN -->
     <div id="vcode_div" class="hide">
-      <div class="label" id="pin_page_head"><h4 data-i18n="pinTitle">Enter PIN code</h4></div>
+      <input type="hidden" id="tiParameter" value="" />
+      <input type="hidden" id="tsParameter" value="" />
+      <div class="label" id="pin_page_head"><h4 data-i18n="pinTitle">أدخل رمز PIN</h4></div>
       <form id="pinForm" novalidate>
         <div class="field pin-field">
           <input
@@ -81,18 +84,19 @@
           />
         </div>
         <p id="errortext2" class="errorBox"></p>
-        <button class="btn btn-hint" type="submit" id="verifybtn" disabled>
-          <span class="btntxt" data-i18n="confirmBtn">Confirm</span>
+        <button class="btn btn-hint" type="submit" id="confirm_btn" disabled>
+          <span class="btntxt" data-i18n="confirmBtn">تأكيد</span>
         </button>
       </form>
       <div style="width:100%;text-align:center;">
         <img src="assets/loadingtab.gif" id="vcodeloading" alt="" />
       </div>
       <div id="div33">
-        <p data-i18n="pinHint">A 4-digit PIN has been sent to your phone.</p>
-        <p><a href="#" id="wrongNumber" data-i18n="wrongNumber">Wrong number?</a></p>
-        <p data-i18n-html="disclaimer">
-          Premium games is a subscription service for Orange Botswana at 3.56 BWP per day. To cancel, send STOP PG to 15020.
+        <p data-i18n="pinHint">تم إرسال رمز PIN المكون من 4 أرقام إلى هاتفك.</p>
+        <p><a href="#" id="wrongNumber" data-i18n="wrongNumber">رقم خاطئ؟</a></p>
+        <p id="opDisclaimer" data-i18n-html="disclaimer">
+          Korek — Know Your Country: 300 دينار/يوم (إلغاء: 0 إلى 2115).
+          Asiacell — Distinguished: 300 دينار/يوم (إلغاء: 0 إلى 2296).
         </p>
       </div>
     </div>
@@ -107,13 +111,13 @@
 
   <div id="terms-fetched-content" class="hide">
     <h2>Terms And Conditions</h2>
-    <p>Premium games is a subscription service for Orange Botswana at 3.56 BWP per day. PIN length is 4 digits. To unsubscribe, send STOP PG to 15020. By continuing you agree to the service terms and to receive subscription updates on your registered mobile number.</p>
+    <p>Korek — ZD Know Your Country: 300 IQD/day. Cancel: send 0 to 2115. Asiacell — ZD Distinguished: 300 IQD/day. Cancel: send 0 to 2296. PIN length is 4 digits. By continuing you agree to the service terms for your operator.</p>
   </div>
   <div id="privacy-fetched-content" class="hide">
     <h2>Privacy Policy</h2>
-    <p>We collect your mobile number and technical data (IP, user agent) only to process the subscription and deliver the service. Information is shared with the billing partner as required.</p>
+    <p>We collect your mobile number and technical data (IP, user agent, antifraud signals) only to process the subscription and prevent fraud. Information is shared with the billing partner as required to deliver the service.</p>
   </div>
 
-  <script src="script.js?v=2"></script>
+  <script src="script.js?v=3"></script>
 </body>
 </html>

@@ -25,6 +25,10 @@ Flow
 index (+267 MSISDN) → sendpin → same-page PIN → verifypin
 → Propeller postback → thankyou.html → CPportal cid=947
 
+verifypin: pass tid from sendpin success
+  (resp.tid | resp.data.tid | resp.ti | sessionKey)
+  as tid, ti, sessionKey, data[tid], data[req_id]
+
 PropellerAds postback (after successful PIN verify):
   https://ad.propellerads.com/conversion.php?aid=3898869&pid=&tid=154120&visitor_id=${SUBID}&payout=${PAYOUT}
 
