@@ -414,17 +414,6 @@ button.button {
   animation: spin .8s linear infinite;
 }
 
-.pricepoint {
-  margin: 12px auto 0;
-  max-width: 360px;
-  text-align: center;
-  font-size: 12px;
-  line-height: 1.45;
-  color: #6b7280;
-  font-weight: 600;
-  white-space: pre-line;
-}
-
 @keyframes spin {
   to { transform: rotate(360deg); }
 }

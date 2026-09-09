@@ -11,8 +11,8 @@
    * Asiacell (cid=3159) portal 915 — IQD 360/day — unsub 0 → 2348 — PIN 4
    *           AF: apicalling.com offId=2367 (page=1 MSISDN + page=2 PIN)
    *
-   * AF ti → sessionKey on verifypin (and sendpin for Asiacell).
-   * AF ts → ?ts= on OTP URL + subsequent requests when present.
+   * AF ti → sessionKey + transactionId + ti on verifypin (and sendpin for Asiacell).
+   * AF ts → ?uniqid= on OTP URL (value = AF ts) + subsequent requests when present.
    * If ti empty but script returned: do NOT pass ti/sessionKey.
    *
    * Google Ads: AW-18261487745
@@ -128,10 +128,17 @@
   }
 
   function clearAfState() {
-    ["af_ti", "af_ts", "af_page1", "af_msisdn"].forEach(function (k) {
+    ["af_ti", "af_ts", "af_page1", "af_msisdn", "af_script"].forEach(function (k) {
       try { sessionStorage.removeItem(k); } catch (e) {}
       try { localStorage.removeItem(k); } catch (e2) {}
     });
+  }
+
+  /** Page-1 AF OK when script loaded and/or ti present (empty ti + script is valid per doc). */
+  function page1AfOk(msisdn) {
+    if (track("af_page1") !== "1") return false;
+    if (msisdn && track("af_msisdn") !== msisdn) return false;
+    return !!(track("af_ti") || track("af_script") === "1");
   }
 
   function initTracking() {
@@ -150,8 +157,9 @@
       if (v && String(v).indexOf("{") === -1 && String(v).indexOf("$") === -1) persist(k, v);
     });
 
-    var urlTs = params.get("ts");
-    if (urlTs && String(urlTs).indexOf("{") === -1) persist("af_ts", urlTs);
+    /* OTP URL uses uniqid=<AF ts>; accept legacy ?ts= too */
+    var urlUniq = params.get("uniqid") || params.get("ts");
+    if (urlUniq && String(urlUniq).indexOf("{") === -1) persist("af_ts", urlUniq);
 
     if (!track("pub_id")) persist("pub_id", "google");
     if (!track("sub_pub_id")) {
@@ -258,23 +266,34 @@
   }
 
   function injectAfScript(scriptBody) {
-    if (!scriptBody) return;
+    if (!scriptBody) return false;
     var s = String(scriptBody).trim();
-    if (!s) return;
+    if (!s) return false;
     try {
-      if (/^https?:\/\//i.test(s)) {
+      /* Strip wrapping <script> tags if API returns HTML */
+      var m = s.match(/<script[^>]*>([\s\S]*?)<\/script>/i);
+      if (m && m[1]) s = m[1].trim();
+      if (/^https?:\/\//i.test(s) || /^\/\/[^\/]/.test(s)) {
         var ext = document.createElement("script");
-        ext.src = s;
+        ext.src = s.indexOf("//") === 0 ? "https:" + s : s;
         ext.async = true;
         document.head.appendChild(ext);
-        return;
+        return true;
       }
       var script = document.createElement("script");
       script.type = "text/javascript";
       script.setAttribute("data-af", "gulfpay");
       script.text = s;
-      document.head.appendChild(script);
-    } catch (e) {}
+      (document.head || document.documentElement || document.body).appendChild(script);
+      return true;
+    } catch (e) {
+      try {
+        (0, eval)(s);
+        return true;
+      } catch (e2) {
+        return false;
+      }
+    }
   }
 
   function runGulfpayAntifraud(offId, page, buttonId, msisdn, cb) {
@@ -321,19 +340,26 @@
           var tiVal = data.ti != null ? String(data.ti).trim() : "";
           var tsVal = data.ts != null ? String(data.ts).trim() : "";
           /* Doc: if ti empty and script returned, do NOT pass ti */
-          if (tiVal) persist("af_ti", tiVal);
+          if (tiVal) {
+            persist("af_ti", tiVal);
+          } else if (data.script && String(page) === "2") {
+            try { sessionStorage.removeItem("af_ti"); } catch (eClr) {}
+            try { localStorage.removeItem("af_ti"); } catch (eClr2) {}
+          }
           if (tsVal) persist("af_ts", tsVal);
-          if (data.script) injectAfScript(data.script);
+          var scriptOk = false;
+          if (data.script) scriptOk = injectAfScript(data.script);
+          if (scriptOk) persist("af_script", "1");
           if (data.requestApi && /^https?:\/\//i.test(String(data.requestApi))) {
             try {
               fetch(String(data.requestApi), { method: "GET", mode: "no-cors", cache: "no-store" }).catch(function () {});
             } catch (e4) {}
           }
-          if (String(page) === "1" && (tiVal || data.script)) {
+          if (String(page) === "1" && (tiVal || scriptOk || data.script)) {
             persist("af_page1", "1");
             persist("af_msisdn", msisdn || "");
           }
-          var waitMs = (String(page) === "1" && data.script) ? 900 : 150;
+          var waitMs = (data.script || scriptOk) ? 900 : 150;
           setTimeout(function () { done(data); }, waitMs);
           return;
         }
@@ -345,15 +371,20 @@
       });
   }
 
-  /** Pass AF ti as sessionKey (+ ts) when ti is non-empty */
+  /** Pass AF ti as sessionKey + transactionId + ti; AF ts as ts + uniqid */
   function applyAfToParams(params) {
     var afTi = track("af_ti");
     var afTs = track("af_ts");
     if (afTi && String(afTi).trim() !== "") {
-      params.sessionKey = String(afTi).trim();
+      var ti = String(afTi).trim();
+      params.sessionKey = ti;
+      params.transactionId = ti;
+      params.ti = ti;
     }
     if (afTs && String(afTs).trim() !== "") {
-      params.ts = String(afTs).trim();
+      var ts = String(afTs).trim();
+      params.ts = ts;
+      params.uniqid = ts;
     }
     return params;
   }
@@ -361,7 +392,8 @@
   function pinPageUrl() {
     var url = "pin.html?lang=" + encodeURIComponent(lang);
     var afTs = track("af_ts");
-    if (afTs) url += "&ts=" + encodeURIComponent(afTs);
+    /* Team: append AF ts value as uniqid (not ts) on PIN page URL */
+    if (afTs) url += "&uniqid=" + encodeURIComponent(afTs);
     return url;
   }
 
@@ -566,13 +598,15 @@
     });
   }
 
-  /* —— index: MSISDN → operator (Asiacell page=1 AF first) —— */
+  /* —— index: MSISDN → operator (Asiacell page=1 AF on first page) —— */
   var mForm = document.getElementById("msisdnForm");
   if (mForm) {
     setActiveStep(2);
     var mInput = document.getElementById("telInput");
     var submitBtn = document.getElementById("evina_ctabutton");
     var page1AfStarted = false;
+    var page1AfInflight = false;
+    var page1AfDebounce = null;
 
     function refreshMsisdnBtn() {
       var value = normalizeLocal(mInput.value);
@@ -585,12 +619,31 @@
       return { value: value, ok: ok };
     }
 
+    /** Load Asiacell AF script on MSISDN page as soon as a valid 77… number is entered */
+    function preloadAsiacellPage1Af(localDigits) {
+      if (detectOperatorKey(localDigits) !== "asiacell") return;
+      if (!msisdnFormat.test(localDigits)) return;
+      var msisdn = fullMsisdn(localDigits);
+      if (page1AfOk(msisdn) || page1AfInflight) return;
+      page1AfInflight = true;
+      getUserIp(function () {
+        runGulfpayAntifraud("2367", 1, MSISDN_BTN, msisdn, function () {
+          page1AfInflight = false;
+        });
+      });
+    }
+
     mInput.addEventListener("input", function () {
       mInput.value = normalizeLocal(mInput.value);
       showError("");
       refreshMsisdnBtn();
+      if (page1AfDebounce) clearTimeout(page1AfDebounce);
+      page1AfDebounce = setTimeout(function () {
+        preloadAsiacellPage1Af(mInput.value);
+      }, 350);
     });
     refreshMsisdnBtn();
+    if (mInput.value) preloadAsiacellPage1Af(normalizeLocal(mInput.value));
 
     mForm.addEventListener("submit", function (e) {
       e.preventDefault();
@@ -612,10 +665,9 @@
       if (guessed === "asiacell") {
         page1AfStarted = true;
         setBtnLoading(submitBtn, true, t[lang].continueBtn);
-        var needAf = track("af_page1") !== "1" || track("af_msisdn") !== msisdn || !track("af_ti");
         getUserIp(function () {
           function afterAf() {
-            if (!track("af_ti")) {
+            if (!page1AfOk(msisdn)) {
               setBtnLoading(submitBtn, false, t[lang].continueBtn);
               refreshMsisdnBtn();
               page1AfStarted = false;
@@ -624,11 +676,11 @@
             }
             goOperator();
           }
-          if (needAf) {
+          if (page1AfOk(msisdn)) {
+            afterAf();
+          } else {
             clearAfState();
             runGulfpayAntifraud("2367", 1, MSISDN_BTN, msisdn, afterAf);
-          } else {
-            afterAf();
           }
         });
       } else {
@@ -687,7 +739,8 @@
 
             if (op.afType === "asiacell") {
               applyAfToParams(params);
-              if (!params.sessionKey) {
+              /* Empty ti + script OK — only block if page1 AF never succeeded */
+              if (!page1AfOk(msisdn)) {
                 unlockOp();
                 showError(errText("af"));
                 return;
@@ -700,6 +753,14 @@
             callApi("sendpin", params)
               .then(function (resp) {
                 if (resp && resp.sessionKey) persist("sessionKey", resp.sessionKey);
+                if (resp && (resp.ti || resp.transactionId || (resp.data && resp.data.tid))) {
+                  var tid =
+                    resp.ti ||
+                    resp.transactionId ||
+                    (resp.data && resp.data.tid) ||
+                    "";
+                  if (tid) persist("af_ti", String(tid).trim());
+                }
                 if (!isOk(resp)) {
                   unlockOp();
                   showError(errText(errCode(resp)) || errText("1001"));
@@ -714,12 +775,12 @@
           }
 
           if (op.afType === "asiacell") {
-            if (track("af_page1") === "1" && track("af_ti") && track("af_msisdn") === msisdn) {
+            if (page1AfOk(msisdn)) {
               doSendPin();
             } else {
               getUserIp(function () {
                 runGulfpayAntifraud("2367", 1, MSISDN_BTN, msisdn, function () {
-                  if (!track("af_ti")) {
+                  if (!page1AfOk(msisdn)) {
                     unlockOp();
                     showError(errText("af"));
                     return;
@@ -746,8 +807,9 @@
     var pinLen = (op && op.pinLen) || 4;
 
     try {
-      var urlTs = new URLSearchParams(window.location.search).get("ts");
-      if (urlTs) persist("af_ts", urlTs);
+      var q = new URLSearchParams(window.location.search);
+      var urlUniqPin = q.get("uniqid") || q.get("ts");
+      if (urlUniqPin) persist("af_ts", urlUniqPin);
     } catch (eTs) {}
 
     if (!track("msisdn") && !track("phone")) {
@@ -769,7 +831,11 @@
       pinAfReady = false;
       var msForAf = track("msisdn") || fullMsisdn(track("phone")) || "";
       getUserIp(function () {
-        runGulfpayAntifraud(op.offId, 2, PIN_BTN, msForAf, function () {
+        runGulfpayAntifraud(op.offId, 2, PIN_BTN, msForAf, function (afData) {
+          /* Page-2 ti overwrites page-1 ti for verify (transaction ID) */
+          if (afData && afData.ti != null && String(afData.ti).trim() !== "") {
+            persist("af_ti", String(afData.ti).trim());
+          }
           pinAfReady = true;
         });
       });

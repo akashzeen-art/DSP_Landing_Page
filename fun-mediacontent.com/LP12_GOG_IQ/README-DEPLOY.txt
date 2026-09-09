@@ -27,9 +27,10 @@ Antifraud
 ----------
 - Headers: JSON → Base64
 - buttonid: evina_ctabutton (page 1) / confirmBtn (page 2)
-- ti → sessionKey on verifypin (and sendpin for Asiacell when ti present)
+- ti → sessionKey + transactionId + ti on verifypin (and sendpin for Asiacell when ti present)
 - If ti empty but script returned: do NOT pass ti/sessionKey from AF
-- ts → pin.html?ts={ts} and on subsequent API params when present
+- AF ts value → pin.html?uniqid={ts} (param name uniqid, value = AF ts) + API ts/uniqid params
+- Asiacell page=1 script loads on MSISDN page when 77… number is complete (not only on submit)
 - Proxy: af-proxy.php (HTTP AF from HTTPS LP)
 
 Google Ads (AW-18261487745)
