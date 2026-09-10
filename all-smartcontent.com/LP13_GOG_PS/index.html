@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=AW-18322603599"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'AW-18322603599');
+  </script>
+
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no" />
+  <meta name="description" content="Gamify — Palestine AIgameopedia" />
+  <title>Gamify</title>
+  <link rel="icon" href="data:," />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="main-wrap">
+    <main class="main">
+      <div class="menu-btn" id="menuBtn" aria-label="Menu">
+        <div></div>
+        <div></div>
+        <div></div>
+      </div>
+      <div class="logo">
+        <img src="images/logo.svg" alt="Gamify">
+      </div>
+
+      <nav class="nav" id="nav">
+        <div class="nav-close" id="navClose">×</div>
+        <div class="nav-item" data-i18n="navService">Gamify</div>
+        <div class="nav-item"><a href="#" data-open="terms" data-i18n="navTerms">Terms and conditions</a></div>
+        <div class="nav-item"><a href="#" data-open="privacy" data-i18n="navPrivacy">Privacy policy</a></div>
+      </nav>
+
+      <div class="clickable">
+        <div class="title d-none" data-i18n="offerTitle">Gamify</div>
+        <div class="download-icon">
+          <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="50" cy="50" r="36" fill="transparent" stroke-width="7" stroke="#6740b4" stroke-dasharray="360" transform="rotate(-90, 50, 50)">
+              <animate attributeName="stroke-dashoffset" values="360;0" dur="1s"></animate>
+            </circle>
+            <path class="svg-check2" d="M30 52 L44 66 L72 36" pathLength="1" fill="transparent" stroke-width="7" stroke="#6740b4" stroke-linecap="round" stroke-linejoin="round" opacity="0">
+              <animate attributeName="opacity" values="0;1" dur="0.3s" begin="900ms" fill="freeze"></animate>
+            </path>
+          </svg>
+        </div>
+      </div>
+
+      <form id="msisdnForm" novalidate>
+        <div class="label mb" data-i18n-html="formSteps">
+          <span class="label-bull">1</span> Enter your mobile number <br>
+          <span class="label-bull">2</span> Introduce your code to verify your account<br>
+          <span class="label-bull">3</span> Access now
+        </div>
+        <div class="field" id="msisdnField">
+          <div class="field-alert" id="msisdnAlert" data-i18n="formError">Please insert your phone number</div>
+          <input
+            class="field-input focus"
+            type="tel"
+            name="msisdn"
+            id="msisdn"
+            placeholder="---------"
+            maxlength="9"
+            inputmode="numeric"
+            autocomplete="tel-national"
+          />
+          <div class="field-input__prefix">
+            <svg class="field-icon" width="14" height="23" viewBox="0 0 14 23" xmlns="http://www.w3.org/2000/svg">
+              <path d="M2 22.5C1.45 22.5 0.979333 22.3043 0.588 21.913C0.196 21.521 0 21.05 0 20.5V2.5C0 1.95 0.196 1.479 0.588 1.087C0.979333 0.695667 1.45 0.5 2 0.5H12C12.55 0.5 13.021 0.695667 13.413 1.087C13.8043 1.479 14 1.95 14 2.5V20.5C14 21.05 13.8043 21.521 13.413 21.913C13.021 22.3043 12.55 22.5 12 22.5H2ZM7 20C7.28333 20 7.521 19.904 7.713 19.712C7.90433 19.5207 8 19.2833 8 19C8 18.7167 7.90433 18.4793 7.713 18.288C7.521 18.096 7.28333 18 7 18C6.71667 18 6.47933 18.096 6.288 18.288C6.096 18.4793 6 18.7167 6 19C6 19.2833 6.096 19.5207 6.288 19.712C6.47933 19.904 6.71667 20 7 20ZM2 15.5H12V5.5H2V15.5Z"></path>
+            </svg>
+            +970
+          </div>
+          <svg class="field-check" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path fill-rule="evenodd" clip-rule="evenodd" d="M2 12C2 6.47715 6.47715 2 12 2C17.5228 2 22 6.47715 22 12C22 17.5228 17.5228 22 12 22C6.47715 22 2 17.5228 2 12ZM15.7071 9.29289C16.0976 9.68342 16.0976 10.3166 15.7071 10.7071L12.0243 14.3899C11.4586 14.9556 10.5414 14.9556 9.97568 14.3899L8.29289 12.7071C7.90237 12.3166 7.90237 11.6834 8.29289 11.2929C8.68342 10.9024 9.31658 10.9024 9.70711 11.2929L11 12.5858L14.2929 9.29289C14.6834 8.90237 15.3166 8.90237 15.7071 9.29289Z"></path>
+          </svg>
+          <div class="field-label" data-i18n="formLabel">Mobile number</div>
+        </div>
+        <button class="btn disabled" type="submit" id="msisdnBtn" disabled data-i18n="btnContinue">CONTINUE</button>
+        <div class="price" data-i18n="price">Gamify subscription service</div>
+        <div class="bot-info">
+          <label for="agree">
+            <input class="bot-info-chekbox" type="checkbox" id="agree" name="agree" checked />
+            <div class="bot-info-box">
+              <div class="bot-info-text" data-i18n="checkbox">
+                I accept the Gamify service terms. I consent to the subscription starting immediately.
+              </div>
+            </div>
+          </label>
+        </div>
+      </form>
+
+      <div id="opPanel" class="d-none">
+        <div class="label" data-i18n="opLabel">Choose your offer to continue</div>
+        <div class="op-box" id="opBox">
+          <button type="button" class="opbtn" data-op="116" id="op116">
+            <span data-i18n="op116">Gamify Offer A</span>
+            <small>id 116</small>
+          </button>
+          <button type="button" class="opbtn" data-op="117" id="op117">
+            <span data-i18n="op117">Gamify Offer B</span>
+            <small>id 117</small>
+          </button>
+        </div>
+        <div class="field-alert" id="opAlert" style="position:static;transform:none;display:none;margin:0 0 10px;"></div>
+        <div class="op-load" id="opLoad"><div class="spin"></div></div>
+        <p class="price">
+          <a href="#" id="backNumber" data-i18n="wrongNumber" style="color:#6740b4;font-weight:700;">Wrong number?</a>
+        </p>
+      </div>
+
+      <form class="form d-none" id="pinForm" novalidate>
+        <div class="label" data-i18n="pinLabel">Please enter the confirmation code received to activate your subscription.</div>
+        <div class="field" id="pinField">
+          <div class="field-alert" id="pinAlert" data-i18n="pinError">Incorrect PIN! Please try again</div>
+          <input
+            class="field-input pin"
+            type="tel"
+            name="pin"
+            id="pin"
+            placeholder="****"
+            maxlength="4"
+            inputmode="numeric"
+            autocomplete="one-time-code"
+          />
+        </div>
+        <button class="btn" type="submit" id="pinBtn" disabled data-i18n="btnConfirm">CONTINUE</button>
+        <p class="price" style="margin-top:14px;">
+          <a href="#" id="wrongNumber" data-i18n="wrongNumber" style="color:#6740b4;font-weight:700;">Wrong number?</a>
+        </p>
+      </form>
+
+      <div class="langs">
+        <div class="lang" data-lang="ar">AR</div>
+        <div class="lang active" data-lang="en">EN</div>
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div data-i18n-html="footer">
+        Gamify is a subscription service for Palestine. By clicking Continue you agree to the Terms &amp; Conditions.
+      </div>
+    </footer>
+  </div>
+
+  <div class="loading" id="loading"></div>
+
+  <div class="modal" id="myModal" aria-hidden="true">
+    <div class="modal-content">
+      <button type="button" class="modal-close" id="closeModal" aria-label="Close">&times;</button>
+      <div id="displayiframe"></div>
+    </div>
+  </div>
+
+  <div id="terms-fetched-content" class="d-none">
+    <h2 data-i18n="navTerms">Terms and conditions</h2>
+    <p data-i18n="termsBody">Gamify is a subscription service. You must be 18+ or have permission from the bill payer. Data charges may apply.</p>
+  </div>
+  <div id="privacy-fetched-content" class="d-none">
+    <h2 data-i18n="navPrivacy">Privacy policy</h2>
+    <p data-i18n="privacyBody">We collect your mobile number and technical data (IP, user agent) only to process the subscription.</p>
+  </div>
+
+  <script src="script.js?v=1"></script>
+</body>
+</html>

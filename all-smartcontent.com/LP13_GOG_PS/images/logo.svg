@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 40" fill="none">
+  <defs>
+    <linearGradient id="g" x1="0" y1="0" x2="0" y2="40" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#ff6b4a"/>
+      <stop offset="0.45" stop-color="#e040a0"/>
+      <stop offset="1" stop-color="#6740b4"/>
+    </linearGradient>
+  </defs>
+  <path d="M8 6.5C8 4.5 10.2 3.2 12 4.2l22 12.5c1.8 1 1.8 3.6 0 4.6L12 33.8C10.2 34.8 8 33.5 8 31.5V6.5z" fill="url(#g)"/>
+  <text x="48" y="28" font-family="Arial, Helvetica, sans-serif" font-size="22" font-weight="800" fill="#1a1a1a">Gamify</text>
+</svg>

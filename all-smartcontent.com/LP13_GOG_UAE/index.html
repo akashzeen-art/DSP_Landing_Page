@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=AW-18322603599"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'AW-18322603599');
+  </script>
+
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no" />
+  <meta name="description" content="foodie — Etisalat UAE" />
+  <title>foodie</title>
+  <link rel="icon" href="data:," />
+  <link rel="stylesheet" href="styles.css?v=5" />
+</head>
+<body>
+  <div class="top-bar">
+    <div class="language">
+      <a href="#" id="langToggle" data-i18n="langSwitch">Arabic</a>
+    </div>
+    <h3 data-i18n="topOffer">Free for 24 hours, then 3.25 AED / Daily (VAT Inclusive).</h3>
+    <div class="banner">
+      <img src="images/banner.svg" alt="foodie" />
+    </div>
+  </div>
+
+  <div class="main-container" id="msisdnPanel">
+    <div class="title" data-i18n="formTitle">Enter your Etisalat Mobile Number to receive OTP</div>
+
+    <form id="msisdnForm" novalidate>
+      <div class="mobile-box">
+        <div class="country-code">+971</div>
+        <input
+          type="tel"
+          name="mobile"
+          id="msisdn"
+          class="mobile-input"
+          placeholder="XXXXXXXXX"
+          maxlength="9"
+          inputmode="numeric"
+          autocomplete="tel-national"
+          required
+        />
+      </div>
+
+      <p class="errorBox" id="msisdnAlert"></p>
+
+      <div class="plans">
+        <label class="plan">
+          <input type="radio" name="plan" value="daily" checked />
+          <span data-i18n="planDaily">3.25 AED / Daily</span>
+        </label>
+      </div>
+
+      <div class="buttons">
+        <button type="submit" class="btn" id="msisdnBtn" disabled data-i18n="btnSubscribe">SUBSCRIBE</button>
+        <button type="button" class="btn btn-exit" id="exitBtn" data-i18n="btnExit">EXIT</button>
+      </div>
+    </form>
+
+    <div class="note" data-i18n-html="noteHtml">
+      Free for 24 hours, then 3.25 AED / Daily (VAT Inclusive).
+      <br /><br />
+      After clicking 'Subscribe' you will receive PIN message to Confirm your subscription.
+    </div>
+  </div>
+
+  <div class="main-container d-none" id="pinPanel">
+    <div class="title" data-i18n="pinTitle">Enter the PIN sent to your phone</div>
+    <form id="pinForm" novalidate>
+      <div class="mobile-box pin-box">
+        <input
+          type="tel"
+          name="pin"
+          id="pin"
+          class="mobile-input pin-input"
+          placeholder="XXXX"
+          maxlength="4"
+          inputmode="numeric"
+          autocomplete="one-time-code"
+        />
+      </div>
+      <p class="errorBox" id="pinAlert"></p>
+      <div class="buttons">
+        <button type="submit" class="btn" id="pinBtn" disabled data-i18n="btnConfirm">CONFIRM</button>
+        <button type="button" class="btn btn-exit" id="wrongNumber" data-i18n="wrongNumber">Wrong number?</button>
+      </div>
+    </form>
+    <div class="note" data-i18n="pinNote">Enter the 4-digit PIN to confirm your subscription.</div>
+  </div>
+
+  <div class="terms">
+    <h2 data-i18n="termsHeading">TERMS AND CONDITIONS:</h2>
+    <p data-i18n="termsIntro">By Clicking on Subscribe, you agree to the below terms and conditions:</p>
+    <hr />
+    <ul>
+      <li data-i18n="t1">You will start the paid subscription after the free period automatically.</li>
+      <li data-i18n-html="t2">No commitment, you can cancel your subscription at any time by sending <b>C FODD</b> to <b>1111</b>.</li>
+      <li data-i18n-html="t3">To get support, please contact <a href="mailto:cs@netmediasleashares.com">cs@netmediasleashares.com</a></li>
+      <li data-i18n="t4">The free trial is valid only for new subscribers.</li>
+      <li data-i18n="t5">Enjoy Your Free trial for 24 hours.</li>
+      <li data-i18n="t6">Please make sure that your browser is not using any 3rd-party blocking technologies and you have a healthy internet connection for swift access to the content.</li>
+      <li data-i18n="t7">By proceeding, you are accepting all Terms and Conditions of the service and agree to receive updates about your subscription on your registered mobile number.</li>
+      <li data-i18n-html="t8">Further Terms and Conditions — see service terms below.</li>
+      <li data-i18n-html="t9">Further Privacy Policy — see privacy details below.</li>
+    </ul>
+  </div>
+
+  <div class="loading" id="loading"></div>
+
+  <script src="script.js?v=5"></script>
+</body>
+</html>

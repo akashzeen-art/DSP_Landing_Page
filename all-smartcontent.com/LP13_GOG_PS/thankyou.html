@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=AW-18322603599"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'AW-18322603599');
+  </script>
+
+  <!-- Event snippet for Thank_You conversion page -->
+  <script>
+    gtag('event', 'conversion', {'send_to': 'AW-18322603599/O9ZpCK-B-PEcEM_88qBE'});
+  </script>
+
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Gamify</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="ty-wrap">
+    <img src="images/logo.svg" alt="Gamify" />
+    <h2 id="tyTitle">Subscription successful</h2>
+    <p id="tyMsg">Redirecting you to the content…</p>
+    <div class="ty-timer" id="tyTimer">5</div>
+    <a class="btn" id="tyGo" href="https://zeentec.com/pay/getportal?id=111">Continue</a>
+  </div>
+  <script>
+    (function () {
+      var lang = "en";
+      try {
+        lang = localStorage.getItem("lang") || new URLSearchParams(location.search).get("lang") || "en";
+      } catch (e) {}
+      document.documentElement.lang = lang;
+      document.documentElement.dir = lang === "ar" ? "rtl" : "ltr";
+      document.body.classList.toggle("rtl", lang === "ar");
+      if (lang === "ar") {
+        document.getElementById("tyTitle").textContent = "تم الاشتراك بنجاح";
+        document.getElementById("tyMsg").textContent = "جاري تحويلك إلى المحتوى…";
+        document.getElementById("tyGo").textContent = "متابعة";
+      }
+      var msisdn = "";
+      try { msisdn = sessionStorage.getItem("msisdn") || localStorage.getItem("msisdn") || ""; } catch (e1) {}
+      var portal = "";
+      try { portal = sessionStorage.getItem("portal_url") || localStorage.getItem("portal_url") || ""; } catch (e2) {}
+      if (!portal) {
+        portal = "https://zeentec.com/pay/getportal?id=111" +
+          (msisdn ? ("&msisdn=" + encodeURIComponent(msisdn)) : "");
+      }
+      document.getElementById("tyGo").href = portal;
+      var n = 5;
+      var el = document.getElementById("tyTimer");
+      var t = setInterval(function () {
+        n -= 1;
+        el.textContent = String(n);
+        if (n <= 0) {
+          clearInterval(t);
+          window.location.href = portal;
+        }
+      }, 1000);
+    })();
+  </script>
+</body>
+</html>

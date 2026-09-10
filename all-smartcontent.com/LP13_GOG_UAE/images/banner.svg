@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 220" fill="none">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="640" y2="220" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#ff8a3d"/>
+      <stop offset="0.5" stop-color="#ff5c8a"/>
+      <stop offset="1" stop-color="#6c5ce7"/>
+    </linearGradient>
+  </defs>
+  <rect width="640" height="220" rx="18" fill="url(#bg)"/>
+  <circle cx="520" cy="40" r="70" fill="rgba(255,255,255,0.12)"/>
+  <circle cx="80" cy="180" r="50" fill="rgba(255,255,255,0.10)"/>
+  <text x="320" y="105" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="64" font-weight="800" fill="#fff">foodie</text>
+  <text x="320" y="150" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="22" font-weight="600" fill="rgba(255,255,255,0.92)">Etisalat UAE · AED 3.25 / day</text>
+</svg>
