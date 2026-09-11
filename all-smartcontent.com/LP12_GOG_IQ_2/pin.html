@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=AW-18322603599"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'AW-18322603599');
+  </script>
+
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no" />
+  <title>GameX — PIN</title>
+  <link rel="icon" href="data:," />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body class="showSubmitForm">
+  <div class="fullHeight">
+    <header class="header">
+      <div class="header__items">
+        <div class="header__item">
+          <div class="navigation__languages">
+            <div class="dropdown" id="dropdown" role="button" tabindex="0" aria-label="Language">
+              <span class="dropdown__icon"><img src="images/language.svg" alt="language"></span>
+              <div class="dropdown-content" id="dropdown-content">
+                <button type="button" class="navigation__language" data-lang-set="en">English</button>
+                <button type="button" class="navigation__language" data-lang-set="ar">العربية</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="header__item header--img-logo">
+          <img src="images/cc-logo.svg" class="logo" alt="GameX">
+        </div>
+      </div>
+    </header>
+
+    <div class="container">
+      <h1 data-i18n="pageTitlePin">Enter your PIN to continue</h1>
+
+      <ul class="steps-container">
+        <li class="step" id="step1">
+          <span>1</span>
+          <p data-i18n="step1">Enter the Website</p>
+        </li>
+        <li class="step" id="step2">
+          <span>2</span>
+          <p data-i18n="step2">Enter your number</p>
+        </li>
+        <li class="step active" id="step3">
+          <span>3</span>
+          <p data-i18n="step3">Enter your pincode</p>
+        </li>
+      </ul>
+
+      <div class="panel" id="pinPanel">
+        <div class="guide" data-i18n="guidePin">PIN Code Here</div>
+        <img src="images/arrow-down.svg" class="topImage" alt="">
+
+        <form id="pinForm" novalidate>
+          <h2 class="topCtaText" id="ctaPinTitle" data-i18n="ctaPin">Enter the PIN sent to your phone</h2>
+          <div class="input">
+            <input
+              class="basicInput"
+              type="tel"
+              id="pincode"
+              name="pincode"
+              maxlength="5"
+              inputmode="numeric"
+              autocomplete="one-time-code"
+              placeholder="XXXX"
+              required
+            />
+          </div>
+          <p id="errortext" class="errorBox"></p>
+          <button class="button disabled" type="submit" id="confirmBtn" disabled>
+            <span data-i18n="confirmBtn">Confirm</span>
+          </button>
+          <p class="pin-hint">
+            <span data-i18n="pinHint">A PIN has been sent to your phone.</span>
+            <a href="index.html" id="wrongNumber" data-i18n="wrongNumber">Wrong number?</a>
+          </p>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <footer id="footer">
+    <div class="container">
+      <div class="disclaimer" id="opFooterNote" data-i18n-html="disclaimer">
+        GameX Iraq. Your subscription renews until cancelled.
+      </div>
+    </div>
+  </footer>
+
+  <script src="script.js?v=2"></script>
+</body>
+</html>

@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=AW-18322603599"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'AW-18322603599');
+  </script>
+
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no" />
+  <title>GameX — Choose Operator</title>
+  <link rel="icon" href="data:," />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body class="showSubmitForm">
+  <div class="fullHeight">
+    <header class="header">
+      <div class="header__items">
+        <div class="header__item">
+          <div class="navigation__languages">
+            <div class="dropdown" id="dropdown" role="button" tabindex="0" aria-label="Language">
+              <span class="dropdown__icon"><img src="images/language.svg" alt="language"></span>
+              <div class="dropdown-content" id="dropdown-content">
+                <button type="button" class="navigation__language" data-lang-set="en">English</button>
+                <button type="button" class="navigation__language" data-lang-set="ar">العربية</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="header__item header--img-logo">
+          <img src="images/cc-logo.svg" class="logo" alt="GameX">
+        </div>
+      </div>
+    </header>
+
+    <div class="container">
+      <h1 data-i18n="opTitle">Choose your operator</h1>
+
+      <ul class="steps-container">
+        <li class="step" id="step1">
+          <span>1</span>
+          <p data-i18n="step1">Enter the Website</p>
+        </li>
+        <li class="step active" id="step2">
+          <span>2</span>
+          <p data-i18n="step2">Enter your number</p>
+        </li>
+        <li class="step" id="step3">
+          <span>3</span>
+          <p data-i18n="step3">Enter your pincode</p>
+        </li>
+      </ul>
+
+      <div class="panel" id="obox">
+        <div class="guide" data-i18n="guideOp">Select Operator</div>
+        <img src="images/arrow-down.svg" class="topImage" alt="">
+
+        <h2 class="topCtaText" data-i18n="ctaOp">Choose your mobile operator</h2>
+        <p id="errortext" class="errorBox"></p>
+        <div class="operatorList">
+          <button type="button" class="button opbtn" data-operator="zain">
+            <span data-i18n="opZain">Zain</span>
+            <small data-i18n="opZainPrice">GameX — IQD 400 / day</small>
+          </button>
+          <button type="button" class="button opbtn" data-operator="korek">
+            <span data-i18n="opKorek">Korek</span>
+            <small data-i18n="opKorekPrice">GameX — IQD 300 / day</small>
+          </button>
+          <button type="button" class="button opbtn" data-operator="asiacell">
+            <span data-i18n="opAsiacell">Asiacell</span>
+            <small data-i18n="opAsiacellPrice">GameX — IQD 360 / day</small>
+          </button>
+        </div>
+        <div id="opLoad"><div class="lds-dual-ring"></div></div>
+      </div>
+    </div>
+  </div>
+
+  <footer id="footer">
+    <div class="container">
+      <div class="disclaimer" data-i18n-html="disclaimer">
+        GameX — Iraq: Zain IQD 400/day (94→4089), Korek IQD 300/day (02→3999), Asiacell IQD 360/day (0→2348).
+      </div>
+    </div>
+  </footer>
+
+  <script src="script.js?v=2"></script>
+</body>
+</html>

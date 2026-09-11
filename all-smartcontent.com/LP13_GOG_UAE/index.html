@@ -15,7 +15,7 @@
   <meta name="description" content="foodie — Etisalat UAE" />
   <title>foodie</title>
   <link rel="icon" href="data:," />
-  <link rel="stylesheet" href="styles.css?v=5" />
+  <link rel="stylesheet" href="styles.css?v=7" />
 </head>
 <body>
   <div class="top-bar">
@@ -24,7 +24,7 @@
     </div>
     <h3 data-i18n="topOffer">Free for 24 hours, then 3.25 AED / Daily (VAT Inclusive).</h3>
     <div class="banner">
-      <img src="images/banner.svg" alt="foodie" />
+      <img src="images/banner.svg?v=6" alt="foodie" />
     </div>
   </div>
 
@@ -105,13 +105,31 @@
       <li data-i18n="t5">Enjoy Your Free trial for 24 hours.</li>
       <li data-i18n="t6">Please make sure that your browser is not using any 3rd-party blocking technologies and you have a healthy internet connection for swift access to the content.</li>
       <li data-i18n="t7">By proceeding, you are accepting all Terms and Conditions of the service and agree to receive updates about your subscription on your registered mobile number.</li>
-      <li data-i18n-html="t8">Further Terms and Conditions — see service terms below.</li>
-      <li data-i18n-html="t9">Further Privacy Policy — see privacy details below.</li>
+      <li data-i18n-html="t8">Further Terms and Conditions <a href="#" class="legal-link" data-open="terms">Click here</a></li>
+      <li data-i18n-html="t9">Further Privacy Policy <a href="#" class="legal-link" data-open="privacy">Click here</a></li>
     </ul>
+  </div>
+
+  <div class="modal" id="termsModal" aria-hidden="true">
+    <div class="modal-backdrop" data-close="terms"></div>
+    <div class="modal-dialog" role="dialog" aria-modal="true" aria-labelledby="termsModalTitle">
+      <button type="button" class="modal-close" data-close="terms" aria-label="Close">&times;</button>
+      <h2 id="termsModalTitle" data-i18n="modalTermsTitle">Terms and Conditions</h2>
+      <div class="modal-body" id="termsModalBody"></div>
+    </div>
+  </div>
+
+  <div class="modal" id="privacyModal" aria-hidden="true">
+    <div class="modal-backdrop" data-close="privacy"></div>
+    <div class="modal-dialog" role="dialog" aria-modal="true" aria-labelledby="privacyModalTitle">
+      <button type="button" class="modal-close" data-close="privacy" aria-label="Close">&times;</button>
+      <h2 id="privacyModalTitle" data-i18n="modalPrivacyTitle">Privacy Policy</h2>
+      <div class="modal-body" id="privacyModalBody"></div>
+    </div>
   </div>
 
   <div class="loading" id="loading"></div>
 
-  <script src="script.js?v=5"></script>
+  <script src="script.js?v=7"></script>
 </body>
 </html>

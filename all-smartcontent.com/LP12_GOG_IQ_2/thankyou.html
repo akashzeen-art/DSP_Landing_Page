@@ -17,16 +17,16 @@
 
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>foodie</title>
-  <link rel="stylesheet" href="styles.css?v=6" />
+  <title>GameX</title>
+  <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
   <div class="ty-wrap">
-    <img src="images/banner.svg?v=6" alt="foodie" />
+    <img src="images/cc-logo.svg" alt="GameX" />
     <h2 id="tyTitle">Subscription successful</h2>
     <p id="tyMsg">Redirecting you to the content…</p>
     <div class="ty-timer" id="tyTimer">5</div>
-    <a class="btn" id="tyGo" href="http://64.225.85.48/adnet/Promo/Api/CPportal?cid=948">Continue</a>
+    <a class="button" id="tyGo" href="http://64.225.85.48/adnet/Promo/Api/CPportal?cid=917">Continue</a>
   </div>
   <script>
     (function () {
@@ -36,13 +36,12 @@
       } catch (e) {}
       document.documentElement.lang = lang;
       document.documentElement.dir = lang === "ar" ? "rtl" : "ltr";
-      document.body.classList.toggle("rtl", lang === "ar");
       if (lang === "ar") {
         document.getElementById("tyTitle").textContent = "تم الاشتراك بنجاح";
         document.getElementById("tyMsg").textContent = "جاري تحويلك إلى المحتوى…";
         document.getElementById("tyGo").textContent = "متابعة";
       }
-      var portal = "http://64.225.85.48/adnet/Promo/Api/CPportal?cid=948";
+      var portal = "http://64.225.85.48/adnet/Promo/Api/CPportal?cid=917";
       try {
         portal = sessionStorage.getItem("portal_url") || localStorage.getItem("portal_url") || portal;
       } catch (e2) {}
